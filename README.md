@@ -9,11 +9,15 @@ aviso-de-privacidad.html    Aviso de Privacidad (LFPDPPP)
 cookies.html                Política de Cookies
 terminos.html               Términos y Condiciones
 styles.css / script.js      Estilos y lógica (menú, banner de cookies)
-assets/akiko-logo.png       Logo y mascota
+assets/akiko-logo.png       Logo original
+assets/akiko-mascota.png    Mascota sin fondo (hero y secciones)
+assets/akiko-wordmark.png   Letras "akiko" (header y footer)
+assets/akiko-boceto.jpg     Boceto original de la mascota
+assets/favicon.png          Ícono de la pestaña
 ```
 
 ## Antes de publicar
-1. Sube la carpeta `assets/` con `akiko-logo.png` junto a los demás archivos.
+1. Sube la carpeta `assets/` completa junto a los demás archivos.
 2. Datos legales ya capturados (Mariquita Sánchez, CDMX, akikohedz@gmail.com). Agrega número exterior y C.P. al domicilio en `aviso-de-privacidad.html` si quieres.
 3. Pide a un abogado que revise los textos legales; son una base general, no asesoría legal.
 
