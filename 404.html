@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Página no encontrada | Akiko</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#070a1c">
+<script>
+  // GitHub Pages muestra esta página en cualquier ruta: fijamos la base para que carguen estilos e imágenes.
+  (function () {
+    var seg = location.pathname.split('/')[1];
+    var base = /github\.io$/.test(location.hostname) && seg ? '/' + seg + '/' : '/';
+    document.write('<base href="' + base + '">');
+  })();
+</script>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="page-404">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+</svg>
+
+<header class="site">
+  <div class="nav">
+    <a href="./" class="brand" aria-label="Akiko, ir al inicio"><img class="brand-icon" src="assets/akiko-icono.png" alt="" width="149" height="120"><img class="wm" src="assets/akiko-wordmark.png" alt="Akiko" width="120" height="34"></a>
+    <a class="btn btn-light btn-sm" href="./">Ir al inicio</a>
+  </div>
+</header>
+
+<main class="lost">
+  <canvas class="flow" aria-hidden="true"></canvas>
+  <div class="lost-glow" aria-hidden="true"></div>
+
+  <div class="wrap lost-inner">
+    <p class="mono label reveal">Error 404 · Página no encontrada</p>
+
+    <div class="big404" aria-label="404">
+      <span class="d reveal" style="--d:.05s">4</span>
+      <button class="lost-mascot reveal" style="--d:.15s" type="button" aria-label="Tocar a Akiko">
+        <span class="rings" aria-hidden="true"><i></i><i></i><i></i></span>
+        <img src="assets/akiko-mascota.png" alt="Akiko buscando la página con su tarjeta NFC" width="900" height="726">
+        <span class="bubble lost-bubble" aria-live="polite">Mmm… aquí no hay nada.</span>
+      </button>
+      <span class="d reveal" style="--d:.25s">4</span>
+    </div>
+
+    <h1 class="split">Esta página <em>se nos perdió</em></h1>
+    <p class="lost-text reveal" style="--d:.4s">Akiko acercó su tarjeta, pero este enlace no lleva a ningún lado. Puede que lo hayamos movido o que la dirección tenga un error.</p>
+
+    <div class="lost-cta reveal" style="--d:.5s">
+      <a class="btn btn-grad magnetic" href="./"><svg class="ico"><use href="#i-left"/></svg> Volver al inicio</a>
+      <a class="btn btn-line" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20encontr%C3%A9%20un%20enlace%20roto%20en%20su%20p%C3%A1gina" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> Avisarnos por WhatsApp</a>
+    </div>
+
+    <nav class="lost-links reveal" style="--d:.6s" aria-label="Atajos">
+      <span class="mono">¿Buscabas algo de esto?</span>
+      <a href="./#servicios">Servicios</a>
+      <a href="./#apps">Apps</a>
+      <a href="./#demo">Demo</a>
+      <a href="./#contacto">Contacto</a>
+    </nav>
+  </div>
+</main>
+
+<script src="script.js"></script>
+<script>
+  (function () {
+    var btn = document.querySelector('.lost-mascot');
+    var bubble = document.querySelector('.lost-bubble');
+    var lines = [
+      'Mmm… aquí no hay nada.',
+      '¡Bip! Tarjeta sin señal 📶',
+      'Revisé debajo del sillón. Nada.',
+      'Mejor vamos al inicio, ¿va?',
+      '¡Oye, me haces cosquillas!',
+      'Toca el botón azul, yo te llevo.'
+    ];
+    var i = 0;
+    btn.addEventListener('click', function () {
+      i = (i + 1) % lines.length;
+      bubble.textContent = lines[i];
+      btn.classList.remove('jump');
+      void btn.offsetWidth;
+      btn.classList.add('jump');
+    });
+  })();
+</script>
+</body>
+</html>

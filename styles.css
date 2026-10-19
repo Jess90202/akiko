@@ -523,3 +523,36 @@ footer.site{background:var(--ink);color:rgba(255,255,255,.7);padding:60px 0 28px
   .cta-point{width:130px;animation:pointdown 2.4s var(--ease) infinite;margin-bottom:-6px}
 }
 @keyframes pointdown{0%,100%{transform:rotate(35deg) translateY(0)}50%{transform:rotate(35deg) translateY(6px)}}
+
+/* ---------- Página 404 ---------- */
+.page-404{background:var(--ink);color:#fff}
+.page-404 .nav{padding:6px 6px 6px 18px}
+.lost{position:relative;min-height:100svh;display:flex;align-items:center;padding:120px 0 64px;overflow:hidden;isolation:isolate;text-align:center}
+.lost-glow{position:absolute;inset:-20%;z-index:-2;background:radial-gradient(35% 35% at 50% 40%,rgba(47,107,255,.32),transparent 70%),radial-gradient(30% 30% at 75% 75%,rgba(155,60,255,.22),transparent 70%),radial-gradient(30% 30% at 20% 70%,rgba(24,212,245,.15),transparent 70%)}
+.lost-inner{display:flex;flex-direction:column;align-items:center}
+.lost .label{color:var(--cyan)}
+.big404{display:flex;align-items:center;justify-content:center;gap:clamp(0px,1vw,16px);margin:4px 0 8px}
+.big404 .d{font-family:var(--f-display);font-weight:800;font-size:clamp(7rem,24vw,17rem);line-height:.85;letter-spacing:-.06em;background:linear-gradient(180deg,#fff 30%,rgba(255,255,255,.35));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lost-mascot{position:relative;width:clamp(150px,24vw,300px);aspect-ratio:1;display:grid;place-items:center;border:0;background:none;cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent}
+.lost-mascot img{position:relative;width:100%;height:auto;animation:bob 5s ease-in-out infinite;filter:drop-shadow(0 26px 40px rgba(47,107,255,.45));transition:transform .4s var(--ease)}
+.lost-mascot:hover img{transform:rotate(-6deg) scale(1.04)}
+.lost-mascot.jump img{animation:jump .7s var(--ease),bob 5s ease-in-out .7s infinite}
+@keyframes jump{0%{transform:translateY(0)}35%{transform:translateY(-26px) rotate(-8deg)}70%{transform:translateY(4px) scale(1.04,.96)}100%{transform:none}}
+.rings{position:absolute;inset:0}
+.rings i{position:absolute;inset:12%;border-radius:50%;border:1.5px solid var(--cyan);opacity:0;animation:ping 3.4s var(--ease) infinite}
+.rings i:nth-child(2){animation-delay:1.1s;border-color:var(--blue)}.rings i:nth-child(3){animation-delay:2.2s;border-color:var(--violet)}
+.lost-bubble{position:absolute;top:-6%;right:-38%;white-space:nowrap;font-size:.85rem;animation:bob 4s ease-in-out infinite}
+.lost h1{font-size:clamp(2.2rem,5.6vw,4.4rem);margin-top:18px;max-width:14ch}
+.lost-text{margin-top:18px;max-width:520px;color:rgba(255,255,255,.7);font-size:1.08rem}
+.lost-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:32px}
+.lost-links{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 18px;margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1)}
+.lost-links .mono{color:rgba(255,255,255,.45);font-size:.66rem;width:100%}
+.lost-links a{color:#fff;text-decoration:none;font-weight:500;opacity:.8;transition:opacity .2s,color .2s}
+.lost-links a:hover{opacity:1;color:var(--cyan)}
+@media (max-width:600px){
+  .big404 .d{font-size:clamp(5.2rem,27vw,8rem)}
+  .lost-mascot{width:38vw}
+  .lost .label{margin-bottom:52px}
+  .lost-bubble{right:auto;left:50%;top:-34%;transform:translateX(-50%);animation:none;font-size:.76rem}
+  .lost-cta .btn{flex:1 1 100%}
+}
