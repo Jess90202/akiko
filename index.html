@@ -40,7 +40,7 @@
 
 <header class="site">
   <div class="nav">
-    <a href="#inicio" class="brand" aria-label="Akiko, ir al inicio"><img src="assets/akiko-wordmark.png" alt="Akiko" width="120" height="34"></a>
+    <a href="#inicio" class="brand" aria-label="Akiko, ir al inicio"><img class="brand-icon" src="assets/akiko-icono.png" alt="" width="149" height="120"><img class="wm" src="assets/akiko-wordmark.png" alt="Akiko" width="120" height="34"></a>
     <nav class="pill-nav" aria-label="Principal">
       <ul id="menu">
         <li><a class="link" href="#servicios">Servicios</a></li>
@@ -65,7 +65,10 @@
     <li><a href="#como-funciona"><small>04</small>Cómo funciona</a></li>
     <li><a href="#akiko"><small>05</small>Conoce a Akiko</a></li>
   </ol>
-  <a class="btn btn-grad" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> Escríbenos por WhatsApp</a>
+  <div class="menu-foot">
+    <div class="menu-guide"><img src="assets/akiko-senala.png" alt="" width="770" height="668" loading="lazy"><p class="bubble">¡Hola! Escríbenos, te respondo rápido.</p></div>
+    <a class="btn btn-grad" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> Escríbenos por WhatsApp</a>
+  </div>
 </div>
 
 <main id="inicio">
@@ -89,7 +92,7 @@
       <div class="hero-art reveal" style="--d:.3s">
         <div class="orbit" aria-hidden="true"><i></i><i></i><i></i></div>
         <div class="mascot-float" id="mascot-float">
-          <img src="assets/akiko-mascota.png" alt="Akiko, nuestra mascota, sosteniendo una tarjeta NFC" width="900" height="728" fetchpriority="high">
+          <img src="assets/akiko-mascota.png" alt="Akiko, nuestra mascota, sosteniendo una tarjeta NFC" width="900" height="726" fetchpriority="high">
         </div>
         <div class="glass chip c1">
           <span class="mono">Google Maps <svg class="ico"><use href="#i-star"/></svg></span>
@@ -147,6 +150,7 @@
         <h2 class="split">Lo que hacemos <em>por tu negocio</em></h2>
       </header>
 
+      <div class="peek-wrap" aria-hidden="true"><img class="peek" src="assets/akiko-mascota.png" alt="" width="900" height="726" loading="lazy"></div>
       <div class="svc-rail" tabindex="0" aria-label="Servicios, desliza para ver más">
         <article class="svc reveal">
           <div class="svc-art art-menu" aria-hidden="true">
@@ -324,6 +328,7 @@
           <button class="vid-sound" aria-label="Activar sonido"><svg class="ico"><use href="#i-mute"/></svg></button>
         </div>
         <div class="demo-glow" aria-hidden="true"></div>
+        <div class="guide guide-demo" aria-hidden="true"><p class="bubble">¡Mira cómo funciona!</p><img src="assets/akiko-senala.png" alt="" width="770" height="668" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -371,7 +376,7 @@
       </div>
       <div class="meet-art">
         <figure class="m-card sketch"><img src="assets/akiko-boceto.jpg" alt="Boceto original de Akiko dibujado a lápiz" loading="lazy" width="900" height="700"><figcaption class="mono">El boceto</figcaption></figure>
-        <figure class="m-card final"><img src="assets/akiko-mascota.png" alt="Akiko ya terminada" loading="lazy" width="900" height="728"><figcaption class="mono">Akiko hoy</figcaption></figure>
+        <figure class="m-card final"><img src="assets/akiko-mascota.png" alt="Akiko ya terminada" loading="lazy" width="900" height="726"><figcaption class="mono">Akiko hoy</figcaption></figure>
       </div>
     </div>
   </section>
@@ -383,8 +388,10 @@
       <p class="mono label reveal">¿Listo para que tu negocio destaque?</p>
       <h2 class="cta-title split">Hablemos <em>hoy</em></h2>
       <p class="reveal">Escríbenos por WhatsApp y te respondemos con una propuesta a tu medida.</p>
-      <a class="btn btn-grad btn-xl magnetic reveal" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20quiero%20informaci%C3%B3n%20de%20sus%20servicios" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> 55 1533 8822</a>
-      <img class="cta-mascot" src="assets/akiko-mascota.png" alt="" loading="lazy" width="900" height="728">
+      <div class="cta-row reveal">
+        <img class="cta-point" src="assets/akiko-senala.png" alt="Akiko señalando el botón de WhatsApp" loading="lazy" width="770" height="668">
+        <a class="btn btn-grad btn-xl magnetic" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20quiero%20informaci%C3%B3n%20de%20sus%20servicios" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> 55 1533 8822</a>
+      </div>
     </div>
   </section>
 </main>

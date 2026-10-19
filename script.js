@@ -253,11 +253,11 @@ function flowField(canvas) {
     return p;
   };
   function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    dpr = 1;
     w = canvas.clientWidth; h = canvas.clientHeight;
     canvas.width = w * dpr; canvas.height = h * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = Math.min(window.innerWidth < 700 ? 240 : 700, Math.round((w * h) / 2200));
+    const n = Math.min(window.innerWidth < 700 ? 170 : 420, Math.round((w * h) / 3200));
     parts = Array.from({ length: n }, () => spawn({}));
   }
   function field(x, y) {
