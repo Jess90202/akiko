@@ -8,12 +8,13 @@ index.html                  Página principal
 aviso-de-privacidad.html    Aviso de Privacidad (LFPDPPP)
 cookies.html                Política de Cookies
 terminos.html               Términos y Condiciones
-styles.css / script.js      Estilos y lógica (menú, banner de cookies)
+styles.css / script.js      Estilos y animaciones (líneas de luz, capítulos, dial, menú, cookies)
 assets/akiko-logo.png       Logo original
 assets/akiko-mascota.png    Mascota sin fondo (hero y secciones)
 assets/akiko-wordmark.png   Letras "akiko" (header y footer)
 assets/akiko-boceto.jpg     Boceto original de la mascota
 assets/favicon.png          Ícono de la pestaña
+assets/video/akiko-demo.mp4 Video vertical de la demo (sección «Demo»)
 ```
 
 ## Antes de publicar
