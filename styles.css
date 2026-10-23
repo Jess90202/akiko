@@ -556,3 +556,173 @@ footer.site{background:var(--ink);color:rgba(255,255,255,.7);padding:60px 0 28px
   .lost-bubble{right:auto;left:50%;top:-34%;transform:translateX(-50%);animation:none;font-size:.76rem}
   .lost-cta .btn{flex:1 1 100%}
 }
+
+/* =========================================================
+   Navegación líquida (teléfono): barra inferior con un círculo en el degradado de Akiko
+   que se desliza y se estira hasta la sección activa; el ícono sube dentro y aparece su nombre.
+   ========================================================= */
+.lnav{display:none}
+@media (max-width:900px){
+  .lnav{--x:0;--n:5;display:block;position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));z-index:85;width:min(440px,calc(100% - 24px));height:70px;transform:translateX(-50%);
+    background:var(--ink);color:#fff;border-radius:22px;border:1px solid rgba(255,255,255,.08);box-shadow:0 18px 40px -10px rgba(7,10,28,.65);transition:transform .5s var(--ease)}
+  .lnav.tucked{transform:translate(-50%,120%)}
+  .lnav ul{position:relative;z-index:1;display:grid;grid-template-columns:repeat(var(--n),1fr);height:100%;list-style:none;padding:0 6px}
+  .lnav a{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
+  .lnIcon{display:grid;place-items:center;width:46px;height:46px;font-size:1.35rem;opacity:.7;transition:transform .5s cubic-bezier(.5,1.7,.45,1),opacity .25s}
+  .lnText{position:absolute;bottom:7px;font-size:.7rem;font-weight:600;letter-spacing:.01em;white-space:nowrap;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .45s cubic-bezier(.5,1.6,.45,1)}
+  .lnav li.on .lnIcon{transform:translateY(-32px);opacity:1}
+  .lnav li.on .lnText{opacity:1;transform:none;transition-delay:.08s}
+  .lnBlob{position:absolute;z-index:0;top:-26px;left:6px;width:calc((100% - 12px) / var(--n));height:58px;display:grid;place-items:center;pointer-events:none;transform:translateX(calc(var(--x) * 100%));transition:transform .6s cubic-bezier(.65,1.45,.4,1)}
+  .lnBlob::before{content:"";width:56px;height:56px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 6px var(--ink),0 12px 26px -6px rgba(47,107,255,.85)}
+  .lnBlob.moving::before{animation:goo .6s cubic-bezier(.3,.7,.4,1)}
+  @keyframes goo{0%{transform:none}35%{transform:scale(1.34,.76);border-radius:42% 58% 50% 50%/55% 55% 45% 45%}65%{transform:scale(.92,1.08)}100%{transform:none;border-radius:50%}}
+  .wa-float{display:none}
+  #cookie-banner{bottom:calc(96px + env(safe-area-inset-bottom));right:12px}
+  footer.site{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
+}
+/* Escritorio: el indicador del menú se estira entre la opción anterior y la nueva antes de asentarse */
+.pill-nav .indicator.stretch{transition:transform .28s var(--ease),width .28s var(--ease),opacity .3s}
+@media (prefers-reduced-motion:reduce){.lnBlob,.lnIcon,.lnText{transition:none!important}.lnBlob::before{animation:none!important}}
+
+/* =========================================================
+   Akiko · estilo v3 «lienzo azul» (inspirado en la guía de bunny.net, con la identidad de Akiko)
+   · Lienzo azul pálido, textos en azul marino y letra Rubik.
+   · Las secciones oscuras pasan a ser «bahías» azul noche redondeadas, encajadas en el lienzo.
+   · Se conservan el degradado cian → azul → violeta, la mascota y los acentos en cursiva.
+   ========================================================= */
+:root{
+  --canvas:#e1f2ff; --ice:#eff8ff; --navy:#183d6d; --deep:#022e57; --sblue:#8bb3da; --mist:#d3e2f1;
+  --ink:#051e38; --paper:#e1f2ff; --text:#183d6d; --muted:#45607f; --line:#d3e2f1;
+  --grad-ink:linear-gradient(120deg,#2350f5,#7b2ff2);
+  --f-display:"Rubik",system-ui,sans-serif; --f-body:"Rubik",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --f-mono:"Rubik",system-ui,sans-serif;
+  --r:20px; --bay-m:clamp(8px,1.2vw,16px);
+  --card-shadow:0 6px 40px rgba(24,61,109,.08);
+}
+body{background:var(--canvas);color:var(--text)}
+body::after{display:none}
+h1,h2,h3{font-weight:700;letter-spacing:-.015em;line-height:1.12}
+.mono{font-size:.78rem;letter-spacing:.06em;font-weight:500}
+.label{color:#2f6bff}
+
+/* Botones: esquinas de 8px */
+.btn{border-radius:8px;font-weight:500}
+.btn-grad{box-shadow:0 10px 26px -10px rgba(47,107,255,.65)}
+
+/* Barra de navegación: azul noche, 20px de radio */
+.nav{border-radius:20px;background:rgba(5,30,56,.9);border-color:rgba(255,255,255,.08)}
+.pill-nav ul{border-radius:14px}
+.pill-nav a{border-radius:10px;font-size:1rem;font-weight:400}
+.pill-nav .indicator{border-radius:10px}
+.menu-btn{border-radius:12px}
+
+/* Bahías oscuras redondeadas */
+.hero,.apps,.how,.cta,.manifesto{margin:var(--bay-m) var(--bay-m) 0;border-radius:var(--r);overflow:clip}
+.hero{min-height:calc(100svh - 2*var(--bay-m));background:var(--ink)}
+.apps::before{border-radius:inherit}
+.manifesto{background:var(--deep)}
+.cta{margin-bottom:var(--bay-m)}
+
+/* Títulos a la escala de la guía */
+.hero h1{font-size:clamp(2.6rem,5vw,3.75rem);max-width:15ch}
+.sec-head h2,.demo h2,.meet h2{font-size:clamp(2.1rem,4.2vw,2.9rem)}
+.cta-title{font-size:clamp(3rem,9vw,5.6rem);line-height:1}
+.chapter h3{font-size:clamp(1.9rem,3.4vw,2.8rem)}
+.scrub{font-size:clamp(1.7rem,3.8vw,3.2rem);font-weight:500;line-height:1.18}
+/* en el lienzo claro el acento usa un degradado más oscuro para leerse bien */
+.services .split em .w>span,.demo .split em .w>span,.meet .split em .w>span{background:var(--grad-ink);-webkit-background-clip:text;background-clip:text}
+
+/* Marquesina sobre el lienzo */
+.marquee{background:transparent;color:var(--navy);border-top:0;padding:28px 0}
+.marquee span:nth-of-type(even){-webkit-text-stroke:1.2px rgba(24,61,109,.5)}
+
+/* Servicios: tarjetas blancas alrededor de Akiko */
+.services{background:transparent}
+.services h2,.demo h2,.meet h2,.demo-steps b,.meet .quote{color:var(--navy)}
+.cap-grid{display:grid;grid-template-columns:1fr minmax(220px,.75fr) 1fr;gap:clamp(16px,2.4vw,32px);align-items:center}
+.cap-col{display:grid;gap:18px}
+.cap{display:flex;align-items:center;gap:18px;background:#fff;border-radius:10px;padding:18px 20px 18px 18px;box-shadow:var(--card-shadow);transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.cap:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(24,61,109,.14)}
+.cap-art{flex:none;width:96px;height:96px;border-radius:14px;object-fit:cover;transition:transform .5s var(--ease)}
+.cap:hover .cap-art{transform:rotate(-4deg) scale(1.06)}
+.cap-tag{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:500;color:#2f6bff}
+.cap h3{font-size:1.25rem;line-height:1.3;letter-spacing:0;color:var(--navy);margin:4px 0}
+.cap p{font-size:.95rem;line-height:1.5;color:var(--muted)}
+.cap-mascot{position:relative;display:grid;place-items:center;aspect-ratio:1}
+.cap-ring{position:absolute;inset:4%;border-radius:50%;background:radial-gradient(closest-side,#fff 62%,rgba(255,255,255,0))}
+.cap-ring::before{content:"";position:absolute;inset:-4%;border-radius:50%;border:2px dashed rgba(47,107,255,.28);animation:spin 50s linear infinite}
+.cap-ring::after{content:"";position:absolute;top:6%;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--grad);box-shadow:0 0 16px rgba(47,107,255,.6)}
+.cap-mascot img{position:relative;width:92%;animation:bob 6s ease-in-out infinite;filter:drop-shadow(0 22px 28px rgba(47,107,255,.28))}
+
+/* Apps: la mascota acompaña cada capítulo */
+.ch-pose{width:88px;height:88px;border-radius:20px;object-fit:cover;margin-bottom:22px;box-shadow:0 14px 30px -12px rgba(0,0,0,.5)}
+.tags li{font-family:var(--f-body);text-transform:none;letter-spacing:0;font-size:.82rem}
+
+/* Demo sobre el lienzo, pasos como tarjetas blancas */
+.demo{background:transparent}
+.demo-steps{gap:12px}
+.demo-steps li,.demo-steps li:last-child{border:0;background:#fff;border-radius:10px;padding:18px 20px;box-shadow:var(--card-shadow)}
+.demo-steps .mono{display:grid;place-items:center;flex:none;width:34px;height:34px;padding:0;border-radius:50%;background:var(--grad);color:#fff;letter-spacing:0}
+.demo-steps small{color:var(--muted)}
+
+/* Mascota y pie sobre el lienzo */
+.meet{background:transparent}
+.m-card{border-radius:20px;box-shadow:var(--card-shadow)}
+footer.site{background:transparent;color:var(--muted);border-top:0}
+.foot-tag{color:var(--navy)}
+.foot li.mono{color:#2f6bff}
+.foot a{color:var(--navy)}
+.foot a:hover{color:#2f6bff}
+.foot-mark{filter:none;opacity:1}
+.copy{color:#6a7f99}
+
+@media (max-width:900px){
+  :root{--r:18px}
+  .cap-grid{grid-template-columns:1fr}
+  .cap-mascot{order:-1;width:min(260px,70%);justify-self:center}
+  .cap-col{gap:12px}
+  .cap{padding:14px 16px 14px 14px;gap:14px}
+  .cap-art{width:80px;height:80px}
+  .ch-pose{display:none}
+}
+
+
+/* =========================================================
+   Profundidad v3.1: tubos 3D brillantes y cristal (como el login «Join the future»)
+   Cada capa .depth se mueve distinto con el cursor y con el scroll (script.js); respeta «reducir movimiento».
+   ========================================================= */
+.tubes{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.tubes svg{position:absolute;inset:-6%;width:112%;height:112%;will-change:transform;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.hero-tubes svg:nth-child(1){animation:tubeFloat 14s ease-in-out infinite alternate}
+.hero-tubes svg:nth-child(2){animation:tubeFloat 11s ease-in-out -4s infinite alternate}
+.hero-tubes svg:nth-child(3){animation:tubeFloat 9s ease-in-out -2s infinite alternate}
+.tubes svg path{vector-effect:non-scaling-stroke}
+@keyframes tubeFloat{to{translate:0 -18px}}
+.hero .mascot-float{z-index:1}
+.cta-tubes{opacity:.9}
+/* cristal: paneles translúcidos con reflejo superior */
+.glass-panel{position:relative;padding:18px 22px;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 30px 60px -30px rgba(0,0,0,.6);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3)}
+.stats.glass-panel>div{border-top:0;padding-top:0}
+.glass{background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(255,255,255,.05));border-color:rgba(255,255,255,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 24px 50px -20px rgba(2,10,28,.7)}
+/* tarjetas del lienzo con un leve relieve 3D al pasar el cursor */
+.cap,.demo-steps li{transform-style:preserve-3d}
+.cap:hover{transform:translateY(-6px) rotateX(4deg) rotateY(-4deg)}
+@media (max-width:900px){.tubes svg{inset:-10%;width:120%;height:120%}.hero-tubes svg:nth-child(3){display:none}}
+@media (prefers-reduced-motion:reduce){.tubes svg{animation:none!important;transition:none!important}}
+
+/* las etiquetas flotantes del inicio llevan un cristal más oscuro para leerse sobre los tubos */
+.hero .chip.glass{background:linear-gradient(160deg,rgba(8,18,52,.72),rgba(8,18,52,.42))}
+
+/* ---------- Zonas donde trabajamos ---------- */
+.zones{padding:clamp(70px,10vw,130px) 0}
+.zones-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,80px);align-items:center}
+.zones h2{font-size:clamp(2.1rem,4.2vw,2.9rem);color:var(--navy);margin-bottom:22px}
+.zones .split em .w>span{background:var(--grad-ink);-webkit-background-clip:text;background-clip:text;color:transparent}
+.zones-copy>p:not(.label){font-size:1.1rem;color:var(--muted);max-width:520px}
+.zones-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.zones-list li{position:relative;display:grid;gap:2px;padding:18px 22px 18px 56px;background:var(--ice);border:1px solid var(--line);border-radius:14px;box-shadow:var(--card-shadow);transition:transform .35s var(--ease),border-color .35s}
+.zones-list li::before{content:"";position:absolute;left:22px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 5px rgba(47,107,255,.12)}
+.zones-list li:hover{transform:translateX(6px);border-color:var(--sblue)}
+.zones-list b{color:var(--navy);font-size:1.1rem;font-weight:600}
+.zones-list small{color:var(--muted);font-size:.92rem}
+@media (max-width:900px){.zones-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.zones-list li{transition:none}}

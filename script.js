@@ -116,11 +116,30 @@ function setNav(i) {
   activeNav = i;
   navLinks.forEach((a, k) => a.classList.toggle('active', k === i));
   if (i < 0) { indicator.style.opacity = '0'; return; }
-  const a = navLinks[i];
+  const a = navLinks[i], prev = indicator.dataset.i !== undefined ? navLinks[+indicator.dataset.i] : null;
+  indicator.dataset.i = i;
   indicator.style.opacity = '1';
-  indicator.style.width = a.offsetWidth + 'px';
-  indicator.style.transform = `translateX(${a.offsetLeft}px)`;
+  const settle = () => { indicator.classList.remove('stretch'); indicator.style.width = a.offsetWidth + 'px'; indicator.style.transform = `translateX(${a.offsetLeft}px)`; };
+  if (prev && prev !== a && !reduceMotion) {
+    // efecto líquido: primero cubre ambas opciones y luego se encoge sobre la nueva
+    const l = Math.min(prev.offsetLeft, a.offsetLeft), r = Math.max(prev.offsetLeft + prev.offsetWidth, a.offsetLeft + a.offsetWidth);
+    indicator.classList.add('stretch'); indicator.style.width = (r - l) + 'px'; indicator.style.transform = `translateX(${l}px)`;
+    clearTimeout(indicator._t); indicator._t = setTimeout(settle, 230);
+  } else settle();
 }
+
+// ---------- Navegación líquida (teléfono) ----------
+const lnav = document.getElementById('lnav');
+const lnItems = lnav ? [...lnav.querySelectorAll('li')] : [];
+let lnActive = 0;
+function setLiquid(i) {
+  if (!lnav || i === lnActive || i < 0) return;
+  lnActive = i;
+  lnItems.forEach((li, k) => { li.classList.toggle('on', k === i); li.querySelector('a').toggleAttribute('aria-current', k === i); });
+  const blob = lnav.querySelector('.lnBlob'); blob.classList.remove('moving'); void blob.offsetWidth; blob.classList.add('moving');
+  lnav.style.setProperty('--x', i);
+}
+if (lnav) lnItems.forEach((li, k) => li.querySelector('a').addEventListener('click', () => setLiquid(k)));
 
 // ---------- Mascotas que se separan ----------
 const meetArt = document.querySelector('.meet-art');
@@ -166,6 +185,12 @@ function onScroll() {
   let cur = -1;
   navTargets.forEach((t, i) => { if (t && t.getBoundingClientRect().top < vh * 0.4) cur = i; });
   setNav(cur);
+  if (lnav) {
+    let li = 0;
+    lnItems.forEach((it, k) => { const t = document.getElementById(it.querySelector('a').dataset.sec); if (t && k && t.getBoundingClientRect().top < vh * 0.45) li = k; });
+    setLiquid(li);
+    lnav.classList.toggle('tucked', !!(mobileMenu && mobileMenu.classList.contains('open')));
+  }
 
   // WhatsApp flotante se esconde en el CTA final
   if (wa && cta) {
@@ -335,4 +360,26 @@ if (finePointer && !reduceMotion) {
   }
   document.getElementById('cookie-accept').addEventListener('click', () => save('all'));
   document.getElementById('cookie-reject').addEventListener('click', () => save('essential'));
+})();
+
+
+// ---------- Profundidad: capas que se mueven con el cursor y el scroll ----------
+(function depth() {
+  const layers = [...document.querySelectorAll('.depth')];
+  if (!layers.length || reduceMotion) return;
+  let mx = 0, my = 0, raf = 0;
+  const paint = () => {
+    raf = 0;
+    const vh = window.innerHeight;
+    layers.forEach(el => {
+      const d = Number(el.dataset.depth) || 10, box = el.parentElement.getBoundingClientRect();
+      if (box.bottom < -200 || box.top > vh + 200) return;
+      const sc = (box.top + box.height / 2 - vh / 2) / vh; // -1 … 1 mientras la sección cruza la pantalla
+      el.style.transform = `translate3d(${(mx * d).toFixed(1)}px, ${(my * d + sc * d * 3).toFixed(1)}px, 0)`;
+    });
+  };
+  const ask = () => { if (!raf) raf = requestAnimationFrame(paint); };
+  addEventListener('pointermove', e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; ask(); }, { passive: true });
+  addEventListener('scroll', ask, { passive: true });
+  paint();
 })();
