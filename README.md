@@ -25,7 +25,24 @@ assets/video/akiko-demo.mp4 Video vertical de la demo (sección «Demo»)
 ## Publicar en GitHub Pages
 1. Sube todos los archivos a un repositorio (rama `main`).
 2. En GitHub: **Settings → Pages → Deploy from a branch → main / (root)**.
-3. Tu sitio quedará en `https://TU-USUARIO.github.io/NOMBRE-REPO/`. Para dominio propio, agrega un archivo `CNAME` y configúralo en Pages.
+3. El sitio usa el dominio **akiko-tech.com** (archivo `CNAME`). En **Settings → Pages → Custom domain** escribe `akiko-tech.com`, espera la revisión de DNS y activa **Enforce HTTPS**.
+
+## Dominio akiko-tech.com (DNS)
+Registros en el panel del dominio (ya configurados al 24 de octubre de 2026):
+
+| Tipo | Nombre | Valor |
+|---|---|---|
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+| CNAME | www | jess90202.github.io |
+
+Con esto, `www.akiko-tech.com` y la dirección vieja de GitHub redirigen solas a `https://akiko-tech.com/`.
+
+## Google
+- `sitemap.xml` y `robots.txt` están en la raíz. Da de alta `https://akiko-tech.com` en Google Search Console y envía `https://akiko-tech.com/sitemap.xml`.
+- Las URLs absolutas (canonical, og:image, JSON-LD y sitemap) usan `https://akiko-tech.com/`. Si cambia el dominio, hay que cambiarlas todas.
 
 ## WhatsApp
 Los botones usan `https://wa.me/525515338822`. Para cambiar el número, reemplázalo en `index.html`.

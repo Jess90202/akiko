@@ -726,3 +726,54 @@ footer.site{background:transparent;color:var(--muted);border-top:0}
 .zones-list small{color:var(--muted);font-size:.92rem}
 @media (max-width:900px){.zones-grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.zones-list li{transition:none}}
+
+.cap-more{display:inline-block;margin-top:10px;font-weight:600;font-size:.95rem;color:var(--blue);text-decoration:none}
+.cap-more:hover{text-decoration:underline}
+
+/* ---------- Páginas de servicio y precios ---------- */
+.svc-page{background:var(--canvas)}
+.svc-main .container{width:min(980px,100% - 2*var(--gutter))}
+.crumbs{font-size:.88rem;color:var(--muted);margin:0 0 16px 6px}
+.crumbs a{color:var(--blue);text-decoration:none}
+.crumbs a:hover{text-decoration:underline}
+.svc-main .doc{box-shadow:var(--card-shadow)}
+.svc-main .doc h1{color:var(--navy);font-size:clamp(1.9rem,4.4vw,2.9rem)}
+.svc-main .doc h2{color:var(--navy)}
+.svc-main .doc p,.svc-main .doc li{color:var(--text)}
+.svc-main .doc a.btn{color:#fff;text-decoration:none}
+.svc-hero{display:grid;grid-template-columns:1fr 220px;gap:clamp(20px,4vw,40px);align-items:center;margin-bottom:12px}
+.svc-hero img{width:100%;height:auto;border-radius:24px;background:var(--canvas)}
+.svc-lead{font-size:1.12rem;margin:14px 0 24px!important;color:var(--muted)!important}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:8px 0 10px}
+.price-card{position:relative;padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--ice);overflow:hidden}
+.price-card::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--grad)}
+.price-card h3{font-size:1.1rem;color:var(--navy);margin-bottom:6px}
+.price-card .price{font-family:var(--f-display);font-size:1.9rem;font-weight:700;color:var(--ink);margin-bottom:8px!important;line-height:1.1}
+.price-card .price small{display:block;font-size:.8rem;font-weight:500;color:var(--muted);margin-top:4px}
+.price-card p:last-child{font-size:.95rem;margin-bottom:0}
+.note{font-size:.92rem;color:var(--muted)!important}
+.steps{counter-reset:step;list-style:none;padding:0!important;display:grid;gap:10px}
+.steps li{counter-increment:step;position:relative;padding:12px 16px 12px 56px;background:var(--ice);border-radius:12px;margin:0!important}
+.steps li::before{content:counter(step);position:absolute;left:14px;top:50%;width:28px;height:28px;margin-top:-14px;border-radius:50%;display:grid;place-items:center;background:var(--grad);color:#fff;font-weight:600;font-size:.9rem}
+.faq{display:grid;gap:10px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:#fff;padding:0 18px;transition:border-color .3s}
+.faq details[open]{border-color:var(--sblue)}
+.faq summary{cursor:pointer;list-style:none;padding:16px 28px 16px 0;font-weight:600;color:var(--navy);position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:1.4rem;color:var(--blue);transition:transform .3s var(--ease)}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq details p{margin:0 0 16px!important}
+.svc-cta{margin:36px 0 8px;padding:clamp(22px,4vw,34px);border-radius:18px;background:var(--ink);display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.svc-cta p{color:#fff!important;margin:0!important;max-width:520px;font-size:1.05rem}
+.svc-links{list-style:none;padding:0!important;display:flex;flex-wrap:wrap;gap:10px}
+.svc-links a{display:inline-block;padding:9px 16px;border-radius:999px;background:var(--ice);border:1px solid var(--line);text-decoration:none;font-weight:500}
+.svc-links a:hover{border-color:var(--blue)}
+.price-table{display:table!important;font-size:1rem!important}
+.price-table .num{text-align:right;font-weight:600}
+.price-table td:first-child{width:55%}
+.svc-foot ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;padding:0;margin:0 0 14px}
+.svc-page footer.site .svc-foot a{color:var(--navy)}
+.svc-page footer.site .copy,.svc-page footer.site .copy a{color:var(--muted)}
+.svc-foot a[aria-current]{font-weight:600}
+@media (max-width:700px){.svc-hero{grid-template-columns:1fr}.svc-hero img{max-width:180px;order:-1}}
+@media (prefers-reduced-motion:reduce){.faq summary::after,.faq details{transition:none}}
