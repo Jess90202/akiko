@@ -19,7 +19,7 @@ assets/video/akiko-demo.mp4 Video vertical de la demo (sección «Demo»)
 
 ## Antes de publicar
 1. Sube la carpeta `assets/` completa junto a los demás archivos.
-2. Datos legales ya capturados (Mariquita Sánchez, CDMX, akikohedz@gmail.com). Agrega número exterior y C.P. al domicilio en `aviso-de-privacidad.html` si quieres.
+2. Datos legales ya capturados (Mariquita Sánchez, CDMX, contacto@akiko-tech.com). Agrega número exterior y C.P. al domicilio en `aviso-de-privacidad.html` si quieres.
 3. Pide a un abogado que revise los textos legales; son una base general, no asesoría legal.
 
 ## Publicar en GitHub Pages
