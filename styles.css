@@ -54,7 +54,8 @@ header.site.hide{transform:translateY(-130%)}
 .nav{max-width:1240px;margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 8px 8px 20px;border-radius:999px;
   background:rgba(12,16,44,.55);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,.1);box-shadow:0 10px 40px -12px rgba(0,0,0,.4)}
 .brand{display:inline-flex;align-items:center;gap:8px;position:relative;z-index:2;text-decoration:none}
-.brand .wm,.legal-page .brand img{height:28px;width:auto;filter:invert(1) hue-rotate(180deg) saturate(1.4)}
+.brand .wm,.legal-page .brand img:not(.brand-logo){height:28px;width:auto;filter:invert(1) hue-rotate(180deg) saturate(1.4)}
+.brand-logo{height:36px;width:auto;display:block;filter:none}
 .brand-icon{width:auto;height:42px;margin:-8px 0 -8px -6px;transition:transform .5s var(--ease)}
 .brand:hover .brand-icon{transform:rotate(-10deg) scale(1.08)}
 .pill-nav ul{position:relative;display:flex;gap:2px;list-style:none;padding:4px;border-radius:999px;background:rgba(255,255,255,.06)}
@@ -476,6 +477,7 @@ footer.site{background:var(--ink);color:rgba(255,255,255,.7);padding:60px 0 28px
   .foot-tag{grid-column:1/-1}
 }
 @media (max-width:560px){
+  .brand-logo{height:30px}
   .hero h1{font-size:clamp(2.5rem,11.5vw,3.4rem)}
   .hero-cta .btn{flex:1 1 100%}
   .stats span{display:none}
