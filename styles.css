@@ -727,6 +727,14 @@ footer.site{background:transparent;color:var(--muted);border-top:0}
 @media (max-width:900px){.zones-grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.zones-list li{transition:none}}
 
+/* Redes sociales en el pie */
+.foot-brand{display:grid;gap:18px;align-content:start}
+.foot .foot-social{list-style:none;display:flex;gap:10px;padding:0;margin:0}
+.foot-social a{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--ice);border:1px solid var(--line);color:var(--navy);font-size:1.2rem;transition:transform .3s var(--ease),border-color .3s,color .3s}
+.foot-social a:hover{transform:translateY(-2px);border-color:var(--blue);color:var(--blue)}
+.svc-social a{font-weight:600}
+@media (prefers-reduced-motion:reduce){.foot-social a{transition:none}}
+
 .cap-more{display:inline-block;margin-top:10px;font-weight:600;font-size:.95rem;color:var(--blue);text-decoration:none}
 .cap-more:hover{text-decoration:underline}
 
