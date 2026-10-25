@@ -36,16 +36,21 @@
   "address": {"@type": "PostalAddress", "addressLocality": "Coyoacán", "addressRegion": "CDMX", "addressCountry": "MX"},
   "areaServed": ["Coyoacán", "Taxqueña", "Coapa", "CTM Culhuacán", "Tlalpan", "Iztapalapa", "Ciudad de México"],
   "knowsLanguage": "es-MX",
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "10:00", "closes": "18:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "15:00"}
+  ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Servicios de Akiko",
     "itemListElement": [
       {"@type": "Offer", "price": "5000", "priceCurrency": "MXN", "url": "https://akiko-tech.com/paginas-web-coyoacan.html", "itemOffered": {"@type": "Service", "name": "Páginas web para negocios"}},
       {"@type": "Offer", "price": "800", "priceCurrency": "MXN", "url": "https://akiko-tech.com/menu-digital-qr-cdmx.html", "itemOffered": {"@type": "Service", "name": "Menú digital QR"}},
-      {"@type": "Offer", "price": "350", "priceCurrency": "MXN", "url": "https://akiko-tech.com/tarjetas-nfc-resenas-google.html", "itemOffered": {"@type": "Service", "name": "Tarjeta NFC para reseñas en Google Maps"}},
+      {"@type": "Offer", "price": "500", "priceCurrency": "MXN", "url": "https://akiko-tech.com/tarjetas-nfc-resenas-google.html", "itemOffered": {"@type": "Service", "name": "Tarjeta NFC para reseñas en Google Maps"}},
+      {"@type": "Offer", "price": "350", "priceCurrency": "MXN", "url": "https://akiko-tech.com/tarjetas-nfc-resenas-google.html", "itemOffered": {"@type": "Service", "name": "Ficha de Google Maps"}},
       {"@type": "Offer", "price": "800", "priceCurrency": "MXN", "url": "https://akiko-tech.com/tarjetas-nfc-resenas-google.html", "itemOffered": {"@type": "Service", "name": "Tarjeta NFC de redes sociales"}},
       {"@type": "Offer", "price": "1500", "priceCurrency": "MXN", "url": "https://akiko-tech.com/citas-y-fidelidad.html", "itemOffered": {"@type": "Service", "name": "Akiko Citas: recordatorios por WhatsApp"}},
-      {"@type": "Offer", "price": "2500", "priceCurrency": "MXN", "url": "https://akiko-tech.com/citas-y-fidelidad.html", "itemOffered": {"@type": "Service", "name": "Akiko Fidelidad: tarjeta de lealtad digital"}}
+      {"@type": "Offer", "price": "2500", "priceCurrency": "MXN", "url": "https://akiko-tech.com/citas-y-fidelidad.html", "itemOffered": {"@type": "Service", "name": "Akiko Lealtad: tarjeta de lealtad digital"}}
     ]
   }
 }
@@ -93,7 +98,7 @@
       </ul>
     </nav>
     <div class="nav-end">
-      <a class="btn btn-light btn-sm hide-sm magnetic" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener">Cotizar</a>
+      <a class="btn btn-light btn-sm hide-sm magnetic" href="https://wa.me/message/BIPO6XJZPOIBL1" target="_blank" rel="noopener">Cotizar</a>
       <button class="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
     </div>
   </div>
@@ -109,7 +114,7 @@
   </ol>
   <div class="menu-foot">
     <div class="menu-guide"><img src="assets/akiko-senala.webp" alt="" width="770" height="668" loading="lazy"><p class="bubble">¡Hola! Escríbenos, te respondo rápido.</p></div>
-    <a class="btn btn-grad" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> Escríbenos por WhatsApp</a>
+    <a class="btn btn-grad" href="https://wa.me/message/BIPO6XJZPOIBL1" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> Escríbenos por WhatsApp</a>
   </div>
 </div>
 
@@ -127,7 +132,7 @@
         <h1 id="hero-title" class="split">Un toque y tu negocio <em>se acerca</em> a tus clientes</h1>
         <p class="lead reveal" style="--d:.5s">Menús digitales, páginas web y tarjetas NFC para negocios de Coyoacán, Taxqueña y Coapa: más reseñas en Google Maps, más seguidores y clientes que regresan.</p>
         <div class="hero-cta reveal" style="--d:.62s">
-          <a class="btn btn-grad magnetic" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20quiero%20cotizar" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> Cotizar por WhatsApp</a>
+          <a class="btn btn-grad magnetic" href="https://wa.me/message/BIPO6XJZPOIBL1" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> Cotizar por WhatsApp</a>
           <a class="btn btn-line" href="#apps">Ver las apps <svg class="ico"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
@@ -208,11 +213,11 @@
         <div class="cap-col">
         <article class="cap reveal" style="--d:0.16s">
           <img class="cap-art" src="assets/poses/nfc.webp" alt="" width="320" height="320" loading="lazy">
-          <div><span class="cap-tag"><svg class="ico"><use href="#i-nfc"/></svg> Acerca y listo</span><h3>Tarjetas NFC</h3><p>Tu cliente acerca el celular: deja reseña, te sigue en redes o suma puntos.</p><a class="cap-more" href="tarjetas-nfc-resenas-google.html">Tarjetas NFC desde $350 →</a></div>
+          <div><span class="cap-tag"><svg class="ico"><use href="#i-nfc"/></svg> Acerca y listo</span><h3>Tarjetas NFC</h3><p>Tu cliente acerca el celular: deja reseña, te sigue en redes o suma puntos.</p><a class="cap-more" href="tarjetas-nfc-resenas-google.html">Tarjetas NFC desde $500 →</a></div>
         </article>
         <article class="cap reveal" style="--d:0.24s">
           <img class="cap-art" src="assets/poses/codigo.webp" alt="" width="320" height="320" loading="lazy">
-          <div><span class="cap-tag"><svg class="ico"><use href="#i-grid"/></svg> A tu medida</span><h3>Apps web</h3><p>¿Necesitas algo específico? Creamos apps sencillas que resuelven justo eso.</p><a class="cap-more" href="citas-y-fidelidad.html">Citas y fidelidad desde $199/mes →</a></div>
+          <div><span class="cap-tag"><svg class="ico"><use href="#i-grid"/></svg> A tu medida</span><h3>Apps web</h3><p>¿Necesitas algo específico? Creamos apps sencillas que resuelven justo eso.</p><a class="cap-more" href="citas-y-fidelidad.html">Citas y lealtad desde $199/mes →</a></div>
         </article>
         </div>
       </div>
@@ -421,7 +426,7 @@
       <p class="reveal">Escríbenos por WhatsApp y te respondemos con una propuesta a tu medida.</p>
       <div class="cta-row reveal">
         <img class="cta-point" src="assets/akiko-senala.webp" alt="Akiko señalando el botón de WhatsApp" loading="lazy" width="770" height="668">
-        <a class="btn btn-grad btn-xl magnetic" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20quiero%20informaci%C3%B3n%20de%20sus%20servicios" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> 55 1533 8822</a>
+        <a class="btn btn-grad btn-xl magnetic" href="https://wa.me/message/BIPO6XJZPOIBL1" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> 55 1533 8822</a>
       </div>
     </div>
   </section>
@@ -436,7 +441,7 @@
         <li><a href="paginas-web-coyoacan.html">Páginas web</a></li>
         <li><a href="menu-digital-qr-cdmx.html">Menú digital QR</a></li>
         <li><a href="tarjetas-nfc-resenas-google.html">Tarjetas NFC para reseñas</a></li>
-        <li><a href="citas-y-fidelidad.html">Citas y fidelidad</a></li>
+        <li><a href="citas-y-fidelidad.html">Citas y lealtad</a></li>
         <li><a href="precios.html">Precios</a></li>
       </ul>
       <ul>
@@ -448,8 +453,10 @@
       </ul>
       <ul>
         <li class="mono">Contacto</li>
-        <li><a href="https://wa.me/525515338822" target="_blank" rel="noopener">WhatsApp: 55 1533 8822</a></li>
+        <li><a href="https://wa.me/message/BIPO6XJZPOIBL1" target="_blank" rel="noopener">WhatsApp: 55 1533 8822</a></li>
         <li><a href="mailto:akikohedz@gmail.com">akikohedz@gmail.com</a></li>
+        <li>Lun a vie 10:00–18:00</li>
+        <li>Sábado 10:00–15:00 · Domingo cerrado</li>
       </ul>
     </div>
     <img class="foot-mark" src="assets/akiko-wordmark.webp" alt="Akiko" width="600" height="170" loading="lazy">
@@ -464,10 +471,10 @@
     <li><a href="#servicios" data-sec="servicios"><span class="lnIcon"><svg class="ico"><use href="#i-grid"/></svg></span><span class="lnText">Servicios</span></a></li>
     <li><a href="#apps" data-sec="apps"><span class="lnIcon"><svg class="ico"><use href="#i-nfc"/></svg></span><span class="lnText">Apps</span></a></li>
     <li><a href="#demo" data-sec="demo"><span class="lnIcon"><svg class="ico"><use href="#i-play"/></svg></span><span class="lnText">Demo</span></a></li>
-    <li><a href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20quiero%20informaci%C3%B3n" data-sec="contacto" target="_blank" rel="noopener"><span class="lnIcon"><svg class="ico"><use href="#i-chat"/></svg></span><span class="lnText">WhatsApp</span></a></li>
+    <li><a href="https://wa.me/message/BIPO6XJZPOIBL1" data-sec="contacto" target="_blank" rel="noopener"><span class="lnIcon"><svg class="ico"><use href="#i-chat"/></svg></span><span class="lnText">WhatsApp</span></a></li>
   </ul>
 </nav>
-<a class="wa-float" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><svg class="ico"><use href="#i-chat"/></svg></a>
+<a class="wa-float" href="https://wa.me/message/BIPO6XJZPOIBL1" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><svg class="ico"><use href="#i-chat"/></svg></a>
 
 <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
   <p>🍪 Usamos cookies esenciales para que el sitio funcione y, con tu permiso, cookies de analítica para mejorarlo. Conoce más en nuestra <a href="cookies.html"><strong>Política de Cookies</strong></a> y en el <a href="aviso-de-privacidad.html"><strong>Aviso de Privacidad</strong></a>.</p>
