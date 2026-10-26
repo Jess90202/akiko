@@ -787,3 +787,66 @@ footer.site{background:transparent;color:var(--muted);border-top:0}
 .svc-foot a[aria-current]{font-weight:600}
 @media (max-width:700px){.svc-hero{grid-template-columns:1fr}.svc-hero img{max-width:180px;order:-1}}
 @media (prefers-reduced-motion:reduce){.faq summary::after,.faq details{transition:none}}
+
+/* ---------- Efectos de entrada y scroll ---------- */
+.preloader{display:none}
+.intro-pending .preloader{position:fixed;inset:0;z-index:300;display:grid;place-items:center;overflow:hidden;background:var(--ink);animation:preloader-away .1s 1.48s forwards;pointer-events:auto}
+.preloader-word{position:absolute;z-index:2;font:700 clamp(8rem,28vw,24rem)/.8 var(--f-display);letter-spacing:-.09em;color:rgba(255,255,255,.06)}
+.preloader>img{position:relative;z-index:3;width:min(58vw,460px);height:auto;object-fit:contain;animation:mascot-pop .62s .12s both cubic-bezier(.2,.8,.2,1)}
+.preloader-half{position:absolute;z-index:1;inset:0 50% 0 0;background:var(--ink);animation:split-left .54s .88s cubic-bezier(.7,0,.3,1) forwards}
+.preloader-half.right{inset:0 0 0 50%;animation-name:split-right}
+@keyframes mascot-pop{0%{opacity:0;transform:scale(.48)}65%{opacity:1;transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes split-left{to{transform:translateX(-101%)}}
+@keyframes split-right{to{transform:translateX(101%)}}
+@keyframes preloader-away{to{opacity:0;visibility:hidden;pointer-events:none}}
+.marquee{position:relative;isolation:isolate;display:grid;gap:0;padding:64px 0 68px;overflow:hidden}
+.marquee .track{position:relative;z-index:1;animation:ribbon-marquee 45s linear infinite;transform:rotate(-4deg) translateX(-2%);background:var(--ink);padding:12px 0}
+.marquee .track.cross{z-index:0;margin-top:-10px;transform:rotate(3deg) translateX(-2%);animation-name:ribbon-cross;background:var(--deep,var(--ink));opacity:.94}
+@keyframes ribbon-marquee{from{transform:rotate(-4deg) translate3d(0,0,0)}to{transform:rotate(-4deg) translate3d(-50%,0,0)}}
+@keyframes ribbon-cross{from{transform:rotate(3deg) translate3d(-50%,0,0)}to{transform:rotate(3deg) translate3d(0,0,0)}}
+.marquee .track span{color:#fff}
+.marquee .track span:nth-of-type(even){color:transparent;-webkit-text-stroke:1.2px rgba(255,255,255,.55)}
+.marquee .track i{font-style:normal;font-size:clamp(1.2rem,2.5vw,2rem);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pose-gallery{position:relative;height:260vh;overflow:clip;margin:36px calc(-1*var(--gutter)) 0}
+.pose-sticky{position:sticky;top:0;height:100svh;display:flex;align-items:center;overflow:hidden;padding:40px var(--gutter)}
+.pose-track{display:flex;gap:clamp(16px,3vw,36px);will-change:transform;padding-inline:4vw}
+.pose-track figure{position:relative;flex:0 0 min(34vw,460px);height:min(62vh,560px);margin:0;overflow:hidden;border-radius:28px;background:#fff;box-shadow:var(--card-shadow)}
+.pose-track img{width:100%;height:100%;object-fit:cover}
+.pose-track figcaption{position:absolute;inset:auto 0 0;padding:28px 22px 18px;color:#fff;font:600 clamp(1.2rem,2vw,1.8rem)/1.2 var(--f-display);background:linear-gradient(transparent,rgba(5,30,56,.8))}
+.how-flow{position:relative;max-width:760px;margin:80px auto 0;padding:0;list-style:none;display:grid;gap:0}
+.flow-line{position:absolute;left:0;top:28px;bottom:28px;width:52px;height:calc(100% - 56px);overflow:visible}
+.how-flow>li:first-child{position:static}
+.flow-track,.flow-progress{fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.flow-track{stroke:rgba(255,255,255,.28);stroke-width:2;stroke-dasharray:1 4}
+.flow-progress{stroke:url(#flow-grad);stroke-width:2.5;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .12s linear}
+.how-flow li{position:relative;display:flex;align-items:flex-start;gap:22px;padding:16px 0;opacity:.3;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.how-flow li.on{opacity:1;transform:none}
+.how-flow li>span{position:relative;z-index:1;flex:none;width:52px;height:52px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.36);border-radius:50%;background:var(--ink);font:500 .82rem var(--f-mono);color:var(--cyan)}
+.how-flow h3{font-size:clamp(1.25rem,2.3vw,1.7rem);margin:2px 0 4px}
+.how-flow p{color:rgba(255,255,255,.68);margin:0}
+.foot-ribbon{overflow:hidden;transform:rotate(-2deg);margin:52px -4vw 18px;background:var(--grad);color:#fff;font:600 .82rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.foot-ribbon div{width:max-content;padding:10px 0;animation:marquee 36s linear infinite}
+.foot-wordmark{position:relative;overflow:hidden;margin:28px 0 18px;color:transparent;-webkit-text-stroke:1px var(--navy);font:700 clamp(5.8rem,24vw,20rem)/.78 var(--f-display);letter-spacing:-.09em;white-space:nowrap}
+.foot-wordmark::after{content:attr(data-wordmark);position:absolute;inset:0;overflow:hidden;color:var(--navy);-webkit-text-stroke:0;clip-path:inset(0 calc(100% - var(--fill,0%)) 0 0);transition:clip-path .08s linear}
+.js .foot-wordmark{--fill:0%}
+@media(max-width:767px){
+  .marquee{overflow:hidden;gap:2px;padding:48px 0 52px}
+  .marquee .track{animation-duration:40s;padding:8px 0}
+  .pose-gallery{height:auto;overflow:visible;margin-inline:calc(-1*var(--gutter))}
+  .pose-sticky{position:relative;top:auto;height:auto;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px var(--gutter) 24px}
+  .pose-track{gap:14px;padding:0;transform:none!important}
+  .pose-track figure{flex-basis:78vw;height:65vw;max-height:390px;border-radius:20px;scroll-snap-align:center}
+  .how-flow{margin-top:56px}
+  .foot-wordmark{font-size:24vw}
+}
+@media(prefers-reduced-motion:reduce){
+  .intro-pending .preloader{display:none}
+  .marquee .track,.foot-ribbon div{animation:none}
+  .pose-gallery{height:auto;overflow:visible}
+  .pose-sticky{position:relative;top:auto;height:auto;overflow-x:auto;scroll-snap-type:x mandatory}
+  .pose-track{transform:none!important}
+  .pose-track figure{scroll-snap-align:center}
+  .scrub .sw,.how-flow li{opacity:1;transform:none;transition:none}
+  .flow-progress{stroke-dashoffset:0}
+  .foot-wordmark{--fill:100%!important}
+}

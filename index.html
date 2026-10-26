@@ -69,8 +69,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script>document.documentElement.classList.add('js')</script>
+<script>if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){try{if(!sessionStorage.getItem('akiko_intro_seen')){document.documentElement.classList.add('intro-pending');sessionStorage.setItem('akiko_intro_seen','1')}}catch(e){document.documentElement.classList.add('intro-pending')}}</script>
 </head>
 <body class="home">
+
+<div class="preloader" aria-hidden="true">
+  <span class="preloader-word">Akiko</span>
+  <img src="assets/akiko-mascota.webp" alt="" width="900" height="726">
+  <i class="preloader-half left"></i><i class="preloader-half right"></i>
+</div>
 
 <!-- Iconos -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -190,6 +197,10 @@
     <div class="track">
       <span>Menús digitales</span><i>✦</i><span>Páginas web</span><i>✦</i><span>Tarjetas NFC</span><i>✦</i><span>Reseñas en Google</span><i>✦</i><span>Lealtad</span><i>✦</i><span>Citas</span><i>✦</i>
       <span>Menús digitales</span><i>✦</i><span>Páginas web</span><i>✦</i><span>Tarjetas NFC</span><i>✦</i><span>Reseñas en Google</span><i>✦</i><span>Lealtad</span><i>✦</i><span>Citas</span><i>✦</i>
+    </div>
+    <div class="track cross">
+      <span>Apps para tu negocio</span><i>✦</i><span>Clientes que regresan</span><i>✦</i><span>Un toque, muchas posibilidades</span><i>✦</i><span>Akiko Tech</span><i>✦</i>
+      <span>Apps para tu negocio</span><i>✦</i><span>Clientes que regresan</span><i>✦</i><span>Un toque, muchas posibilidades</span><i>✦</i><span>Akiko Tech</span><i>✦</i>
     </div>
   </div>
 
@@ -364,6 +375,15 @@
         <div class="guide guide-demo" aria-hidden="true"><p class="bubble">¡Mira cómo funciona!</p><img src="assets/akiko-senala.webp" alt="" width="770" height="668" loading="lazy"></div>
       </div>
     </div>
+    <div class="pose-gallery" aria-label="Akiko en sus distintas poses">
+      <div class="pose-sticky"><div class="pose-track">
+        <figure><img src="assets/poses/google.webp" alt="Akiko junto a Google Maps" loading="lazy"><figcaption>Reseñas en Google</figcaption></figure>
+        <figure><img src="assets/poses/redes.webp" alt="Akiko para redes sociales" loading="lazy"><figcaption>Tus redes, en un toque</figcaption></figure>
+        <figure><img src="assets/poses/premio.webp" alt="Akiko con un premio de lealtad" loading="lazy"><figcaption>Premios para tus clientes</figcaption></figure>
+        <figure><img src="assets/poses/citas.webp" alt="Akiko para citas y seguimiento" loading="lazy"><figcaption>Clientes que regresan</figcaption></figure>
+        <figure><img src="assets/poses/menu.webp" alt="Akiko con un menú digital" loading="lazy"><figcaption>Menús digitales</figcaption></figure>
+      </div></div>
+    </div>
   </section>
 
   <!-- CÓMO FUNCIONA: dial -->
@@ -395,6 +415,12 @@
           </div>
         </div>
       </div>
+      <ol class="how-flow" aria-label="Pasos para empezar">
+        <li><svg class="flow-line" viewBox="0 0 100 400" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="flow-grad" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#18d4f5"/><stop offset=".55" stop-color="#2f6bff"/><stop offset="1" stop-color="#9b3cff"/></linearGradient></defs><path class="flow-track" pathLength="100" d="M50 0V400"/><path class="flow-progress" pathLength="100" d="M50 0V400"/></svg><span>01</span><div><h3>Nos cuentas</h3><p>Platícanos de tu negocio por WhatsApp y qué quieres lograr.</p></div></li>
+        <li><span>02</span><div><h3>Lo diseñamos</h3><p>Creamos tu tarjeta, menú o página con tu marca y tus enlaces.</p></div></li>
+        <li><span>03</span><div><h3>Tu cliente acerca el celular</h3><p>Un toque a la tarjeta NFC abre lo que necesites, al instante.</p></div></li>
+        <li><span>04</span><div><h3>Tú creces</h3><p>Herramientas para que tus clientes te dejen reseñas, te sigan y regresen.</p></div></li>
+      </ol>
     </div>
   </section>
 
@@ -483,7 +509,8 @@
         <li>Sábado 10:00–15:00 · Domingo cerrado</li>
       </ul>
     </div>
-    <img class="foot-mark" src="assets/marca/akiko-tech-wordmark-color.svg" alt="Akiko Tech" width="799" height="164" loading="lazy">
+    <div class="foot-ribbon" aria-hidden="true"><div>Menús digitales ✦ Páginas web ✦ Tarjetas NFC ✦ Reseñas en Google ✦ Lealtad ✦ Citas ✦ Menús digitales ✦ Páginas web ✦ Tarjetas NFC ✦</div></div>
+    <div class="foot-wordmark" data-wordmark="Akiko" aria-label="Akiko">Akiko</div>
     <p class="copy">© <span id="year">2026</span> Akiko · Hecho en México</p>
   </div>
 </footer>

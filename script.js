@@ -5,6 +5,14 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
+// ---------- Intro de sesión ----------
+if (document.documentElement.classList.contains('intro-pending')) {
+  const finishIntro = () => document.documentElement.classList.remove('intro-pending');
+  setTimeout(finishIntro, 1580);
+  const intro = document.querySelector('.preloader');
+  if (intro) intro.addEventListener('animationend', e => { if (e.animationName === 'preloader-away') finishIntro(); });
+}
+
 // ---------- Menú móvil ----------
 const menuBtn = document.querySelector('.menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -94,6 +102,14 @@ const chapterEls = [...document.querySelectorAll('.chapter')];
 const screens = [...document.querySelectorAll('.ch-sticky .screen')];
 const chCount = document.querySelector('.ch-count b');
 const chArc = document.querySelector('.dial-arc');
+const poseGallery = document.querySelector('.pose-gallery');
+const poseTrack = document.querySelector('.pose-track');
+const howFlow = document.querySelector('.how-flow');
+const flowSteps = howFlow ? [...howFlow.querySelectorAll('li')] : [];
+const footWordmark = document.querySelector('.foot-wordmark');
+let scrollVelocity = 0, previousScrollY = window.scrollY;
+const marqueeAnimations = [...document.querySelectorAll('.marquee .track')].flatMap(track => track.getAnimations());
+let marqueeReturnTimer = 0;
 let activeCh = -1;
 function setChapter(i) {
   if (i === activeCh) return;
@@ -153,7 +169,52 @@ function onScroll() {
   ticking = false;
   const y = window.scrollY, vh = window.innerHeight;
   const max = document.documentElement.scrollHeight - vh;
+  scrollVelocity = Math.abs(y - previousScrollY);
+  previousScrollY = y;
   if (bar) bar.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
+
+  // Cintas: aceleran con el scroll y vuelven gradualmente a su velocidad base
+  if (marqueeAnimations.length) {
+    const rate = 1 + clamp(scrollVelocity / 40);
+    marqueeAnimations.forEach(animation => { animation.playbackRate = rate; });
+    clearTimeout(marqueeReturnTimer);
+    const easeMarqueeHome = () => {
+      let returning = false;
+      marqueeAnimations.forEach(animation => {
+        if (animation.playbackRate > 1) {
+          animation.playbackRate = Math.max(1, animation.playbackRate - .1);
+          returning = returning || animation.playbackRate > 1;
+        }
+      });
+      if (returning) marqueeReturnTimer = setTimeout(easeMarqueeHome, 50);
+    };
+    marqueeReturnTimer = setTimeout(easeMarqueeHome, 160);
+  }
+
+  // Galería horizontal atada al avance vertical de la sección
+  if (poseGallery && poseTrack && !reduceMotion && window.innerWidth > 767) {
+    const r = poseGallery.getBoundingClientRect();
+    const p = clamp(-r.top / Math.max(1, r.height - vh));
+    const gutter = clamp(window.innerWidth * .04, 16, 48);
+    const maxX = Math.max(0, poseTrack.scrollWidth - window.innerWidth + 2 * gutter);
+    poseTrack.style.transform = `translate3d(${-maxX * p}px,0,0)`;
+  }
+
+  // Línea y pasos de «Cómo funciona»
+  if (howFlow) {
+    const r = howFlow.getBoundingClientRect();
+    const p = clamp((vh * .78 - r.top) / Math.max(1, r.height - vh * .22));
+    const flowLine = howFlow.querySelector('.flow-progress');
+    if (flowLine) flowLine.style.strokeDashoffset = (100 - p * 100).toFixed(2);
+    flowSteps.forEach(step => step.classList.toggle('on', step.getBoundingClientRect().top < vh * .76));
+  }
+
+  // Relleno progresivo del wordmark del footer
+  if (footWordmark && !reduceMotion) {
+    const r = footWordmark.getBoundingClientRect();
+    const p = clamp((vh * .88 - r.top) / Math.max(1, Math.min(r.height, vh * .72)));
+    footWordmark.style.setProperty('--fill', `${(p * 100).toFixed(1)}%`);
+  }
 
   // Header se oculta al bajar y aparece al subir
   if (header && !(mobileMenu && mobileMenu.classList.contains('open'))) {
