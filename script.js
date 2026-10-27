@@ -129,8 +129,6 @@ const chapterEls = [...document.querySelectorAll('.chapter')];
 const screens = [...document.querySelectorAll('.ch-sticky .screen')];
 const chCount = document.querySelector('.ch-count b');
 const chArc = document.querySelector('.dial-arc');
-const poseGallery = document.querySelector('.pose-gallery');
-const poseTrack = document.querySelector('.pose-track');
 const footWordmark = document.querySelector('.foot-wordmark');
 let scrollVelocity = 0, previousScrollY = window.scrollY;
 const marqueeAnimations = [...document.querySelectorAll('.marquee .track')].flatMap(track => track.getAnimations());
@@ -214,15 +212,6 @@ function onScroll() {
       if (returning) marqueeReturnTimer = setTimeout(easeMarqueeHome, 50);
     };
     marqueeReturnTimer = setTimeout(easeMarqueeHome, 160);
-  }
-
-  // Galería horizontal atada al avance vertical de la sección
-  if (window.matchMedia('(min-width:768px)').matches && poseGallery && poseTrack && !reduceMotion) {
-    const r = poseGallery.getBoundingClientRect();
-    const p = clamp(-r.top / Math.max(1, r.height - vh));
-    const gutter = clamp(window.innerWidth * .04, 16, 48);
-    const maxX = Math.max(0, poseTrack.scrollWidth - window.innerWidth + 2 * gutter);
-    poseTrack.style.transform = `translate3d(${-maxX * p}px,0,0)`;
   }
 
   // Línea y pasos de «Cómo funciona»

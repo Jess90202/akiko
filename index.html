@@ -67,7 +67,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=5">
 <script>document.documentElement.classList.add('js')</script>
 <script>if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){try{if(!sessionStorage.getItem('akiko_intro_seen')){document.documentElement.classList.add('intro-pending');sessionStorage.setItem('akiko_intro_seen','1')}}catch(e){document.documentElement.classList.add('intro-pending')}}</script>
 </head>
@@ -375,15 +375,19 @@
         <div class="guide guide-demo" aria-hidden="true"><p class="bubble">¡Mira cómo funciona!</p><img src="assets/akiko-senala.webp" alt="" width="770" height="668" loading="lazy"></div>
       </div>
     </div>
-    <div class="pose-gallery" aria-label="Akiko en sus distintas poses">
-      <div class="pose-sticky"><div class="pose-track">
-        <figure><img src="assets/poses/google.webp" alt="Akiko junto a Google Maps" loading="lazy"><figcaption>Reseñas en Google</figcaption></figure>
-        <figure><img src="assets/poses/redes.webp" alt="Akiko para redes sociales" loading="lazy"><figcaption>Tus redes, en un toque</figcaption></figure>
-        <figure><img src="assets/poses/premio.webp" alt="Akiko con un premio de lealtad" loading="lazy"><figcaption>Premios para tus clientes</figcaption></figure>
-        <figure><img src="assets/poses/citas.webp" alt="Akiko para citas y seguimiento" loading="lazy"><figcaption>Clientes que regresan</figcaption></figure>
-        <figure><img src="assets/poses/menu.webp" alt="Akiko con un menú digital" loading="lazy"><figcaption>Menús digitales</figcaption></figure>
-      </div></div>
-    </div>
+    <section class="goals-section wrap" aria-labelledby="goals-title">
+      <header class="goals-head reveal">
+        <p class="mono label">Akiko te ayuda a…</p>
+        <h3 id="goals-title">Elige qué quieres lograr</h3>
+      </header>
+      <ul class="goals">
+        <li class="reveal" style="--d:0s"><a class="goal" href="tarjetas-nfc-resenas-google.html"><img src="assets/poses/google.webp" alt="Akiko junto a Google Maps" width="96" height="96" loading="lazy"><span class="goal-copy"><b>Reseñas en Google</b><small>Más estrellas sin pedirlas una por una.</small></span><span class="goal-arrow" aria-hidden="true">→</span></a></li>
+        <li class="reveal" style="--d:.05s"><a class="goal" href="tarjetas-nfc-resenas-google.html"><img src="assets/poses/redes.webp" alt="Akiko para redes sociales" width="96" height="96" loading="lazy"><span class="goal-copy"><b>Tus redes, en un toque</b><small>Que te sigan en Instagram, TikTok y Facebook.</small></span><span class="goal-arrow" aria-hidden="true">→</span></a></li>
+        <li class="reveal" style="--d:.1s"><a class="goal" href="citas-y-fidelidad.html"><img src="assets/poses/premio.webp" alt="Akiko con un premio de lealtad" width="96" height="96" loading="lazy"><span class="goal-copy"><b>Premios para tus clientes</b><small>Tarjeta de lealtad digital, sin cartoncitos.</small></span><span class="goal-arrow" aria-hidden="true">→</span></a></li>
+        <li class="reveal" style="--d:.15s"><a class="goal" href="citas-y-fidelidad.html"><img src="assets/poses/citas.webp" alt="Akiko para citas y seguimiento" width="96" height="96" loading="lazy"><span class="goal-copy"><b>Clientes que regresan</b><small>Te avisa a quién escribirle cada día.</small></span><span class="goal-arrow" aria-hidden="true">→</span></a></li>
+        <li class="reveal" style="--d:.2s"><a class="goal" href="menu-digital-qr-cdmx.html"><img src="assets/poses/menu.webp" alt="Akiko con un menú digital" width="96" height="96" loading="lazy"><span class="goal-copy"><b>Menús digitales</b><small>Tu carta con fotos, siempre al día.</small></span><span class="goal-arrow" aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
   </section>
 
   <!-- CÓMO FUNCIONA: dial -->
@@ -529,7 +533,7 @@
   </div>
 </div>
 
-<script src="script.js?v=4"></script>
+<script src="script.js?v=5"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   document.getElementById('cookie-settings').addEventListener('click', function(e){

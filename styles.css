@@ -856,13 +856,24 @@ footer.site{background:transparent;color:var(--muted);border-top:0}
 .marquee .track i{font-style:normal;font-size:1rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 @keyframes ribbon-marquee{from{transform:rotate(-3deg) translate3d(0,0,0)}to{transform:rotate(-3deg) translate3d(-50%,0,0)}}
 @keyframes ribbon-cross{from{transform:rotate(2deg) translate3d(-50%,0,0)}to{transform:rotate(2deg) translate3d(0,0,0)}}
-.pose-gallery{position:relative;height:auto;overflow:hidden;margin:30px 0 0}
-.pose-sticky{position:relative;top:auto;height:auto;display:flex;align-items:center;overflow-x:auto;overflow-y:hidden;padding:18px 16px 24px;scroll-padding-inline:16px;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.pose-sticky::-webkit-scrollbar{display:none}
-.pose-track{display:flex;gap:14px;width:max-content;will-change:transform;padding:0}
-.pose-track figure{position:relative;flex:0 0 74vw;aspect-ratio:1/1;height:auto;margin:0;overflow:hidden;scroll-snap-align:start;border-radius:22px;background:#fff;box-shadow:var(--card-shadow)}
-.pose-track img{width:100%;height:100%;object-fit:cover}
-.pose-track figcaption{position:absolute;inset:auto 0 0;padding:28px 18px 16px;color:#fff;font:600 1.2rem/1.2 var(--f-display);background:linear-gradient(transparent,rgba(5,30,56,.8))}
+.goals-section{margin:52px 0 0}
+.goals-head{margin:0 0 20px}
+.goals-head .label{margin:0 0 8px}
+.goals-head h3{margin:0;color:var(--navy);font:600 clamp(1.6rem,4vw,2.5rem)/1.1 var(--f-display);letter-spacing:-.04em}
+.goals{display:grid;gap:10px;list-style:none;padding:0;margin:0}
+.goal{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:14px;align-items:center;min-height:100px;padding:14px;border-radius:22px;background:#fff;box-shadow:var(--card-shadow);color:inherit;text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1),box-shadow 200ms ease}
+.goal>img{display:block;width:72px;height:72px;object-fit:cover;border-radius:20px;background:var(--paper);transition:transform 200ms ease-out}
+.goal-copy{display:grid;gap:5px;min-width:0}
+.goal-copy b{font-size:1.05rem;line-height:1.2;font-weight:700}
+.goal-copy small{font-size:.9rem;line-height:1.35;color:var(--muted)}
+.goal-arrow{align-self:center;color:var(--blue);font-size:1.4rem;line-height:1;transition:transform 200ms ease-out}
+.goal:active{transform:scale(.97)}
+.goal:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+@media(hover:hover) and (pointer:fine){
+  .goal:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(16,54,102,.16)}
+  .goal:hover>img{transform:scale(1.05)}
+  .goal:hover .goal-arrow{transform:translateX(4px)}
+}
 .foot-ribbon{overflow:hidden;transform:rotate(-2deg);margin:36px -4vw 12px;background:var(--grad);color:#fff;font:600 .82rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
 .foot-ribbon div{width:max-content;padding:10px 0;animation:marquee 36s linear infinite}
 .foot-wordmark{position:relative;overflow:hidden;width:100%;margin:26px 0 18px;text-align:center;color:transparent;-webkit-text-stroke:1px var(--navy);font:700 30vw/.88 var(--f-display);letter-spacing:-.09em;white-space:nowrap}
@@ -883,21 +894,20 @@ html.cookie-open .lnav{visibility:hidden;opacity:0;pointer-events:none}
   .marquee .track i{font-size:clamp(1.2rem,2.5vw,2rem)}
   @keyframes ribbon-marquee{from{transform:rotate(-4deg) translate3d(0,0,0)}to{transform:rotate(-4deg) translate3d(-50%,0,0)}}
   @keyframes ribbon-cross{from{transform:rotate(3deg) translate3d(-50%,0,0)}to{transform:rotate(3deg) translate3d(0,0,0)}}
-  .pose-gallery{height:260vh;overflow:clip;margin:36px calc(-1*var(--gutter)) 0}
-  .pose-sticky{position:sticky;top:0;height:100svh;overflow:hidden;padding:40px var(--gutter);scroll-snap-type:none}
-  .pose-track{gap:clamp(16px,3vw,36px);padding-inline:4vw}
-  .pose-track figure{flex:0 0 min(34vw,460px);height:min(62vh,560px);aspect-ratio:auto;border-radius:28px;scroll-snap-align:none}
-  .pose-track figcaption{padding:28px 22px 18px;font-size:clamp(1.2rem,2vw,1.8rem)}
+  .goals-section{margin-top:72px}
+  .goals{grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+  .goal{grid-template-columns:1fr;align-content:start;gap:14px;min-height:100%;padding:18px}
+  .goal>img{width:96px;height:96px}
+  .goal-copy{gap:7px}
+  .goal-arrow{justify-self:end;align-self:end;margin-top:auto}
   .foot-wordmark{font-size:clamp(5.8rem,24vw,20rem);line-height:.78}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .intro-pending .preloader{display:none}
   .marquee .track,.foot-ribbon div{animation:none!important}
-  .pose-gallery{height:auto;overflow:hidden}
-  .pose-sticky{position:relative;top:auto;height:auto;overflow-x:auto;scroll-snap-type:x mandatory}
-  .pose-track{transform:none!important}
-  .pose-track figure{scroll-snap-align:start}
+  .goal,.goal:hover,.goal:active{transform:none;transition:opacity .2s ease}
+  .goal>img,.goal:hover>img,.goal-arrow,.goal:hover .goal-arrow{transform:none;transition:opacity .2s ease}
   .js .reveal{opacity:0;transform:none;transition:opacity .2s ease}
   .js .reveal.in{opacity:1;transform:none}
   .js .split .w>span{transform:none;transition:opacity .2s ease;opacity:0}
