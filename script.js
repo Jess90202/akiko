@@ -3,13 +3,12 @@
    ========================================================= */
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-const desktopEffects = window.matchMedia('(min-width:768px)');
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
 // ---------- Intro de sesión ----------
 if (document.documentElement.classList.contains('intro-pending')) {
   const finishIntro = () => document.documentElement.classList.remove('intro-pending');
-  setTimeout(finishIntro, 1580);
+  setTimeout(finishIntro, window.matchMedia('(min-width:768px)').matches ? 1580 : 1080);
   const intro = document.querySelector('.preloader');
   if (intro) intro.addEventListener('animationend', e => { if (e.animationName === 'preloader-away') finishIntro(); });
 }
@@ -61,7 +60,8 @@ document.querySelectorAll('.split').forEach(el => {
 
 // ---------- Aparición al hacer scroll ----------
 const revealEls = document.querySelectorAll('.reveal, .split');
-if ('IntersectionObserver' in window && !reduceMotion) {
+document.querySelectorAll('.cap.reveal').forEach((el, i) => el.style.setProperty('--d', `${i * 60}ms`));
+if ('IntersectionObserver' in window) {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
@@ -76,6 +76,32 @@ requestAnimationFrame(() => document.querySelectorAll('.hero .reveal, .hero .spl
 const scrub = document.querySelector('.scrub');
 const scrubWords = scrub ? wrapWords(scrub, 'sw', false) : [];
 if (reduceMotion) scrubWords.forEach(w => w.classList.add('on'));
+
+// ---------- Contadores del hero ----------
+document.querySelectorAll('[data-count]').forEach(el => {
+  const end = Number(el.dataset.count), suffix = el.dataset.suffix || '';
+  let counted = false;
+  const finish = () => { el.textContent = `${end}${suffix}`; };
+  const count = () => {
+    if (counted) return;
+    counted = true;
+    if (reduceMotion || !('requestAnimationFrame' in window)) { finish(); return; }
+    const start = performance.now();
+    const frame = now => {
+      const p = clamp((now - start) / 700);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = `${Math.round(end * eased)}${suffix}`;
+      if (p < 1) requestAnimationFrame(frame); else finish();
+    };
+    requestAnimationFrame(frame);
+  };
+  if ('IntersectionObserver' in window) {
+    const counterObserver = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) { count(); counterObserver.disconnect(); }
+    }, { threshold: .5 });
+    counterObserver.observe(el);
+  } else count();
+});
 
 // ---------- Marcas del dial ----------
 function buildTicks(svg, c, rOut, rIn, rBig, n) {
@@ -105,12 +131,9 @@ const chCount = document.querySelector('.ch-count b');
 const chArc = document.querySelector('.dial-arc');
 const poseGallery = document.querySelector('.pose-gallery');
 const poseTrack = document.querySelector('.pose-track');
-const howFlow = document.querySelector('.how-flow');
-const flowSteps = howFlow ? [...howFlow.querySelectorAll('li')] : [];
 const footWordmark = document.querySelector('.foot-wordmark');
 let scrollVelocity = 0, previousScrollY = window.scrollY;
 const marqueeAnimations = [...document.querySelectorAll('.marquee .track')].flatMap(track => track.getAnimations());
-if (!desktopEffects.matches) marqueeAnimations.forEach(animation => { animation.playbackRate = 1; });
 let marqueeReturnTimer = 0;
 let activeCh = -1;
 function setChapter(i) {
@@ -174,10 +197,9 @@ function onScroll() {
   scrollVelocity = Math.abs(y - previousScrollY);
   previousScrollY = y;
   if (bar) bar.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
-  if (!desktopEffects.matches) marqueeAnimations.forEach(animation => { animation.playbackRate = 1; });
-
+  
   // Cintas: aceleran con el scroll y vuelven gradualmente a su velocidad base
-  if (desktopEffects.matches && marqueeAnimations.length) {
+  if (marqueeAnimations.length) {
     const rate = 1 + clamp(scrollVelocity / 40);
     marqueeAnimations.forEach(animation => { animation.playbackRate = rate; });
     clearTimeout(marqueeReturnTimer);
@@ -195,7 +217,7 @@ function onScroll() {
   }
 
   // Galería horizontal atada al avance vertical de la sección
-  if (desktopEffects.matches && poseGallery && poseTrack && !reduceMotion) {
+  if (window.matchMedia('(min-width:768px)').matches && poseGallery && poseTrack && !reduceMotion) {
     const r = poseGallery.getBoundingClientRect();
     const p = clamp(-r.top / Math.max(1, r.height - vh));
     const gutter = clamp(window.innerWidth * .04, 16, 48);
@@ -204,16 +226,8 @@ function onScroll() {
   }
 
   // Línea y pasos de «Cómo funciona»
-  if (desktopEffects.matches && howFlow) {
-    const r = howFlow.getBoundingClientRect();
-    const p = clamp((vh * .78 - r.top) / Math.max(1, r.height - vh * .22));
-    const flowLine = howFlow.querySelector('.flow-progress');
-    if (flowLine) flowLine.style.strokeDashoffset = (100 - p * 100).toFixed(2);
-    flowSteps.forEach(step => step.classList.toggle('on', step.getBoundingClientRect().top < vh * .76));
-  }
-
-  // Relleno progresivo del wordmark del footer
-  if (desktopEffects.matches && footWordmark && !reduceMotion) {
+    // Relleno progresivo del wordmark del footer
+  if (footWordmark && !reduceMotion) {
     const r = footWordmark.getBoundingClientRect();
     const p = clamp((vh * .88 - r.top) / Math.max(1, Math.min(r.height, vh * .72)));
     footWordmark.style.setProperty('--fill', `${(p * 100).toFixed(1)}%`);
@@ -400,12 +414,23 @@ if (finePointer && !reduceMotion) {
   const hero = document.querySelector('.hero');
   const mascot = document.getElementById('mascot-float');
   if (hero && mascot) {
-    hero.addEventListener('mousemove', (e) => {
-      const x = e.clientX / window.innerWidth - 0.5, y = e.clientY / window.innerHeight - 0.5;
-      mascot.style.translate = `${x * 26}px ${y * 18}px`;
-      mascot.style.rotate = `${x * 5}deg`;
+    let targetX = 0, targetY = 0, targetTilt = 0, x = 0, y = 0, tilt = 0, raf = 0;
+    const follow = () => {
+      raf = 0;
+      x += (targetX - x) * .1; y += (targetY - y) * .1; tilt += (targetTilt - tilt) * .1;
+      mascot.style.setProperty('--mx', `${x.toFixed(2)}px`);
+      mascot.style.setProperty('--my', `${y.toFixed(2)}px`);
+      mascot.style.setProperty('--mr', `${tilt.toFixed(2)}deg`);
+      if (Math.abs(targetX - x) > .05 || Math.abs(targetY - y) > .05 || Math.abs(targetTilt - tilt) > .05) raf = requestAnimationFrame(follow);
+    };
+    hero.addEventListener('mousemove', e => {
+      const r = mascot.getBoundingClientRect();
+      targetX = clamp((e.clientX - (r.left + r.width / 2)) / Math.max(1, r.width / 2), -1, 1) * 10;
+      targetY = clamp((e.clientY - (r.top + r.height / 2)) / Math.max(1, r.height / 2), -1, 1) * 10;
+      targetTilt = targetX / 10 * 6;
+      if (!raf) raf = requestAnimationFrame(follow);
     });
-    hero.addEventListener('mouseleave', () => { mascot.style.translate = ''; mascot.style.rotate = ''; });
+    hero.addEventListener('mouseleave', () => { targetX = targetY = targetTilt = 0; if (!raf) raf = requestAnimationFrame(follow); });
   }
 }
 
@@ -416,10 +441,11 @@ if (finePointer && !reduceMotion) {
   if (!banner) return;
   let saved = null;
   try { saved = localStorage.getItem(KEY); } catch (e) {}
-  if (!saved) setTimeout(() => banner.classList.add('show'), 1600);
+  if (!saved) setTimeout(() => { banner.classList.add('show'); document.documentElement.classList.add('cookie-open'); }, 1600);
   function save(value) {
     try { localStorage.setItem(KEY, value); } catch (e) {}
     banner.classList.remove('show');
+    document.documentElement.classList.remove('cookie-open');
     // Aquí podrías cargar analítica (ej. Google Analytics) SOLO si value === 'all'
   }
   document.getElementById('cookie-accept').addEventListener('click', () => save('all'));

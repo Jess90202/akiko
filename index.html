@@ -67,9 +67,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 <script>document.documentElement.classList.add('js')</script>
-<script>if(window.matchMedia('(min-width:768px)').matches&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){try{if(!sessionStorage.getItem('akiko_intro_seen')){document.documentElement.classList.add('intro-pending');sessionStorage.setItem('akiko_intro_seen','1')}}catch(e){document.documentElement.classList.add('intro-pending')}}</script>
+<script>if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){try{if(!sessionStorage.getItem('akiko_intro_seen')){document.documentElement.classList.add('intro-pending');sessionStorage.setItem('akiko_intro_seen','1')}}catch(e){document.documentElement.classList.add('intro-pending')}}</script>
 </head>
 <body class="home">
 
@@ -184,9 +184,9 @@
 
     <div class="wrap hero-foot">
       <dl class="stats glass-panel">
-        <div><dt class="mono">Toques</dt><dd>1</dd><span>y tu cliente ya está dentro</span></div>
-        <div><dt class="mono">Apps que instalar</dt><dd>0</dd><span>funciona desde el navegador</span></div>
-        <div><dt class="mono">Disponible</dt><dd>24/7</dd><span>trabajando por tu negocio</span></div>
+        <div><dt class="mono">Toques</dt><dd data-count="1">1</dd><span>y tu cliente ya está dentro</span></div>
+        <div><dt class="mono">Apps que instalar</dt><dd data-count="0">0</dd><span>funciona desde el navegador</span></div>
+        <div><dt class="mono">Disponible</dt><dd data-count="24" data-suffix="/7">24/7</dd><span>trabajando por tu negocio</span></div>
       </dl>
       <a class="scroll-hint" href="#manifiesto" aria-label="Bajar"><span></span></a>
     </div>
@@ -415,12 +415,6 @@
           </div>
         </div>
       </div>
-      <ol class="how-flow" aria-label="Pasos para empezar">
-        <li><svg class="flow-line" viewBox="0 0 100 400" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="flow-grad" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#18d4f5"/><stop offset=".55" stop-color="#2f6bff"/><stop offset="1" stop-color="#9b3cff"/></linearGradient></defs><path class="flow-track" pathLength="100" d="M50 0V400"/><path class="flow-progress" pathLength="100" d="M50 0V400"/></svg><span>01</span><div><h3>Nos cuentas</h3><p>Platícanos de tu negocio por WhatsApp y qué quieres lograr.</p></div></li>
-        <li><span>02</span><div><h3>Lo diseñamos</h3><p>Creamos tu tarjeta, menú o página con tu marca y tus enlaces.</p></div></li>
-        <li><span>03</span><div><h3>Tu cliente acerca el celular</h3><p>Un toque a la tarjeta NFC abre lo que necesites, al instante.</p></div></li>
-        <li><span>04</span><div><h3>Tú creces</h3><p>Herramientas para que tus clientes te dejen reseñas, te sigan y regresen.</p></div></li>
-      </ol>
     </div>
   </section>
 
@@ -509,7 +503,6 @@
         <li>Sábado 10:00–15:00 · Domingo cerrado</li>
       </ul>
     </div>
-    <img class="foot-mark" src="assets/marca/akiko-tech-wordmark-color.svg" alt="Akiko Tech" width="799" height="164" loading="lazy">
     <div class="foot-ribbon" aria-hidden="true"><div>Menús digitales ✦ Páginas web ✦ Tarjetas NFC ✦ Reseñas en Google ✦ Lealtad ✦ Citas ✦ Menús digitales ✦ Páginas web ✦ Tarjetas NFC ✦</div></div>
     <div class="foot-wordmark" data-wordmark="Akiko" aria-label="Akiko">Akiko</div>
     <p class="copy">© <span id="year">2026</span> Akiko · Hecho en México</p>
@@ -536,13 +529,14 @@
   </div>
 </div>
 
-<script src="script.js?v=2"></script>
+<script src="script.js?v=3"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   document.getElementById('cookie-settings').addEventListener('click', function(e){
     e.preventDefault();
     try { localStorage.removeItem('akiko_cookie_consent'); } catch(err){}
     document.getElementById('cookie-banner').classList.add('show');
+    document.documentElement.classList.add('cookie-open');
   });
 </script>
 </body>
