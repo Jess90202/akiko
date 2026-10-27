@@ -69,7 +69,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script>document.documentElement.classList.add('js')</script>
-<script>if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){try{if(!sessionStorage.getItem('akiko_intro_seen')){document.documentElement.classList.add('intro-pending');sessionStorage.setItem('akiko_intro_seen','1')}}catch(e){document.documentElement.classList.add('intro-pending')}}</script>
+<script>if(window.matchMedia('(min-width:768px)').matches&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){try{if(!sessionStorage.getItem('akiko_intro_seen')){document.documentElement.classList.add('intro-pending');sessionStorage.setItem('akiko_intro_seen','1')}}catch(e){document.documentElement.classList.add('intro-pending')}}</script>
 </head>
 <body class="home">
 
@@ -509,6 +509,7 @@
         <li>Sábado 10:00–15:00 · Domingo cerrado</li>
       </ul>
     </div>
+    <img class="foot-mark" src="assets/marca/akiko-tech-wordmark-color.svg" alt="Akiko Tech" width="799" height="164" loading="lazy">
     <div class="foot-ribbon" aria-hidden="true"><div>Menús digitales ✦ Páginas web ✦ Tarjetas NFC ✦ Reseñas en Google ✦ Lealtad ✦ Citas ✦ Menús digitales ✦ Páginas web ✦ Tarjetas NFC ✦</div></div>
     <div class="foot-wordmark" data-wordmark="Akiko" aria-label="Akiko">Akiko</div>
     <p class="copy">© <span id="year">2026</span> Akiko · Hecho en México</p>

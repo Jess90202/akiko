@@ -3,6 +3,7 @@
    ========================================================= */
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+const desktopEffects = window.matchMedia('(min-width:768px)');
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
 // ---------- Intro de sesión ----------
@@ -109,6 +110,7 @@ const flowSteps = howFlow ? [...howFlow.querySelectorAll('li')] : [];
 const footWordmark = document.querySelector('.foot-wordmark');
 let scrollVelocity = 0, previousScrollY = window.scrollY;
 const marqueeAnimations = [...document.querySelectorAll('.marquee .track')].flatMap(track => track.getAnimations());
+if (!desktopEffects.matches) marqueeAnimations.forEach(animation => { animation.playbackRate = 1; });
 let marqueeReturnTimer = 0;
 let activeCh = -1;
 function setChapter(i) {
@@ -172,9 +174,10 @@ function onScroll() {
   scrollVelocity = Math.abs(y - previousScrollY);
   previousScrollY = y;
   if (bar) bar.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
+  if (!desktopEffects.matches) marqueeAnimations.forEach(animation => { animation.playbackRate = 1; });
 
   // Cintas: aceleran con el scroll y vuelven gradualmente a su velocidad base
-  if (marqueeAnimations.length) {
+  if (desktopEffects.matches && marqueeAnimations.length) {
     const rate = 1 + clamp(scrollVelocity / 40);
     marqueeAnimations.forEach(animation => { animation.playbackRate = rate; });
     clearTimeout(marqueeReturnTimer);
@@ -192,7 +195,7 @@ function onScroll() {
   }
 
   // Galería horizontal atada al avance vertical de la sección
-  if (poseGallery && poseTrack && !reduceMotion && window.innerWidth > 767) {
+  if (desktopEffects.matches && poseGallery && poseTrack && !reduceMotion) {
     const r = poseGallery.getBoundingClientRect();
     const p = clamp(-r.top / Math.max(1, r.height - vh));
     const gutter = clamp(window.innerWidth * .04, 16, 48);
@@ -201,7 +204,7 @@ function onScroll() {
   }
 
   // Línea y pasos de «Cómo funciona»
-  if (howFlow) {
+  if (desktopEffects.matches && howFlow) {
     const r = howFlow.getBoundingClientRect();
     const p = clamp((vh * .78 - r.top) / Math.max(1, r.height - vh * .22));
     const flowLine = howFlow.querySelector('.flow-progress');
@@ -210,7 +213,7 @@ function onScroll() {
   }
 
   // Relleno progresivo del wordmark del footer
-  if (footWordmark && !reduceMotion) {
+  if (desktopEffects.matches && footWordmark && !reduceMotion) {
     const r = footWordmark.getBoundingClientRect();
     const p = clamp((vh * .88 - r.top) / Math.max(1, Math.min(r.height, vh * .72)));
     footWordmark.style.setProperty('--fill', `${(p * 100).toFixed(1)}%`);

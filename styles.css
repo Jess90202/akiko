@@ -377,7 +377,7 @@ footer.site{background:var(--ink);color:rgba(255,255,255,.7);padding:60px 0 28px
 .foot li.mono{color:var(--cyan);margin-bottom:4px}
 .foot a{text-decoration:none;transition:color .2s}
 .foot a:hover{color:#fff}
-.foot-mark{width:100%;height:auto;margin:64px 0 18px;filter:invert(1) hue-rotate(180deg) saturate(1.4);opacity:.95}
+.foot-mark{display:none;width:100%;height:auto;margin:64px 0 18px;filter:invert(1) hue-rotate(180deg) saturate(1.4);opacity:.95}
 .copy{font-size:.82rem;color:rgba(255,255,255,.45)}
 
 /* ---------- WhatsApp flotante ---------- */
@@ -788,6 +788,7 @@ footer.site{background:transparent;color:var(--muted);border-top:0}
 @media (max-width:700px){.svc-hero{grid-template-columns:1fr}.svc-hero img{max-width:180px;order:-1}}
 @media (prefers-reduced-motion:reduce){.faq summary::after,.faq details{transition:none}}
 
+@media(min-width:768px){
 /* ---------- Efectos de entrada y scroll ---------- */
 .preloader{display:none}
 .intro-pending .preloader{position:fixed;inset:0;z-index:300;display:grid;place-items:center;overflow:hidden;background:var(--ink);animation:preloader-away .1s 1.48s forwards;pointer-events:auto}
@@ -829,16 +830,6 @@ footer.site{background:transparent;color:var(--muted);border-top:0}
 .foot-wordmark{position:relative;overflow:hidden;margin:28px 0 18px;color:transparent;-webkit-text-stroke:1px var(--navy);font:700 clamp(5.8rem,24vw,20rem)/.78 var(--f-display);letter-spacing:-.09em;white-space:nowrap}
 .foot-wordmark::after{content:attr(data-wordmark);position:absolute;inset:0;overflow:hidden;color:var(--navy);-webkit-text-stroke:0;clip-path:inset(0 calc(100% - var(--fill,0%)) 0 0);transition:clip-path .08s linear}
 .js .foot-wordmark{--fill:0%}
-@media(max-width:767px){
-  .marquee{overflow:hidden;gap:2px;padding:48px 0 52px}
-  .marquee .track{animation-duration:40s;padding:8px 0}
-  .pose-gallery{height:auto;overflow:visible;margin-inline:calc(-1*var(--gutter))}
-  .pose-sticky{position:relative;top:auto;height:auto;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px var(--gutter) 24px}
-  .pose-track{gap:14px;padding:0;transform:none!important}
-  .pose-track figure{flex-basis:78vw;height:65vw;max-height:390px;border-radius:20px;scroll-snap-align:center}
-  .how-flow{margin-top:56px}
-  .foot-wordmark{font-size:24vw}
-}
 @media(prefers-reduced-motion:reduce){
   .intro-pending .preloader{display:none}
   .marquee .track,.foot-ribbon div{animation:none}
@@ -850,3 +841,6 @@ footer.site{background:transparent;color:var(--muted);border-top:0}
   .flow-progress{stroke-dashoffset:0}
   .foot-wordmark{--fill:100%!important}
 }
+
+}
+@media(max-width:767px){.preloader,.marquee .track.cross,.pose-gallery,.how-flow,.foot-ribbon,.foot-wordmark{display:none}.marquee{position:static;display:block;gap:normal;padding:28px 0}.marquee .track{position:static;z-index:auto;animation:marquee 45s linear infinite;transform:none;background:transparent;padding:0}.foot-mark{display:block}}
