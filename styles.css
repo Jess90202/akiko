@@ -923,3 +923,35 @@ html.cookie-open .lnav{visibility:hidden;opacity:0;pointer-events:none}
   .nav{background:#101936}.lnav{background:#fff}.glass-panel,.glass,.hero .chip.glass{background:#132044}.svc-info,#cookie-banner{background:#fff;color:#07152f}.vid-sound{background:#07152f}.app-grid i{background:#17234a}
 }
 .btn:active,.lnav a:active,.cap-more:active,.menu-btn:active{transform:scale(.97);transition:transform .1s var(--ease)}
+
+/* Videos de la portada */
+.videos{margin:var(--bay-m) var(--bay-m) 0;padding:clamp(64px,9vw,112px) 0;background:var(--ink);color:#fff;border-radius:var(--r);overflow:clip}
+.videos-head{max-width:760px;margin-bottom:28px}
+.videos-head .label{color:var(--cyan);margin-bottom:12px}
+.videos-head h2{font-size:clamp(2.1rem,4.2vw,2.9rem);margin-bottom:12px}
+.videos-head h2 em{color:var(--cyan)}
+.videos-intro{color:rgba(255,255,255,.72);max-width:46ch}
+.videos-rail{display:flex;gap:18px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding-top:8px;padding-bottom:18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.videos-rail::-webkit-scrollbar{display:none}
+.vc{flex:0 0 min(240px,62vw);display:flex;flex-direction:column;gap:12px;scroll-snap-align:center}
+.vf{position:relative;aspect-ratio:9/16;overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:28px;background:var(--deep);box-shadow:var(--card-shadow);transition:transform .22s var(--ease)}
+.vf video{display:block;width:100%;height:100%;object-fit:cover}
+.pb{position:absolute;right:12px;bottom:12px;width:42px;height:42px;border:1px solid rgba(255,255,255,.24);border-radius:50%;background:rgba(5,30,56,.78);color:#fff;font-size:.9rem;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:transform .16s var(--ease),opacity .2s ease}
+.pb:active{transform:scale(.92)}
+.vf.pl .pb{opacity:0}
+.vf.pl:focus-within .pb{opacity:1}
+.vc figcaption b{display:block;font-weight:600;letter-spacing:-.01em}
+.vc figcaption span{display:block;color:rgba(255,255,255,.7);font-size:.875rem}
+@media(hover:hover) and (pointer:fine){.vf:hover{transform:translateY(-4px)}.vf.pl:hover .pb{opacity:1}}
+
+/* Aviso de fuera de horario */
+#after-hours{position:fixed;z-index:90;left:16px;bottom:16px;width:min(440px,calc(100vw - 32px));padding:12px;display:grid;grid-template-columns:56px minmax(0,1fr) 40px;gap:12px;align-items:start;background:var(--white);color:var(--ink);border:1px solid var(--line);border-radius:22px;box-shadow:var(--card-shadow);opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transition:transform .32s var(--ease),opacity .32s var(--ease),visibility 0s linear .32s}
+#after-hours.show{opacity:1;visibility:visible;transform:none;transition:transform .32s var(--ease),opacity .32s var(--ease),visibility 0s}
+#after-hours.leaving{opacity:0;transform:translateY(8px) scale(.98);transition:transform .18s var(--ease),opacity .18s var(--ease),visibility 0s linear .18s}
+#after-hours img{width:56px;height:56px;object-fit:cover;border-radius:14px}
+#after-hours strong{display:block;margin:2px 0 5px;font:600 1rem/1.25 var(--f-display)}
+#after-hours p{margin:0 0 9px;color:var(--muted);font-size:.82rem;line-height:1.4}
+#after-hours .btn{display:inline-flex;padding:9px 12px;font-size:.82rem}
+#after-hours .close{width:40px;height:40px;padding:0;border:0;border-radius:50%;background:transparent;color:var(--ink);font-size:1.35rem;line-height:1;cursor:pointer}
+@media(max-width:767px){#after-hours{left:8px;bottom:calc(128px + env(safe-area-inset-bottom));width:calc(100vw - 16px)}}
+@media(prefers-reduced-motion:reduce){#after-hours,#after-hours.show,#after-hours.leaving{transform:none;transition:opacity .18s ease,visibility 0s linear .18s}.pb,.vf{transition:none}}

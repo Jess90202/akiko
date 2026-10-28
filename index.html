@@ -67,7 +67,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 <script>document.documentElement.classList.add('js')</script>
 <script>if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){try{if(!sessionStorage.getItem('akiko_intro_seen')){document.documentElement.classList.add('intro-pending');sessionStorage.setItem('akiko_intro_seen','1')}}catch(e){document.documentElement.classList.add('intro-pending')}}</script>
 </head>
@@ -390,6 +390,29 @@
     </section>
   </section>
 
+  <!-- VIDEOS -->
+  <section id="videos" class="videos" aria-labelledby="videos-title">
+    <div class="wrap">
+      <header class="videos-head">
+        <p class="mono label">Míralo en acción</p>
+        <h2 id="videos-title">Así se ve <em>en el celular</em> de tu cliente</h2>
+        <p class="videos-intro">Desliza y toca cualquier video para verlo.</p>
+      </header>
+    </div>
+    <div class="wrap videos-rail" tabindex="0" aria-label="Videos de las apps">
+      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/akiko-tech.webp" data-src="assets/home/videos/akiko-tech.mp4" aria-label="Akiko Total: Lealtad y Citas en un vistazo"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Akiko Total</b><span>Lealtad y Citas en un vistazo</span></figcaption></figure>
+      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/resena.webp" data-src="assets/home/videos/resena.mp4" aria-label="Reseñas en Google: Tarjeta NFC desde $500"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Reseñas en Google</b><span>Tarjeta NFC desde $500</span></figcaption></figure>
+      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/arranque.webp" data-src="assets/home/videos/arranque.mp4" aria-label="Tu tarjeta NFC: Acerca el celular y listo"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Tu tarjeta NFC</b><span>Acerca el celular y listo</span></figcaption></figure>
+      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/mesa.webp" data-src="assets/home/videos/mesa.mp4" aria-label="Reseñas y redes: Te reseña y te sigue"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Reseñas y redes</b><span>Te reseña y te sigue</span></figcaption></figure>
+      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/akiko-lealtad.webp" data-src="assets/home/videos/akiko-lealtad.mp4" aria-label="Lealtad: Escanea el QR y suma la visita"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Lealtad</b><span>Escanea el QR y suma la visita</span></figcaption></figure>
+      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/vuelven.webp" data-src="assets/home/videos/vuelven.mp4" aria-label="Lealtad: Llega a la meta: ¡premio!"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Lealtad</b><span>Llega a la meta: ¡premio!</span></figcaption></figure>
+      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/akiko-citas.webp" data-src="assets/home/videos/akiko-citas.mp4" aria-label="Citas: Te avisa a quién escribirle"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Citas</b><span>Te avisa a quién escribirle</span></figcaption></figure>
+      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/agenda.webp" data-src="assets/home/videos/agenda.mp4" aria-label="Citas: Un toque y el mensaje está listo"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Citas</b><span>Un toque y el mensaje está listo</span></figcaption></figure>
+      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/web.webp" data-src="assets/home/videos/web.mp4" aria-label="Páginas web: Con tu logo, tus fotos y tu mapa"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Páginas web</b><span>Con tu logo, tus fotos y tu mapa</span></figcaption></figure>
+      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/ficha_1.webp" data-src="assets/home/videos/ficha_1.mp4" aria-label="Ficha en Google: Así se ve lista"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Ficha en Google</b><span>Así se ve lista</span></figcaption></figure>
+    </div>
+  </section>
+
   <!-- CÓMO FUNCIONA: dial -->
   <section id="como-funciona" class="how">
     <div class="wrap">
@@ -533,7 +556,7 @@
   </div>
 </div>
 
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   document.getElementById('cookie-settings').addEventListener('click', function(e){

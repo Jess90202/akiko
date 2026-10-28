@@ -462,3 +462,115 @@ if (finePointer && !reduceMotion) {
   addEventListener('scroll', ask, { passive: true });
   paint();
 })();
+
+
+// ---------- Videos de la portada ----------
+(function videos() {
+  const items = [...document.querySelectorAll('#videos .vf video')];
+  if (!items.length || !('IntersectionObserver' in window)) return;
+  const load = video => {
+    if (!video.src && video.dataset.src) {
+      video.src = video.dataset.src;
+      video.load();
+    }
+  };
+  const sync = video => {
+    const frame = video.closest('.vf');
+    const button = frame.querySelector('.pb');
+    const playing = !video.paused;
+    frame.classList.toggle('pl', playing);
+    button.textContent = playing ? '❚❚' : '▶';
+    button.setAttribute('aria-label', playing ? 'Pausar video' : 'Reproducir video');
+  };
+  const play = video => {
+    load(video);
+    const result = video.play();
+    if (result && result.catch) result.catch(() => {});
+  };
+  items.forEach(video => {
+    video.addEventListener('play', () => sync(video));
+    video.addEventListener('pause', () => sync(video));
+    video.closest('.vf').addEventListener('click', () => video.paused ? play(video) : video.pause());
+  });
+  const preload = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      load(entry.target);
+      preload.unobserve(entry.target);
+    }
+  }), { rootMargin: '400px' });
+  const playback = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting && entry.intersectionRatio >= .6) {
+      if (!reduceMotion && !document.hidden) play(entry.target);
+    } else entry.target.pause();
+  }), { threshold: [0, .6] });
+  items.forEach(video => { preload.observe(video); playback.observe(video); });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) items.forEach(video => video.pause());
+  });
+})();
+
+// ---------- Aviso de fuera de horario ----------
+(function afterHours() {
+  const sessionKey = 'akiko_after_hours_seen';
+  try { if (sessionStorage.getItem(sessionKey) === '1') return; } catch (e) {}
+
+  const parts = date => {
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Mexico_City', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+    });
+    const result = {};
+    formatter.formatToParts(date).forEach(part => { result[part.type] = part.value; });
+    return result;
+  };
+  const dayIds = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+  const dayNames = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  const now = parts(new Date());
+  const today = dayIds[now.weekday];
+  const minute = Number(now.hour) * 60 + Number(now.minute);
+  const isOpen = today >= 1 && today <= 5 ? minute >= 600 && minute < 1080 : today === 6 ? minute >= 600 && minute < 900 : false;
+  if (isOpen) return;
+
+  const nextOpening = () => {
+    if (today >= 1 && today <= 6 && minute < 600) return 'hoy a las 10:00';
+    let day = today;
+    for (let offset = 1; offset <= 7; offset++) {
+      day = (day + 1) % 7;
+      if (day >= 1 && day <= 6) {
+        if (offset === 1) return 'mañana a las 10:00';
+        return `el ${dayNames[day]} a las 10:00`;
+      }
+    }
+    return 'el lunes a las 10:00';
+  };
+
+  const toast = document.createElement('aside');
+  toast.id = 'after-hours';
+  toast.setAttribute('role', 'status');
+  toast.innerHTML = '<img src="assets/home/img/sleep.webp" width="56" height="56" alt="" decoding="async"><div><strong>Akiko está descansando 😴</strong><p>Escríbenos y te respondemos en cuanto abramos: ' + nextOpening() + '</p><a class="btn btn-grad" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20me%20gustar%C3%ADa%20pedir%20informes" target="_blank" rel="noopener">Escribir por WhatsApp</a></div><button class="close" type="button" aria-label="Cerrar aviso">×</button>';
+  document.body.appendChild(toast);
+
+  let shown = false;
+  const hide = () => {
+    if (!toast.classList.contains('show')) return;
+    toast.classList.add('leaving');
+    setTimeout(() => toast.remove(), 180);
+    try { sessionStorage.setItem(sessionKey, '1'); } catch (e) {}
+  };
+  const show = () => {
+    if (shown || !toast.isConnected) return;
+    shown = true;
+    try { sessionStorage.setItem(sessionKey, '1'); } catch (e) {}
+    requestAnimationFrame(() => toast.classList.add('show'));
+    setTimeout(hide, 12000);
+  };
+  toast.querySelector('.close').addEventListener('click', hide);
+
+  const banner = document.getElementById('cookie-banner');
+  let hasCookieConsent = false;
+  try { hasCookieConsent = !!localStorage.getItem('akiko_cookie_consent'); } catch (e) {}
+  if (banner && (!hasCookieConsent || banner.classList.contains('show'))) {
+    banner.addEventListener('transitionend', event => {
+      if (event.target === banner && !banner.classList.contains('show')) show();
+    });
+  } else setTimeout(show, 1200);
+})();
