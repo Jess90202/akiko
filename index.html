@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="es-MX">
+<!doctype html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -23,7 +23,6 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preload" as="image" href="assets/akiko-mascota.webp" fetchpriority="high">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -66,482 +65,72 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=5">
-<script>document.documentElement.classList.add('js')</script>
-<script>if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){try{if(!sessionStorage.getItem('akiko_intro_seen')){document.documentElement.classList.add('intro-pending');sessionStorage.setItem('akiko_intro_seen','1')}}catch(e){document.documentElement.classList.add('intro-pending')}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/home/img/hero.webp" fetchpriority="high">
+<link rel="stylesheet" href="home.css?v=1">
+<script src="home.js?v=1" defer></script>
 </head>
-<body class="home">
+<body>
 
-<div class="preloader" aria-hidden="true">
-  <span class="preloader-word">Akiko</span>
-  <img src="assets/akiko-mascota.webp" alt="" width="900" height="726">
-  <i class="preloader-half left"></i><i class="preloader-half right"></i>
-</div>
-
-<!-- Iconos -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></symbol>
-  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></symbol>
-  <symbol id="i-nfc" viewBox="0 0 24 24"><path d="M6 8.5a5 5 0 0 1 0 7M10 6a9 9 0 0 1 0 12M14 3.5a13 13 0 0 1 0 17"/></symbol>
-  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
-  <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
-  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></symbol>
-  <symbol id="i-gift" viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></symbol>
-  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
-  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></symbol>
-  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
-  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
-  <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M15 3c.4 2.7 2.2 4.4 5 4.6v3.2a8 8 0 0 1-5-1.6v6.3A5.5 5.5 0 1 1 9.5 10v3.3a2.3 2.3 0 1 0 2.3 2.2V3z"/></symbol>
-  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
-  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
-  <symbol id="i-play" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16" rx="4"/><path d="M10 9l5 3-5 3z"/></symbol>
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
-  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol>
-  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></symbol>
-  <symbol id="i-sound" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4zM15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></symbol>
-  <symbol id="i-mute" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4zM22 9l-6 6M16 9l6 6"/></symbol>
-</svg>
-
-<div class="progress" aria-hidden="true"><i></i></div>
-
-<header class="site">
-  <div class="nav">
-    <a href="#inicio" class="brand" aria-label="Akiko Tech, ir al inicio"><img class="brand-logo" src="assets/marca/akiko-tech-logo-horizontal-reversed.svg" alt="Akiko Tech" width="149" height="36"></a>
-    <nav class="pill-nav" aria-label="Principal">
-      <ul id="menu">
-        <li><a class="link" href="#servicios">Servicios</a></li>
-        <li><a class="link" href="#apps">Apps</a></li>
-        <li><a class="link" href="#demo">Demo</a></li>
-        <li><a class="link" href="#como-funciona">Cómo funciona</a></li>
-        <li><a class="link" href="#akiko">Akiko</a></li>
-        <li><a class="link" href="precios.html">Precios</a></li>
-      </ul>
-    </nav>
-    <div class="nav-end">
-      <a class="btn btn-light btn-sm hide-sm magnetic" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20me%20gustar%C3%ADa%20pedir%20informes" target="_blank" rel="noopener">Cotizar</a>
-      <button class="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
-    </div>
-  </div>
-</header>
-
-<div id="mobile-menu" class="mobile-menu" aria-hidden="true">
-  <ol>
-    <li><a href="#servicios"><small>01</small>Servicios</a></li>
-    <li><a href="#apps"><small>02</small>Apps</a></li>
-    <li><a href="#demo"><small>03</small>Demo</a></li>
-    <li><a href="#como-funciona"><small>04</small>Cómo funciona</a></li>
-    <li><a href="#akiko"><small>05</small>Conoce a Akiko</a></li>
-    <li><a href="precios.html"><small>06</small>Precios</a></li>
-  </ol>
-  <div class="menu-foot">
-    <div class="menu-guide"><img src="assets/akiko-senala.webp" alt="" width="770" height="668" loading="lazy"><p class="bubble">¡Hola! Escríbenos, te respondo rápido.</p></div>
-    <a class="btn btn-grad" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20me%20gustar%C3%ADa%20pedir%20informes" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> Escríbenos por WhatsApp</a>
-  </div>
-</div>
-
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="a" viewBox="0 0 256 256"><g id="symbol"><ellipse cx="224" cy="194" rx="25" ry="15.9" fill="#0B1240" transform="rotate(-38 224 194)"/><ellipse cx="224" cy="194" rx="19.5" ry="10.3" fill="#FFFFFF" transform="rotate(-38 224 194)"/><rect x="95.7" y="185.5" width="56" height="28.2" rx="14.1" fill="#0B1240" transform="rotate(85.9 123.7 199.6)"/><ellipse cx="108.8" cy="223.4" rx="31.4" ry="15.1" fill="#0B1240" transform="rotate(-8 108.8 223.4)"/><rect x="101.3" y="191" width="44.9" height="17.1" rx="8.5" fill="#FFFFFF" transform="rotate(85.9 123.7 199.6)"/><ellipse cx="108.8" cy="223.4" rx="25.8" ry="9.5" fill="#FFFFFF" transform="rotate(-8 108.8 223.4)"/><rect x="156.3" y="187.4" width="54.8" height="28.2" rx="14.1" fill="#0B1240" transform="rotate(63.4 183.7 201.5)"/><ellipse cx="195.6" cy="224.6" rx="22.2" ry="14.5" fill="#0B1240" transform="rotate(-12 195.6 224.6)"/><rect x="161.8" y="193" width="43.7" height="17.1" rx="8.5" fill="#FFFFFF" transform="rotate(63.4 183.7 201.5)"/><ellipse cx="195.6" cy="224.6" rx="16.7" ry="8.9" fill="#FFFFFF" transform="rotate(-12 195.6 224.6)"/><ellipse cx="34.2" cy="121.4" rx="24.2" ry="23.4" fill="#0B1240"/><path fill="#0B1240" d="M70.8 173.1 A43.4 43.4 0 0 1 25.1 137.4 A12.1 12.1 0 0 1 48.9 133.1 A19.2 19.2 0 0 0 69.1 149 A12.1 12.1 0 0 1 70.8 173.1Z"/><ellipse cx="34.2" cy="121.4" rx="18.7" ry="17.9" fill="#FFFFFF"/><path fill="#FFFFFF" d="M70.4 167.6 A37.9 37.9 0 0 1 30.5 136.4 A6.6 6.6 0 0 1 43.4 134.1 A24.8 24.8 0 0 0 69.5 154.5 A6.6 6.6 0 0 1 70.4 167.6Z"/><ellipse cx="121.5" cy="66.2" rx="34.9" ry="49.6" fill="#0B1240" transform="rotate(-4 121.5 66.2)"/><ellipse cx="121.5" cy="66.2" rx="29.4" ry="44.1" fill="#2D6BFF" transform="rotate(-4 121.5 66.2)"/><ellipse cx="124.3" cy="66" rx="26.6" ry="43" fill="#FFFFFF" transform="rotate(-4 124.3 66)"/><ellipse cx="198.6" cy="80.9" rx="32.9" ry="45.7" fill="#0B1240" transform="rotate(6 198.6 80.9)"/><ellipse cx="198.6" cy="80.9" rx="27.4" ry="40.1" fill="#2D6BFF" transform="rotate(6 198.6 80.9)"/><ellipse cx="201.1" cy="81.1" rx="24.8" ry="39.1" fill="#FFFFFF" transform="rotate(6 201.1 81.1)"/><ellipse cx="146.4" cy="150.3" rx="91.3" ry="49.6" fill="#0B1240" transform="rotate(11 146.4 150.3)"/><ellipse cx="146.4" cy="150.3" rx="85.7" ry="44.1" fill="#FFFFFF" transform="rotate(11 146.4 150.3)"/><ellipse cx="146.4" cy="150.3" rx="85.7" ry="44.1" fill="#E1F2FF" transform="rotate(11 146.4 150.3)"/><ellipse cx="144" cy="145.2" rx="82.2" ry="40.9" fill="#FFFFFF" transform="rotate(11 144 145.2)"/><ellipse cx="126.3" cy="88.8" rx="11.9" ry="15.1" fill="#0B1240"/><ellipse cx="194.6" cy="102.7" rx="10.9" ry="13.9" fill="#0B1240"/><ellipse cx="129.7" cy="82.4" rx="3.4" ry="5" fill="#FFFFFF"/><ellipse cx="198.2" cy="96.9" rx="3.2" ry="4.6" fill="#FFFFFF"/><path fill="#0B1240" d="M92.5 64.9 A29.8 29.8 0 0 1 151.4 60.6 A2.1 2.1 0 0 1 147.3 61.4 A25.6 25.6 0 0 0 96.6 65.1 A2.1 2.1 0 0 1 92.5 64.9Z"/><path fill="#0B1240" d="M172.4 75.8 A28.8 28.8 0 0 1 225 72 A2.1 2.1 0 0 1 221.3 73.9 A24.6 24.6 0 0 0 176.3 77.2 A2.1 2.1 0 0 1 172.4 75.8Z"/><path fill="#0B1240" d="M184 150.7 A40 40 0 0 1 121 150.7 A2.3 2.3 0 0 1 124.6 147.9 A35.4 35.4 0 0 0 180.4 147.9 A2.3 2.3 0 0 1 184 150.7Z"/></g></symbol><symbol id="f" viewBox="0 0 256 256"><g id="symbol"><ellipse cx="98.2" cy="76.2" rx="42.6" ry="60.2" fill="#0B1240" transform="rotate(-4 98.2 76.2)"/><ellipse cx="98.2" cy="76.2" rx="35.2" ry="52.8" fill="#2D6BFF" transform="rotate(-4 98.2 76.2)"/><ellipse cx="101.6" cy="76" rx="31.9" ry="51.5" fill="#FFFFFF" transform="rotate(-4 101.6 76)"/><ellipse cx="190.6" cy="93.8" rx="40.2" ry="55.5" fill="#0B1240" transform="rotate(6 190.6 93.8)"/><ellipse cx="190.6" cy="93.8" rx="32.9" ry="48.1" fill="#2D6BFF" transform="rotate(6 190.6 93.8)"/><ellipse cx="193.7" cy="94.2" rx="29.8" ry="46.8" fill="#FFFFFF" transform="rotate(6 193.7 94.2)"/><ellipse cx="128" cy="177.2" rx="110.2" ry="60.2" fill="#0B1240" transform="rotate(11 128 177.2)"/><ellipse cx="128" cy="177.2" rx="102.8" ry="52.8" fill="#FFFFFF" transform="rotate(11 128 177.2)"/><ellipse cx="128" cy="177.2" rx="102.8" ry="52.8" fill="#E1F2FF" transform="rotate(11 128 177.2)"/><ellipse cx="125.1" cy="171" rx="98.6" ry="49" fill="#FFFFFF" transform="rotate(11 125.1 171)"/><ellipse cx="104" cy="103.4" rx="14.8" ry="18.6" fill="#0B1240"/><ellipse cx="185.8" cy="120" rx="13.6" ry="17.1" fill="#0B1240"/><ellipse cx="108" cy="95.7" rx="4.3" ry="6.2" fill="#FFFFFF"/><ellipse cx="190.1" cy="113.1" rx="4" ry="5.7" fill="#FFFFFF"/><path fill="#0B1240" d="M63.1 74.7 A35.9 35.9 0 0 1 134.3 69.5 A2.7 2.7 0 0 1 128.9 70.6 A30.5 30.5 0 0 0 68.6 74.9 A2.7 2.7 0 0 1 63.1 74.7Z"/><path fill="#0B1240" d="M159 87.7 A34.8 34.8 0 0 1 222.5 83 A2.7 2.7 0 0 1 217.7 85.6 A29.3 29.3 0 0 0 164.1 89.5 A2.7 2.7 0 0 1 159 87.7Z"/><path fill="#0B1240" d="M173.5 177.9 A48.3 48.3 0 0 1 97.3 177.9 A3.1 3.1 0 0 1 102.2 174.1 A42.1 42.1 0 0 0 168.6 174.1 A3.1 3.1 0 0 1 173.5 177.9Z"/></g></symbol></defs></svg>
+<nav><div class="w"><a class="lg" href="#inicio" aria-label="Akiko Tech"><svg aria-hidden="true"><use href="#f"/></svg>akiko tech</a>
+<div class="nl"><a href="#proyecto">Proyecto</a><a href="#servicios">Servicios</a><a href="#demo">Demo</a><a href="#guias">Guías</a><a href="#nosotros">Nosotros</a><a href="precios.html">Precios</a></div>
+<a class="btn" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20me%20gustar%C3%ADa%20pedir%20informes">Cotizar</a></div></nav>
 <main id="inicio">
+<section class="hero"><div class="w"><div>
+<span class="k r">Coyoacán · Taxqueña · Coapa · CTM Culhuacán</span>
+<h1 class="r" style="--i:1">Imagina.<br>Construye.<br><em>Cuenta.</em></h1>
+<p class="l r" style="--i:2">Menús QR, páginas web y tarjetas NFC que le facilitan a tu cliente dejarte reseñas, seguirte y regresar.</p>
+<div class="bs r" style="--i:3"><a class="btn" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20me%20gustar%C3%ADa%20pedir%20informes">Empezar un proyecto</a><a class="btn g" href="#proyecto">Ver las apps</a></div></div>
+<div class="stage r" style="--i:2" id="st"><div class="tile" id="mas"><img src="assets/home/img/hero.webp" alt="Akiko acerca su tarjeta NFC al celular y llega una reseña de cinco estrellas" width="640" height="640" decoding="async" fetchpriority="high"></div>
+<div class="chip c1" data-d="1.6">Google Maps <b>★★★★★</b></div><div class="chip c2" data-d="-1.2">Lealtad <b>4 de 6</b> visitas</div><div class="chip c3" data-d="2">Instagram <b>+1</b> seguidor</div></div></div></section>
 
-  <!-- HERO -->
-  <section class="hero" aria-labelledby="hero-title">
-    <canvas class="flow" aria-hidden="true"></canvas>
-    <div class="hero-glow" aria-hidden="true"></div>
-    <div class="tubes hero-tubes" aria-hidden="true"><svg class="depth" data-depth="18" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="tb-a" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#18d4f5"/><stop offset=".45" stop-color="#2f6bff"/><stop offset="1" stop-color="#9b3cff"/></linearGradient><linearGradient id="tb-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c026d3"/><stop offset=".55" stop-color="#7b2ff2"/><stop offset="1" stop-color="#2f6bff"/></linearGradient><linearGradient id="tb-c" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff5fb8"/><stop offset="1" stop-color="#9b3cff"/></linearGradient><linearGradient id="tb-shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></linearGradient><filter id="tb-soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="18"/></filter><filter id="tb-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter></defs><path d="M760 900 C 700 520, 900 300, 1080 360 S 1300 620, 1180 860" fill="none" stroke="#020a1c" stroke-opacity=".55" stroke-width="120" stroke-linecap="round" filter="url(#tb-soft)" transform="translate(14 22)"/><path d="M760 900 C 700 520, 900 300, 1080 360 S 1300 620, 1180 860" fill="none" stroke="url(#tb-b)" stroke-width="120" stroke-linecap="round"/><path d="M760 900 C 700 520, 900 300, 1080 360 S 1300 620, 1180 860" fill="none" stroke="url(#tb-shade)" stroke-width="120" stroke-linecap="round" opacity=".55"/><path d="M760 900 C 700 520, 900 300, 1080 360 S 1300 620, 1180 860" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="20" stroke-linecap="round" filter="url(#tb-glow)" transform="translate(-17 -20)"/></svg><svg class="depth" data-depth="34" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice"><path d="M-60 700 C 160 560, 300 760, 520 640" fill="none" stroke="#020a1c" stroke-opacity=".55" stroke-width="70" stroke-linecap="round" filter="url(#tb-soft)" transform="translate(14 22)"/><path d="M-60 700 C 160 560, 300 760, 520 640" fill="none" stroke="url(#tb-a)" stroke-width="70" stroke-linecap="round"/><path d="M-60 700 C 160 560, 300 760, 520 640" fill="none" stroke="url(#tb-shade)" stroke-width="70" stroke-linecap="round" opacity=".55"/><path d="M-60 700 C 160 560, 300 760, 520 640" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="11" stroke-linecap="round" filter="url(#tb-glow)" transform="translate(-10 -11)"/></svg><svg class="depth" data-depth="-22" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice"><path d="M900 -80 C 1020 60, 860 160, 1000 260" fill="none" stroke="#020a1c" stroke-opacity=".55" stroke-width="46" stroke-linecap="round" filter="url(#tb-soft)" transform="translate(14 22)"/><path d="M900 -80 C 1020 60, 860 160, 1000 260" fill="none" stroke="url(#tb-c)" stroke-width="46" stroke-linecap="round"/><path d="M900 -80 C 1020 60, 860 160, 1000 260" fill="none" stroke="url(#tb-shade)" stroke-width="46" stroke-linecap="round" opacity=".55"/><path d="M900 -80 C 1020 60, 860 160, 1000 260" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="7" stroke-linecap="round" filter="url(#tb-glow)" transform="translate(-6 -7)"/></svg></div>
+<section class="band feat" id="proyecto"><div class="w"><div>
+<span class="k">Proyecto destacado</span><h2>Akiko <em style="color:var(--lt)">Lealtad</em></h2>
+<p>La tarjeta de sellos de papel, ahora en el celular de tu cliente. Tu equipo escanea su QR, la visita se suma y al llegar a la meta, ¡premio listo para canjear!</p>
+<div class="tags"><span>Reseñas + redes + puntos</span><span>Varias sucursales</span><span>Acceso con PIN</span></div>
+<div class="bs"><a class="btn" href="citas-y-fidelidad.html">Ver el proyecto</a><a class="btn g" style="color:#E1F2FF;box-shadow:inset 0 0 0 1.5px #e1f2ff40" href="#servicios">Ver todo lo que hacemos</a></div></div>
+<div class="pass r"><div class="tile im" style="margin:-1.5rem -1.5rem 1rem;border-radius:28px 28px 0 0;box-shadow:none"><img src="assets/home/img/premio.webp" alt="Akiko con su premio de lealtad" loading="lazy" decoding="async" width="372" height="329"></div><small>Tarjeta de lealtad</small><h3 style="margin:.25rem 0 1rem">Hola de nuevo, Ana</h3>
+<div style="display:flex;justify-content:space-between;font-weight:700"><span>Tus visitas</span><span>4 de 6</span></div><div class="bar"><i></i></div>
+<div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+<p style="margin:1.25rem 0 0;color:var(--navy);font-size:.9375rem">🎁 <b>10% de descuento</b> · te faltan 2 visitas</p></div></div></section>
 
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <p class="kicker reveal"><span class="live"></span> Páginas web, menús QR y tarjetas NFC en Coyoacán, CDMX</p>
-        <h1 id="hero-title" class="split">Un toque y tu negocio <em>se acerca</em> a tus clientes</h1>
-        <p class="lead reveal" style="--d:.5s">Menús digitales, páginas web y tarjetas NFC para negocios de Coyoacán, Taxqueña y Coapa: herramientas que le facilitan a tu cliente dejarte reseñas, seguirte y regresar.</p>
-        <div class="hero-cta reveal" style="--d:.62s">
-          <a class="btn btn-grad magnetic" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20me%20gustar%C3%ADa%20pedir%20informes" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> Cotizar por WhatsApp</a>
-          <a class="btn btn-line" href="#apps">Ver las apps <svg class="ico"><use href="#i-arrow"/></svg></a>
-        </div>
-      </div>
+<section class="sv" id="servicios"><div class="w"><div class="hd"><div><span class="k">Servicios</span><h2>Lo que hacemos<br><em>por tu negocio</em></h2></div><a class="btn g" href="precios.html">Ver precios</a></div>
+<div class="grid">
+<a class="card r" href="menu-digital-qr-cdmx.html"><div class="tile im"><img src="assets/home/img/menu.webp" alt="Akiko con un menú digital" loading="lazy" decoding="async" width="372" height="330"></div><span class="n">QR · NFC</span><h3>Menús digitales</h3><p>Tu carta con fotos y precios, siempre actualizada. Incluye hasta 15 platillos.</p><span class="pr">Desde $800 →</span></a>
+<a class="card r" style="--i:1" href="paginas-web-coyoacan.html"><div class="tile im"><img src="assets/home/img/web2.webp" alt="Akiko con laptop y celular" loading="lazy" decoding="async" width="380" height="318"></div><span class="n">Celular · Compu</span><h3>Páginas web</h3><p>Sitios rápidos y modernos para que te encuentren y te contacten en un toque.</p><span class="pr">$5,000 →</span></a>
+<a class="card r" style="--i:2" href="tarjetas-nfc-resenas-google.html"><div class="tile im"><img src="assets/home/img/nfc.webp" alt="Akiko con una tarjeta NFC" loading="lazy" decoding="async" width="372" height="329"></div><span class="n">Acerca y listo</span><h3>Tarjetas NFC</h3><p>Tu cliente acerca el celular: deja reseña, te sigue en redes o suma puntos.</p><span class="pr">Desde $500 →</span></a>
+<a class="card r" style="--i:3" href="citas-y-fidelidad.html"><div class="tile im"><img src="assets/home/img/citas.webp" alt="Akiko con un calendario de citas" loading="lazy" decoding="async" width="372" height="329"></div><span class="n">A tu medida</span><h3>Apps web</h3><p>Citas y lealtad: te avisa a quién escribirle cada día y abre WhatsApp con el mensaje listo.</p><span class="pr">Desde $199/mes →</span></a></div></div></section>
 
-      <div class="hero-art reveal" style="--d:.3s">
-        <div class="orbit" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="mascot-float" id="mascot-float">
-          <img src="assets/akiko-mascota.webp" alt="Akiko, nuestra mascota, sosteniendo una tarjeta NFC" width="900" height="726" fetchpriority="high">
-        </div>
-        <div class="glass chip c1">
-          <span class="mono">Google Maps <svg class="ico"><use href="#i-star"/></svg></span>
-          <b>★★★★★</b>
-          <small>Nueva reseña</small>
-        </div>
-        <div class="glass chip c2">
-          <span class="mono">Lealtad <svg class="ico"><use href="#i-gift"/></svg></span>
-          <b>4 <em>de</em> 6</b>
-          <small>visitas · ¡ya casi!</small>
-        </div>
-        <div class="glass chip c3">
-          <span class="mono">Instagram</span>
-          <b>+1</b>
-          <small>seguidor</small>
-        </div>
-      </div>
-    </div>
+<section class="band sv"><div class="w"><span class="k">Cómo trabajamos</span><h2 style="margin-bottom:2.5rem">Tres pasos, <em style="color:var(--lt)">un toque</em></h2>
+<div class="steps"><div class="r"><div class="tile im"><img src="assets/home/img/idea.webp" alt="Akiko con una idea" loading="lazy" decoding="async" width="372" height="329"></div><h3><em>Imagina</em></h3><p>Nos cuentas de tu negocio por WhatsApp y qué quieres lograr: reseñas, seguidores o clientes que regresen.</p></div>
+<div class="r" style="--i:1"><div class="tile im"><img src="assets/home/img/dev.webp" alt="Akiko construyendo en su laptop" loading="lazy" decoding="async" width="372" height="329"></div><h3><em>Construye</em></h3><p>Diseñamos tu tarjeta, menú o página con tu marca, tus colores y tus enlaces. Sin apps que instalar.</p></div>
+<div class="r" style="--i:2"><div class="tile im"><img src="assets/home/img/stats.webp" alt="Akiko mostrando crecimiento" loading="lazy" decoding="async" width="372" height="330"></div><h3><em>Cuenta</em></h3><p>Tu cliente acerca el celular y todo abre al instante. Tú creces con cada toque.</p></div></div></div></section>
 
-    <div class="wrap hero-foot">
-      <dl class="stats glass-panel">
-        <div><dt class="mono">Toques</dt><dd data-count="1">1</dd><span>y tu cliente ya está dentro</span></div>
-        <div><dt class="mono">Apps que instalar</dt><dd data-count="0">0</dd><span>funciona desde el navegador</span></div>
-        <div><dt class="mono">Disponible</dt><dd data-count="24" data-suffix="/7">24/7</dd><span>trabajando por tu negocio</span></div>
-      </dl>
-      <a class="scroll-hint" href="#manifiesto" aria-label="Bajar"><span></span></a>
-    </div>
-  </section>
+<section class="band sv" id="demo"><div class="w"><span class="k">Míralo en acción</span><h2 style="margin-bottom:.75rem">Así se ve <em style="color:var(--lt)">en el celular</em> de tu cliente</h2><p style="color:#e1f2ffb3;max-width:46ch">Desliza y toca cualquier video para verlo.</p></div><div class="vs" tabindex="0" aria-label="Videos de las apps"><figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/akiko-tech.webp" data-src="assets/home/videos/akiko-tech.mp4" aria-label="Akiko Total: Lealtad y Citas en un vistazo"></video><button class="pb" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Akiko Total</b><span>Lealtad y Citas en un vistazo</span></figcaption></figure><figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/resena.webp" data-src="assets/home/videos/resena.mp4" aria-label="Reseñas en Google: Tarjeta NFC desde $500"></video><button class="pb" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Reseñas en Google</b><span>Tarjeta NFC desde $500</span></figcaption></figure><figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/arranque.webp" data-src="assets/home/videos/arranque.mp4" aria-label="Tu tarjeta NFC: Acerca el celular y listo"></video><button class="pb" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Tu tarjeta NFC</b><span>Acerca el celular y listo</span></figcaption></figure><figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/mesa.webp" data-src="assets/home/videos/mesa.mp4" aria-label="Reseñas y redes: Te reseña y te sigue"></video><button class="pb" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Reseñas y redes</b><span>Te reseña y te sigue</span></figcaption></figure><figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/akiko-lealtad.webp" data-src="assets/home/videos/akiko-lealtad.mp4" aria-label="Lealtad: Escanea el QR y suma la visita"></video><button class="pb" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Lealtad</b><span>Escanea el QR y suma la visita</span></figcaption></figure><figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/vuelven.webp" data-src="assets/home/videos/vuelven.mp4" aria-label="Lealtad: Llega a la meta: ¡premio!"></video><button class="pb" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Lealtad</b><span>Llega a la meta: ¡premio!</span></figcaption></figure><figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/akiko-citas.webp" data-src="assets/home/videos/akiko-citas.mp4" aria-label="Citas: Te avisa a quién escribirle"></video><button class="pb" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Citas</b><span>Te avisa a quién escribirle</span></figcaption></figure><figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/agenda.webp" data-src="assets/home/videos/agenda.mp4" aria-label="Citas: Un toque y el mensaje está listo"></video><button class="pb" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Citas</b><span>Un toque y el mensaje está listo</span></figcaption></figure><figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/web.webp" data-src="assets/home/videos/web.mp4" aria-label="Páginas web: Con tu logo, tus fotos y tu mapa"></video><button class="pb" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Páginas web</b><span>Con tu logo, tus fotos y tu mapa</span></figcaption></figure><figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/ficha_1.webp" data-src="assets/home/videos/ficha_1.mp4" aria-label="Ficha en Google: Así se ve lista"></video><button class="pb" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Ficha en Google</b><span>Así se ve lista</span></figcaption></figure></div></section><section class="sv" id="guias"><div class="w"><div class="hd"><div><span class="k">Guías</span><h2>Para aprender <em>más</em></h2></div></div>
+<a class="gl" href="tarjetas-nfc-resenas-google.html"><span>Tarjetas NFC para reseñas en Google<small>Más estrellas sin pedirlas una por una</small></span><span>→</span></a>
+<a class="gl" href="menu-digital-qr-cdmx.html"><span>Menú digital QR en CDMX<small>Tu carta con fotos, siempre al día</small></span><span>→</span></a>
+<a class="gl" href="citas-y-fidelidad.html"><span>Citas y lealtad<small>Clientes que regresan, sin cartoncitos</small></span><span>→</span></a></div></section>
 
-  <!-- MARQUEE -->
-  <div class="marquee" aria-hidden="true">
-    <div class="track">
-      <span>Menús digitales</span><i>✦</i><span>Páginas web</span><i>✦</i><span>Tarjetas NFC</span><i>✦</i><span>Reseñas en Google</span><i>✦</i><span>Lealtad</span><i>✦</i><span>Citas</span><i>✦</i>
-      <span>Menús digitales</span><i>✦</i><span>Páginas web</span><i>✦</i><span>Tarjetas NFC</span><i>✦</i><span>Reseñas en Google</span><i>✦</i><span>Lealtad</span><i>✦</i><span>Citas</span><i>✦</i>
-    </div>
-    <div class="track cross">
-      <span>Apps para tu negocio</span><i>✦</i><span>Clientes que regresan</span><i>✦</i><span>Un toque, muchas posibilidades</span><i>✦</i><span>Akiko Tech</span><i>✦</i>
-      <span>Apps para tu negocio</span><i>✦</i><span>Clientes que regresan</span><i>✦</i><span>Un toque, muchas posibilidades</span><i>✦</i><span>Akiko Tech</span><i>✦</i>
-    </div>
-  </div>
+<section class="sv" id="nosotros" style="padding-top:0"><div class="w ab"><div><span class="k">Nosotros</span><h2>Tecnología <em>cercana</em></h2>
+<p>Convertimos un simple toque en <b>reseñas</b>, <b>seguidores</b> y clientes que <b>regresan</b>. Diseñamos todo con tu marca y sin letras chiquitas. Vamos a tu negocio, te mostramos cómo funciona y lo dejamos listo.</p></div>
+<div class="tile r"><img src="assets/home/img/about.webp" alt="Akiko abrazando un corazón" loading="lazy" decoding="async" width="380" height="318"></div></div></section>
 
-  <!-- MANIFIESTO -->
-  <section id="manifiesto" class="manifesto">
-    <div class="wrap">
-      <p class="mono label reveal">Nosotros</p>
-      <p class="scrub">Convertimos un simple toque en <u>reseñas</u>, <u>seguidores</u> y clientes que <u>regresan</u>. Tecnología cercana, sin apps que instalar y sin letras chiquitas.</p>
-      <div class="manifesto-foot">
-        <p class="mono label reveal">Hecho a tu medida</p>
-        <p class="reveal">Diseñamos todo con tu marca, tus colores y tus enlaces. Tú solo nos cuentas qué quieres lograr.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICIOS -->
-  <section id="servicios" class="services">
-    <div class="wrap">
-      <header class="sec-head">
-        <p class="mono label reveal">01 — Servicios</p>
-        <h2 class="split">Lo que hacemos <em>por tu negocio</em></h2>
-      </header>
-
-      <div class="cap-grid">
-        <div class="cap-col">
-        <article class="cap reveal" style="--d:0s">
-          <img class="cap-art" src="assets/poses/menu.webp" alt="" width="320" height="320" loading="lazy">
-          <div><span class="cap-tag"><svg class="ico"><use href="#i-utensils"/></svg> QR · NFC</span><h3>Menús digitales</h3><p>Tu carta con fotos y precios, siempre actualizada. Sin reimprimir cada vez que cambias algo. Incluye hasta 15 platillos.</p><a class="cap-more" href="menu-digital-qr-cdmx.html">Menú QR desde $800 →</a></div>
-        </article>
-        <article class="cap reveal" style="--d:0.08s">
-          <img class="cap-art" src="assets/poses/web.webp" alt="" width="320" height="320" loading="lazy">
-          <div><span class="cap-tag"><svg class="ico"><use href="#i-globe"/></svg> Celular · Compu</span><h3>Páginas web</h3><p>Sitios rápidos y modernos, para que te encuentren y te contacten en un toque.</p><a class="cap-more" href="paginas-web-coyoacan.html">Página web $5,000 →</a></div>
-        </article>
-        </div>
-        <div class="cap-mascot reveal" aria-hidden="true"><span class="cap-ring"></span><img src="assets/akiko-mascota.webp" alt="" width="900" height="726" loading="lazy"></div>
-        <div class="cap-col">
-        <article class="cap reveal" style="--d:0.16s">
-          <img class="cap-art" src="assets/poses/nfc.webp" alt="" width="320" height="320" loading="lazy">
-          <div><span class="cap-tag"><svg class="ico"><use href="#i-nfc"/></svg> Acerca y listo</span><h3>Tarjetas NFC</h3><p>Tu cliente acerca el celular: deja reseña, te sigue en redes o suma puntos.</p><a class="cap-more" href="tarjetas-nfc-resenas-google.html">Tarjetas NFC desde $500 →</a></div>
-        </article>
-        <article class="cap reveal" style="--d:0.24s">
-          <img class="cap-art" src="assets/poses/codigo.webp" alt="" width="320" height="320" loading="lazy">
-          <div><span class="cap-tag"><svg class="ico"><use href="#i-grid"/></svg> A tu medida</span><h3>Apps web</h3><p>¿Necesitas algo específico? Creamos apps sencillas que resuelven justo eso.</p><a class="cap-more" href="citas-y-fidelidad.html">Citas y lealtad desde $199/mes →</a></div>
-        </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- APPS: capítulos con teléfono fijo -->
-  <section id="apps" class="apps">
-    <div class="wrap">
-      <header class="sec-head light">
-        <p class="mono label reveal">02 — Apps Akiko</p>
-        <h2 class="split">Una app para <em>cada necesidad</em></h2>
-        <p class="sub reveal">Úsalas por separado o combínalas en una sola tarjeta NFC.</p>
-      </header>
-    </div>
-
-    <div class="wrap chapters">
-      <div class="ch-stage">
-        <div class="ch-sticky">
-          <svg class="dial" viewBox="0 0 400 400" aria-hidden="true">
-            <defs><linearGradient id="g-dial" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#18d4f5"/><stop offset=".5" stop-color="#2f6bff"/><stop offset="1" stop-color="#9b3cff"/></linearGradient></defs>
-            <g class="ticks"></g>
-            <circle class="dial-track" cx="200" cy="200" r="188"/>
-            <circle class="dial-arc" cx="200" cy="200" r="188" pathLength="100"/>
-          </svg>
-          <div class="phone">
-            <div class="notch"></div>
-            <!-- Reseñas -->
-            <div class="screen s-0 on">
-              <div class="scr-top"><img src="assets/favicon.png" alt=""><b>Café Luna</b><small>Colonia Roma · CDMX</small></div>
-              <div class="rate-card">
-                <small class="mono">Califícanos en Google</small>
-                <div class="big-stars"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div>
-                <div class="field">¡Todo delicioso, el latte es el mejor de la Roma!</div>
-                <div class="scr-btn">Publicar reseña</div>
-              </div>
-              <div class="toast-in">★★★★★ ¡Gracias por tu reseña!</div>
-            </div>
-            <!-- Redes -->
-            <div class="screen s-1">
-              <div class="scr-top"><img src="assets/favicon.png" alt=""><b>Estudio Mía</b><small>Síguenos en redes</small></div>
-              <div class="links">
-                <span class="l-ig">Instagram<em>@estudiomia</em></span>
-                <span class="l-fb">Facebook<em>/estudiomia</em></span>
-                <span class="l-tt">TikTok<em>@estudio.mia</em></span>
-                <span class="l-web">Visitar nuestra página</span>
-              </div>
-              <div class="follow">+1 seguidor nuevo</div>
-            </div>
-            <!-- Lealtad -->
-            <div class="screen s-2">
-              <div class="scr-top"><small class="mono">Tarjeta de lealtad</small><b>Hola de nuevo, Ana</b></div>
-              <div class="loyal">
-                <div class="lv"><span><small class="mono">Tus visitas</small><b>4 <em>de 6</em></b></span><span class="pct"><small class="mono">Progreso</small><b>67%</b></span></div>
-                <div class="bar"><i></i></div>
-                <div class="stamps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="gift">🎁</i></div>
-                <div class="reward"><small class="mono">Tu recompensa</small><b>10% de descuento</b><span>Te faltan 2 visitas</span></div>
-              </div>
-            </div>
-            <!-- Citas -->
-            <div class="screen s-3">
-              <div class="scr-top"><small class="mono">Akiko Citas · Hoy</small><b>Escríbele hoy a…</b></div>
-              <div class="todo">
-                <div class="t red"><i></i><span><b>Laura M.</b><small>Relleno acrílico · 24 días</small></span><em>WhatsApp</em></div>
-                <div class="t orange"><i></i><span><b>Sofía R.</b><small>Corte y color · 20 días</small></span><em>WhatsApp</em></div>
-                <div class="t green"><i></i><span><b>Paty G.</b><small>Pedicure · 12 días</small></span><em>Al día</em></div>
-                <div class="t green"><i></i><span><b>Andrea L.</b><small>Gelish · 9 días</small></span><em>Al día</em></div>
-              </div>
-              <div class="msg">“¡Hola Laura! Ya te toca tu relleno 💅 ¿Te agendo esta semana?”</div>
-            </div>
-          </div>
-          <div class="ch-count mono"><b>01</b> / 04</div>
-        </div>
-      </div>
-
-      <div class="ch-list">
-        <article class="chapter" data-i="0">
-          <img class="ch-pose" src="assets/poses/google.webp" alt="" width="320" height="320" loading="lazy">
-          <p class="mono label">Akiko Reseñas</p>
-          <h3>Una tarjeta que le facilita a tus clientes <em>dejarte su reseña en Google</em></h3>
-          <p>Una tarjeta NFC que lleva a tus clientes directo a dejar su reseña en Google Maps. Sin buscar tu negocio, sin instalar nada.</p>
-          <ul class="tags"><li>Google Maps</li><li>1 toque</li><li>Sin apps</li></ul>
-        </article>
-        <article class="chapter" data-i="1">
-          <img class="ch-pose" src="assets/poses/redes.webp" alt="" width="320" height="320" loading="lazy">
-          <p class="mono label">Akiko Redes</p>
-          <h3>Todas tus redes, <em>un solo toque</em></h3>
-          <p>La misma tarjeta, ahora con el plus de visitar y seguir tu Instagram, Facebook, TikTok y tu página web.</p>
-          <ul class="tags"><li>Instagram</li><li>Facebook</li><li>TikTok</li><li>Tu web</li></ul>
-        </article>
-        <article class="chapter" data-i="2">
-          <img class="ch-pose" src="assets/poses/premio.webp" alt="" width="320" height="320" loading="lazy">
-          <p class="mono label">Akiko Lealtad · La más completa</p>
-          <h3>Una tarjeta de sellos en el celular de tu cliente, <em>para animarlo a regresar</em></h3>
-          <p>La tarjeta de sellos de papel, ahora en el celular de tu cliente. Tu equipo escanea su QR, la visita se suma y al llegar a la meta… ¡premio listo para canjear!</p>
-          <ul class="tags"><li>Reseñas + redes + puntos</li><li>Varias sucursales</li><li>Acceso con PIN</li></ul>
-        </article>
-        <article class="chapter" data-i="3">
-          <img class="ch-pose" src="assets/poses/citas.webp" alt="" width="320" height="320" loading="lazy">
-          <p class="mono label">Akiko Citas</p>
-          <h3>Que ningún cliente <em>se te olvide</em></h3>
-          <p>Registras cada servicio y la app cuenta los días. Cada mañana te dice a quién escribirle, con colores, y te abre WhatsApp con el mensaje listo.</p>
-          <p>Akiko Citas te ayuda a dar seguimiento a tus clientes: te avisa a quién escribirle y abre WhatsApp con el mensaje listo. No es un sistema de reservas en línea.</p>
-          <ul class="tags"><li>Aviso diario</li><li>WhatsApp en 1 toque</li><li>Ideal para salones</li></ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- DEMO EN VIDEO -->
-  <section id="demo" class="demo">
-    <div class="wrap demo-grid">
-      <div class="demo-copy">
-        <p class="mono label reveal">03 — Míralo en acción</p>
-        <h2 class="split">Así se ve <em>en el celular</em> de tu cliente</h2>
-        <ol class="demo-steps">
-          <li class="reveal"><span class="mono">01</span><div><b>Crea su tarjeta en segundos</b><small>Escanea el QR o toca la etiqueta NFC. Nombre, celular y listo.</small></div></li>
-          <li class="reveal" style="--d:.06s"><span class="mono">02</span><div><b>Escaneas su QR y sumas la visita</b><small>Desde el portal del negocio, en un solo paso.</small></div></li>
-          <li class="reveal" style="--d:.12s"><span class="mono">03</span><div><b>Completa la meta y gana</b><small>La tarjeta avisa «Premio listo para canjear».</small></div></li>
-          <li class="reveal" style="--d:.18s"><span class="mono">04</span><div><b>Válida en todas tus sucursales</b><small>Y de paso impulsa tus reseñas en Google.</small></div></li>
-        </ol>
-      </div>
-      <div class="demo-phone reveal" style="--d:.1s">
-        <div class="phone phone-video">
-          <video muted loop playsinline preload="none" data-src="assets/video/akiko-demo.mp4" aria-label="Video de demostración de la tarjeta de lealtad Akiko"></video>
-          <button class="vid-sound" aria-label="Activar sonido"><svg class="ico"><use href="#i-mute"/></svg></button>
-        </div>
-        <div class="demo-glow" aria-hidden="true"></div>
-        <div class="guide guide-demo" aria-hidden="true"><p class="bubble">¡Mira cómo funciona!</p><img src="assets/akiko-senala.webp" alt="" width="770" height="668" loading="lazy"></div>
-      </div>
-    </div>
-    <section class="goals-section wrap" aria-labelledby="goals-title">
-      <header class="goals-head reveal">
-        <p class="mono label">Akiko te ayuda a…</p>
-        <h3 id="goals-title">Elige qué quieres lograr</h3>
-      </header>
-      <ul class="goals">
-        <li class="reveal" style="--d:0s"><a class="goal" href="tarjetas-nfc-resenas-google.html"><img src="assets/poses/google.webp" alt="Akiko junto a Google Maps" width="96" height="96" loading="lazy"><span class="goal-copy"><b>Reseñas en Google</b><small>Más estrellas sin pedirlas una por una.</small></span><span class="goal-arrow" aria-hidden="true">→</span></a></li>
-        <li class="reveal" style="--d:.05s"><a class="goal" href="tarjetas-nfc-resenas-google.html"><img src="assets/poses/redes.webp" alt="Akiko para redes sociales" width="96" height="96" loading="lazy"><span class="goal-copy"><b>Tus redes, en un toque</b><small>Que te sigan en Instagram, TikTok y Facebook.</small></span><span class="goal-arrow" aria-hidden="true">→</span></a></li>
-        <li class="reveal" style="--d:.1s"><a class="goal" href="citas-y-fidelidad.html"><img src="assets/poses/premio.webp" alt="Akiko con un premio de lealtad" width="96" height="96" loading="lazy"><span class="goal-copy"><b>Premios para tus clientes</b><small>Tarjeta de lealtad digital, sin cartoncitos.</small></span><span class="goal-arrow" aria-hidden="true">→</span></a></li>
-        <li class="reveal" style="--d:.15s"><a class="goal" href="citas-y-fidelidad.html"><img src="assets/poses/citas.webp" alt="Akiko para citas y seguimiento" width="96" height="96" loading="lazy"><span class="goal-copy"><b>Clientes que regresan</b><small>Te avisa a quién escribirle cada día.</small></span><span class="goal-arrow" aria-hidden="true">→</span></a></li>
-        <li class="reveal" style="--d:.2s"><a class="goal" href="menu-digital-qr-cdmx.html"><img src="assets/poses/menu.webp" alt="Akiko con un menú digital" width="96" height="96" loading="lazy"><span class="goal-copy"><b>Menús digitales</b><small>Tu carta con fotos, siempre al día.</small></span><span class="goal-arrow" aria-hidden="true">→</span></a></li>
-      </ul>
-    </section>
-  </section>
-
-  <!-- CÓMO FUNCIONA: dial -->
-  <section id="como-funciona" class="how">
-    <div class="wrap">
-      <header class="sec-head center">
-        <p class="mono label reveal">04 — Cómo funciona</p>
-        <h2 class="split">Así de <em>fácil</em></h2>
-      </header>
-
-      <div class="how-dial reveal" data-steps="4">
-        <svg class="hd-svg" viewBox="0 0 600 600" aria-hidden="true">
-          <defs><linearGradient id="g-how" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#18d4f5"/><stop offset=".55" stop-color="#2f6bff"/><stop offset="1" stop-color="#9b3cff"/></linearGradient></defs>
-          <g class="ticks"></g>
-          <circle class="hd-arc" cx="300" cy="300" r="286" pathLength="100"/>
-          <path class="cross" d="M300 0v70M300 530v70M0 300h70M530 300h70"/>
-        </svg>
-        <div class="hd-center" aria-live="polite">
-          <span class="hd-pill mono"><b>1</b> / 4</span>
-          <div class="hd-steps">
-            <div class="hd-step on"><h3>Nos cuentas</h3><p>Platícanos de tu negocio por WhatsApp y qué quieres lograr.</p></div>
-            <div class="hd-step"><h3>Lo diseñamos</h3><p>Creamos tu tarjeta, menú o página con tu marca y tus enlaces.</p></div>
-            <div class="hd-step"><h3>Tu cliente acerca el celular</h3><p>Un toque a la tarjeta NFC abre lo que necesites, al instante.</p></div>
-            <div class="hd-step"><h3>Tú creces</h3><p>Herramientas para que tus clientes te dejen reseñas, te sigan y regresen.</p></div>
-          </div>
-          <div class="hd-ctrl">
-            <button class="round prev" aria-label="Paso anterior"><svg class="ico"><use href="#i-left"/></svg></button>
-            <button class="round next" aria-label="Paso siguiente"><svg class="ico"><use href="#i-right"/></svg></button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MASCOTA -->
-  <section id="akiko" class="meet">
-    <div class="wrap meet-grid">
-      <div class="meet-copy">
-        <p class="mono label reveal">05 — Nuestra mascota</p>
-        <h2 class="split">Conoce a <em>Akiko</em></h2>
-        <p class="reveal">Nació como un simple boceto a lápiz y hoy siempre está lista con su tarjeta en la mano. Es lo que nos diferencia: tecnología cercana, amigable y fácil de usar.</p>
-        <p class="reveal quote">Con su toque, tu negocio se acerca a las personas.</p>
-      </div>
-      <div class="meet-art">
-        <figure class="m-card sketch"><img src="assets/akiko-boceto.webp" alt="Boceto original de Akiko dibujado a lápiz" loading="lazy" width="900" height="700"><figcaption class="mono">El boceto</figcaption></figure>
-        <figure class="m-card final"><img src="assets/akiko-mascota.webp" alt="Akiko ya terminada" loading="lazy" width="900" height="726"><figcaption class="mono">Akiko hoy</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ZONAS -->
-  <section id="zonas" class="zones" aria-labelledby="zonas-title">
-    <div class="wrap zones-grid">
-      <div class="zones-copy">
-        <p class="mono label reveal">06 — Dónde trabajamos</p>
-        <h2 id="zonas-title" class="split">Negocios del <em>sur de la CDMX</em></h2>
-        <p class="reveal">Vamos a tu negocio, te mostramos cómo funciona y lo dejamos listo. Hacemos páginas web, menús digitales QR, tarjetas NFC para reseñas en Google Maps y apps de citas y lealtad para cafeterías, fondas, taquerías, estéticas, barberías, salones de uñas, consultorios y veterinarias.</p>
-      </div>
-      <ul class="zones-list reveal">
-        <li><b>Coyoacán</b><small>Páginas web y menús QR en toda la alcaldía</small></li>
-        <li><b>Taxqueña</b><small>Calzada Taxqueña y Paseos de Taxqueña</small></li>
-        <li><b>Coapa</b><small>Calzada del Hueso, Miramontes y Santa Ana</small></li>
-        <li><b>CTM Culhuacán</b><small>Todas las secciones y San Francisco Culhuacán</small></li>
-        <li><b>Tlalpan e Iztapalapa</b><small>Colonias cercanas, con cita previa</small></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="contacto" class="cta">
-    <canvas class="flow flow-cta" aria-hidden="true"></canvas>
-    <div class="tubes cta-tubes" aria-hidden="true"><svg class="depth" data-depth="20" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice"><path d="M-80 520 C 200 260, 420 640, 640 420 S 980 160, 1280 360" fill="none" stroke="#020a1c" stroke-opacity=".55" stroke-width="90" stroke-linecap="round" filter="url(#tb-soft)" transform="translate(14 22)"/><path d="M-80 520 C 200 260, 420 640, 640 420 S 980 160, 1280 360" fill="none" stroke="url(#tb-b)" stroke-width="90" stroke-linecap="round"/><path d="M-80 520 C 200 260, 420 640, 640 420 S 980 160, 1280 360" fill="none" stroke="url(#tb-shade)" stroke-width="90" stroke-linecap="round" opacity=".55"/><path d="M-80 520 C 200 260, 420 640, 640 420 S 980 160, 1280 360" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="15" stroke-linecap="round" filter="url(#tb-glow)" transform="translate(-12 -15)"/></svg><svg class="depth" data-depth="-16" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice"><path d="M1000 -60 C 1120 80, 940 180, 1100 300" fill="none" stroke="#020a1c" stroke-opacity=".55" stroke-width="50" stroke-linecap="round" filter="url(#tb-soft)" transform="translate(14 22)"/><path d="M1000 -60 C 1120 80, 940 180, 1100 300" fill="none" stroke="url(#tb-a)" stroke-width="50" stroke-linecap="round"/><path d="M1000 -60 C 1120 80, 940 180, 1100 300" fill="none" stroke="url(#tb-shade)" stroke-width="50" stroke-linecap="round" opacity=".55"/><path d="M1000 -60 C 1120 80, 940 180, 1100 300" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="8" stroke-linecap="round" filter="url(#tb-glow)" transform="translate(-7 -8)"/></svg></div>
-    <div class="wrap cta-inner">
-      <p class="mono label reveal">¿Listo para que tu negocio destaque?</p>
-      <h2 class="cta-title split">Hablemos <em>hoy</em></h2>
-      <p class="reveal">Escríbenos por WhatsApp y te respondemos con una propuesta a tu medida.</p>
-      <div class="cta-row reveal">
-        <img class="cta-point" src="assets/akiko-senala.webp" alt="Akiko señalando el botón de WhatsApp" loading="lazy" width="770" height="668">
-        <a class="btn btn-grad btn-xl magnetic" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20me%20gustar%C3%ADa%20pedir%20informes" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> 55 1533 8822</a>
-      </div>
-    </div>
-  </section>
+<section class="ct band" id="contacto"><div class="w"><span class="k">Contacto</span><h2>¿Empezamos <em style="color:var(--lt)">hoy</em>?</h2>
+<p style="color:#e1f2ffb3">Escríbenos por WhatsApp y te respondemos con una propuesta a tu medida.</p><div class="tile" style="width:min(220px,60%);margin:0 auto 2rem;border-radius:32px"><img src="assets/home/img/point.webp" alt="Akiko señalando el celular" loading="lazy" decoding="async" width="520" height="520"></div><a class="btn" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20me%20gustar%C3%ADa%20pedir%20informes">Escribir por WhatsApp · 55 1533 8822</a>
+<div class="info"><div><b>Dónde trabajamos</b><span>Coyoacán, Taxqueña, Coapa, CTM Culhuacán, Tlalpan e Iztapalapa (con cita)</span></div>
+<div><b>Horario</b><span>Lun a vie 10:00–18:00<br>Sáb 10:00–15:00 · Dom cerrado</span></div>
+<div style="display:flex;gap:1rem;align-items:center"><div class="tile" style="width:96px;flex:none;border-radius:20px"><img src="assets/home/img/sleep.webp" alt="Akiko durmiendo: cerrado por descanso" loading="lazy" width="420" height="420" decoding="async"></div><div><b>Fuera de horario</b><span>Akiko descansa, pero te respondemos en cuanto abrimos.</span></div></div><div><b>Redes</b><span><a href="https://www.instagram.com/akiko.techh/">Instagram</a> · <a href="https://www.tiktok.com/@akiko.tech">TikTok</a> · <a href="https://www.facebook.com/profile.php?id=61595401118733">Facebook</a></span></div></div></div></section>
 </main>
-
-<footer class="site">
-  <div class="wrap">
-    <div class="foot">
-      <div class="foot-brand">
-        <p class="foot-tag">Menús digitales, páginas web, tarjetas NFC y apps para negocios en Coyoacán, Taxqueña, Coapa y CTM Culhuacán, CDMX.</p>
-        <ul class="foot-social" aria-label="Redes sociales de Akiko">
-          <li><a href="https://www.facebook.com/profile.php?id=61595401118733" target="_blank" rel="me noopener" aria-label="Akiko en Facebook"><svg class="ico"><use href="#i-facebook"/></svg></a></li>
-          <li><a href="https://www.instagram.com/akiko.techh/" target="_blank" rel="me noopener" aria-label="Akiko en Instagram"><svg class="ico"><use href="#i-instagram"/></svg></a></li>
-          <li><a href="https://www.tiktok.com/@akiko.tech" target="_blank" rel="me noopener" aria-label="Akiko en TikTok"><svg class="ico"><use href="#i-tiktok"/></svg></a></li>
-          <li><a href="https://www.google.com/maps?cid=2329265531341208397" target="_blank" rel="me noopener" aria-label="Akiko en Google Maps"><svg class="ico"><use href="#i-pin"/></svg></a></li>
-        </ul>
-      </div>
-      <ul>
-        <li class="mono">Servicios</li>
-        <li><a href="paginas-web-coyoacan.html">Páginas web</a></li>
-        <li><a href="menu-digital-qr-cdmx.html">Menú digital QR</a></li>
-        <li><a href="tarjetas-nfc-resenas-google.html">Tarjetas NFC para reseñas</a></li>
-        <li><a href="citas-y-fidelidad.html">Citas y lealtad</a></li>
-        <li><a href="precios.html">Precios</a></li>
-      </ul>
-      <ul>
-        <li class="mono">Legal</li>
-        <li><a href="aviso-de-privacidad.html">Aviso de Privacidad</a></li>
-        <li><a href="cookies.html">Política de Cookies</a></li>
-        <li><a href="terminos.html">Términos y Condiciones</a></li>
-        <li><a href="#" id="cookie-settings">Preferencias de cookies</a></li>
-      </ul>
-      <ul>
-        <li class="mono">Contacto</li>
-        <li><a href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20me%20gustar%C3%ADa%20pedir%20informes" target="_blank" rel="noopener">WhatsApp: 55 1533 8822</a></li>
-        <li><a href="mailto:contacto@akiko-tech.com">contacto@akiko-tech.com</a></li>
-        <li>Lun a vie 10:00–18:00</li>
-        <li>Sábado 10:00–15:00 · Domingo cerrado</li>
-      </ul>
-    </div>
-    <div class="foot-ribbon" aria-hidden="true"><div>Menús digitales ✦ Páginas web ✦ Tarjetas NFC ✦ Reseñas en Google ✦ Lealtad ✦ Citas ✦ Menús digitales ✦ Páginas web ✦ Tarjetas NFC ✦</div></div>
-    <div class="foot-wordmark" data-wordmark="Akiko" aria-label="Akiko">Akiko</div>
-    <p class="copy">© <span id="year">2026</span> Akiko · Hecho en México</p>
-  </div>
-</footer>
-
-<nav class="lnav" id="lnav" aria-label="Secciones">
-  <span class="lnBlob" aria-hidden="true"></span>
-  <ul>
-    <li class="on"><a href="#inicio" data-sec="inicio"><span class="lnIcon"><svg class="ico"><use href="#i-home"/></svg></span><span class="lnText">Inicio</span></a></li>
-    <li><a href="#servicios" data-sec="servicios"><span class="lnIcon"><svg class="ico"><use href="#i-grid"/></svg></span><span class="lnText">Servicios</span></a></li>
-    <li><a href="#apps" data-sec="apps"><span class="lnIcon"><svg class="ico"><use href="#i-nfc"/></svg></span><span class="lnText">Apps</span></a></li>
-    <li><a href="#demo" data-sec="demo"><span class="lnIcon"><svg class="ico"><use href="#i-play"/></svg></span><span class="lnText">Demo</span></a></li>
-    <li><a href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20me%20gustar%C3%ADa%20pedir%20informes" data-sec="contacto" target="_blank" rel="noopener"><span class="lnIcon"><svg class="ico"><use href="#i-chat"/></svg></span><span class="lnText">WhatsApp</span></a></li>
-  </ul>
-</nav>
-<a class="wa-float" href="https://wa.me/525515338822?text=Hola%20Akiko%2C%20me%20gustar%C3%ADa%20pedir%20informes" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><svg class="ico"><use href="#i-chat"/></svg></a>
+<footer><div class="w"><span>© 2026 Akiko · Hecho en México</span><nav><a href="aviso-de-privacidad.html">Aviso de privacidad</a><a href="cookies.html">Cookies</a><a href="terminos.html">Términos</a></nav></div></footer>
 
 <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
   <p>🍪 Usamos cookies esenciales para que el sitio funcione y, con tu permiso, cookies de analítica para mejorarlo. Conoce más en nuestra <a href="cookies.html"><strong>Política de Cookies</strong></a> y en el <a href="aviso-de-privacidad.html"><strong>Aviso de Privacidad</strong></a>.</p>
   <div class="row">
-    <button class="btn btn-grad btn-sm" id="cookie-accept">Aceptar todas</button>
-    <button class="btn btn-line btn-sm" id="cookie-reject">Solo esenciales</button>
+    <button class="btn" id="cookie-accept">Aceptar todas</button>
+    <button class="btn g" id="cookie-reject">Solo esenciales</button>
   </div>
 </div>
 
-<script src="script.js?v=5"></script>
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-  document.getElementById('cookie-settings').addEventListener('click', function(e){
-    e.preventDefault();
-    try { localStorage.removeItem('akiko_cookie_consent'); } catch(err){}
-    document.getElementById('cookie-banner').classList.add('show');
-    document.documentElement.classList.add('cookie-open');
-  });
-</script>
 </body>
 </html>
