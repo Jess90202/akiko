@@ -55,7 +55,7 @@ function wrapWords(el, cls, inner) {
   return out;
 }
 document.querySelectorAll('.split').forEach(el => {
-  wrapWords(el, 'w', true).forEach((s, i) => s.style.setProperty('--wd', (i * 0.06).toFixed(2) + 's'));
+  wrapWords(el, 'w', true).forEach((s, i) => s.style.setProperty('--wd', `${Math.min(i * 0.03, 0.3).toFixed(2)}s`));
 });
 
 // ---------- Aparición al hacer scroll ----------
@@ -130,6 +130,7 @@ const screens = [...document.querySelectorAll('.ch-sticky .screen')];
 const chCount = document.querySelector('.ch-count b');
 const chArc = document.querySelector('.dial-arc');
 const footWordmark = document.querySelector('.foot-wordmark');
+const footWordmarkFill = footWordmark ? (() => { const fill = document.createElement('span'); fill.textContent = footWordmark.textContent; fill.setAttribute("aria-hidden", "true"); footWordmark.appendChild(fill); return fill; })() : null;
 let scrollVelocity = 0, previousScrollY = window.scrollY;
 const marqueeAnimations = [...document.querySelectorAll('.marquee .track')].flatMap(track => track.getAnimations());
 let marqueeReturnTimer = 0;
@@ -144,12 +145,28 @@ function setChapter(i) {
 setChapter(0);
 
 // ---------- Navegación: indicador y sección activa ----------
+const lnav = document.getElementById('lnav');
+const lnItems = lnav ? [...lnav.querySelectorAll('li')] : [];
 const navList = document.getElementById('menu');
 const navLinks = navList ? [...navList.querySelectorAll('a')] : [];
 const navTargets = navLinks.map(a => document.querySelector(a.getAttribute('href')));
 let indicator = null;
 if (navList) { indicator = document.createElement('span'); indicator.className = 'indicator'; navList.prepend(indicator); }
 let activeNav = -2;
+const sectionTargets = [...new Set([...navTargets, ...lnItems.map(it => document.getElementById(it.querySelector('a').dataset.sec))].filter(Boolean))];
+let activeSection = null;
+if ('IntersectionObserver' in window) {
+  const visibleSections = new Set();
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(en => en.isIntersecting ? visibleSections.add(en.target) : visibleSections.delete(en.target));
+    activeSection = [...visibleSections].sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)[0] || null;
+    const ni = navTargets.indexOf(activeSection);
+    setNav(ni);
+    const li = lnItems.findIndex(it => document.getElementById(it.querySelector('a').dataset.sec) === activeSection);
+    if (li >= 0) setLiquid(li);
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+  sectionTargets.forEach(target => sectionObserver.observe(target));
+}
 function setNav(i) {
   if (i === activeNav || !indicator) return;
   activeNav = i;
@@ -158,25 +175,24 @@ function setNav(i) {
   const a = navLinks[i], prev = indicator.dataset.i !== undefined ? navLinks[+indicator.dataset.i] : null;
   indicator.dataset.i = i;
   indicator.style.opacity = '1';
-  const settle = () => { indicator.classList.remove('stretch'); indicator.style.width = a.offsetWidth + 'px'; indicator.style.transform = `translateX(${a.offsetLeft}px)`; };
+  const baseWidth = Math.max(1, navList.clientWidth - 8);
+  const settle = () => { indicator.classList.remove('stretch'); indicator.style.transform = `translateX(${a.offsetLeft - 4}px) scaleX(${a.offsetWidth / baseWidth})`; };
   if (prev && prev !== a && !reduceMotion) {
     // efecto líquido: primero cubre ambas opciones y luego se encoge sobre la nueva
     const l = Math.min(prev.offsetLeft, a.offsetLeft), r = Math.max(prev.offsetLeft + prev.offsetWidth, a.offsetLeft + a.offsetWidth);
-    indicator.classList.add('stretch'); indicator.style.width = (r - l) + 'px'; indicator.style.transform = `translateX(${l}px)`;
+    indicator.classList.add('stretch'); indicator.style.transform = `translateX(${l - 4}px) scaleX(${(r - l) / baseWidth})`;
     clearTimeout(indicator._t); indicator._t = setTimeout(settle, 230);
   } else settle();
 }
 
 // ---------- Navegación líquida (teléfono) ----------
-const lnav = document.getElementById('lnav');
-const lnItems = lnav ? [...lnav.querySelectorAll('li')] : [];
 let lnActive = 0;
 function setLiquid(i) {
   if (!lnav || i === lnActive || i < 0) return;
   lnActive = i;
   lnItems.forEach((li, k) => { li.classList.toggle('on', k === i); li.querySelector('a').toggleAttribute('aria-current', k === i); });
   const blob = lnav.querySelector('.lnBlob'); blob.classList.remove('moving'); void blob.offsetWidth; blob.classList.add('moving');
-  lnav.style.setProperty('--x', i);
+  lnav.querySelector('.lnBlob').style.transform = `translateX(${i * 100}%)`;
 }
 if (lnav) lnItems.forEach((li, k) => li.querySelector('a').addEventListener('click', () => setLiquid(k)));
 
@@ -192,9 +208,19 @@ function onScroll() {
   ticking = false;
   const y = window.scrollY, vh = window.innerHeight;
   const max = document.documentElement.scrollHeight - vh;
+  const reads = {};
+  if (footWordmark && !reduceMotion) reads.foot = footWordmark.getBoundingClientRect();
+  if (scrub && !reduceMotion) reads.scrub = scrub.getBoundingClientRect();
+  if (chapters) { reads.chapter = chapterEls.map(c => c.getBoundingClientRect().top); reads.chapters = chapters.getBoundingClientRect(); }
+  if (wa && cta) reads.cta = cta.getBoundingClientRect();
+  if (meetArt && !reduceMotion) reads.meet = meetArt.getBoundingClientRect();
+  if (!('IntersectionObserver' in window)) {
+    reads.nav = navTargets.map(target => target ? target.getBoundingClientRect().top : Infinity);
+    reads.lnav = lnItems.map(it => { const target = document.getElementById(it.querySelector('a').dataset.sec); return target ? target.getBoundingClientRect().top : Infinity; });
+  }
   scrollVelocity = Math.abs(y - previousScrollY);
   previousScrollY = y;
-  if (bar) bar.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
+  if (bar) bar.firstElementChild.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
   
   // Cintas: aceleran con el scroll y vuelven gradualmente a su velocidad base
   if (marqueeAnimations.length) {
@@ -217,9 +243,9 @@ function onScroll() {
   // Línea y pasos de «Cómo funciona»
     // Relleno progresivo del wordmark del footer
   if (footWordmark && !reduceMotion) {
-    const r = footWordmark.getBoundingClientRect();
+    const r = reads.foot;
     const p = clamp((vh * .88 - r.top) / Math.max(1, Math.min(r.height, vh * .72)));
-    footWordmark.style.setProperty('--fill', `${(p * 100).toFixed(1)}%`);
+    footWordmarkFill.style.clipPath = `inset(0 ${100 - p * 100}% 0 0)`;
   }
 
   // Header se oculta al bajar y aparece al subir
@@ -230,7 +256,7 @@ function onScroll() {
 
   // Manifiesto
   if (scrub && !reduceMotion) {
-    const r = scrub.getBoundingClientRect();
+    const r = reads.scrub;
     const p = clamp((vh * 0.85 - r.top) / (r.height + vh * 0.3));
     const n = Math.round(p * scrubWords.length);
     scrubWords.forEach((w, i) => w.classList.toggle('on', i < n));
@@ -241,41 +267,51 @@ function onScroll() {
     const mobile = window.innerWidth <= 900;
     const line = vh * (mobile ? 0.66 : 0.5);
     let idx = 0;
-    chapterEls.forEach((c, i) => { if (c.getBoundingClientRect().top < line) idx = i; });
+    reads.chapter.forEach((top, i) => { if (top < line) idx = i; });
     setChapter(idx);
-    const r = chapters.getBoundingClientRect();
+    const r = reads.chapters;
     const p = clamp((vh * 0.5 - r.top) / (r.height - vh));
     if (chArc) chArc.style.strokeDashoffset = (100 - p * 100).toFixed(2);
   }
 
   // Sección activa en el menú
-  let cur = -1;
-  navTargets.forEach((t, i) => { if (t && t.getBoundingClientRect().top < vh * 0.4) cur = i; });
-  setNav(cur);
+  if (!('IntersectionObserver' in window)) {
+    let cur = -1;
+    reads.nav.forEach((top, i) => { if (top < vh * 0.4) cur = i; });
+    setNav(cur);
+  }
   if (lnav) {
-    let li = 0;
-    lnItems.forEach((it, k) => { const t = document.getElementById(it.querySelector('a').dataset.sec); if (t && k && t.getBoundingClientRect().top < vh * 0.45) li = k; });
-    setLiquid(li);
+    if (!('IntersectionObserver' in window)) {
+      let li = 0;
+      reads.lnav.forEach((top, k) => { if (k && top < vh * 0.45) li = k; });
+      setLiquid(li);
+    }
     lnav.classList.toggle('tucked', !!(mobileMenu && mobileMenu.classList.contains('open')));
   }
 
   // WhatsApp flotante se esconde en el CTA final
   if (wa && cta) {
-    const r = cta.getBoundingClientRect();
+    const r = reads.cta;
     wa.classList.toggle('away', r.top < vh * 0.7 || y < vh * 0.6);
   }
 
   // Tarjetas de la mascota
   if (meetArt && !reduceMotion) {
-    const r = meetArt.getBoundingClientRect();
+    const r = reads.meet;
     const p = clamp((vh - r.top) / (vh + r.height)) * 2 - 1;
-    meetArt.style.setProperty('--sx', (p * -24).toFixed(1) + 'px');
-    meetArt.style.setProperty('--fx', (p * 24).toFixed(1) + 'px');
+    meetArt.querySelector('.sketch').style.translate = `${(p * -24).toFixed(1)}px 0`;
+    meetArt.querySelector('.final').style.translate = `${(p * 24).toFixed(1)}px 0`;
   }
 }
 window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
 window.addEventListener('resize', () => { activeNav = -2; onScroll(); });
 onScroll();
+
+// Pausa animaciones de secciones fuera de pantalla.
+if ('IntersectionObserver' in window) {
+  const animationObserver = new IntersectionObserver(entries => entries.forEach(en => en.target.classList.toggle('paused', !en.isIntersecting)), { rootMargin: '100px 0px' });
+  document.querySelectorAll('main > section, footer.site').forEach(section => animationObserver.observe(section));
+}
 
 // ---------- Cómo funciona: dial con pasos ----------
 (function () {
@@ -331,7 +367,8 @@ onScroll();
 function flowField(canvas) {
   const ctx = canvas.getContext('2d');
   const colors = [[24, 212, 245], [47, 107, 255], [155, 60, 255]];
-  let w, h, dpr, parts = [], running = false, t = 0;
+  let w, h, dpr, parts = [], running = false, staticDrawing = false, t = 0, lastFrame = 0;
+  const staticMode = reduceMotion || window.matchMedia('(max-width:767px)').matches;
   const mouse = { x: -9999, y: -9999 };
   const lerpColor = (k) => {
     const s = k * 2, i = Math.min(1, Math.floor(s)), f = s - i;
@@ -355,8 +392,10 @@ function flowField(canvas) {
   function field(x, y) {
     return (Math.sin(x * 0.0023 + t * 0.6) + Math.cos(y * 0.0029 - t * 0.4) + Math.sin((x + y) * 0.0012 + t * 0.2)) * Math.PI * 0.7;
   }
-  function frame() {
+  function frame(now = 0) {
     if (!running) return;
+    if (now && now - lastFrame < 1000 / 30) { requestAnimationFrame(frame); return; }
+    lastFrame = now || lastFrame;
     t += 0.0035;
     ctx.globalCompositeOperation = 'destination-out';
     ctx.fillStyle = 'rgba(0,0,0,0.07)';
@@ -375,15 +414,16 @@ function flowField(canvas) {
       p.x = nx; p.y = ny; p.life++;
       if (p.life > p.max || nx < -10 || ny < -10 || nx > w + 10 || ny > h + 10) spawn(p);
     }
-    requestAnimationFrame(frame);
+    if (!staticDrawing) requestAnimationFrame(frame);
   }
   resize();
-  window.addEventListener('resize', resize);
+  const renderStatic = () => { staticDrawing = true; running = true; for (let k = 0; k < 90; k++) frame(); running = false; staticDrawing = false; };
+  window.addEventListener('resize', () => { resize(); if (staticMode) renderStatic(); });
   canvas.parentElement.addEventListener('pointermove', (e) => {
     const r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
   });
   canvas.parentElement.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
-  if (reduceMotion) { running = true; for (let k = 0; k < 90; k++) frame(); running = false; return; }
+  if (staticMode) { renderStatic(); return; }
   new IntersectionObserver(([en]) => {
     const was = running; running = en.isIntersecting;
     if (running && !was) requestAnimationFrame(frame);
