@@ -1,0 +1,1 @@
+Agrega aquí las fotografías optimizadas de la pareja. Para usar una como portada, indica en `datos.js` una ruta relativa, por ejemplo `fotos/portada.jpg`. Para la galería, agrega esas rutas al arreglo `galeria`.
