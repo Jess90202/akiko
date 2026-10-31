@@ -963,7 +963,7 @@ html.cookie-open .lnav{visibility:hidden;opacity:0;pointer-events:none}
 .demos-head h2{font-size:clamp(2.1rem,4.2vw,2.9rem);margin-bottom:12px}
 .demos-head h2 em{color:var(--blue)}
 .demos-head>p:last-child{color:var(--muted)}
-.demos-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.demos-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .demo-card{display:grid;grid-template-columns:minmax(0,1fr) 144px;gap:20px;align-items:center;min-width:0;padding:24px;background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--card-shadow);transition:transform .18s var(--ease),box-shadow .2s var(--ease)}
 .demo-card-copy{min-width:0}
 .demo-card-booking{grid-template-columns:minmax(0,1fr)}

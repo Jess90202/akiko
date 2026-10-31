@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f3eee2">
+<title>Valeria &amp; Andrés | Invitación</title>
+<link rel="stylesheet" href="../_plantilla/invitacion.css">
+<script src="datos.js" defer>
+</script>
+<script src="../_plantilla/invitacion.js" defer>
+</script>
+</head>
+<body>
+<main class="invitation">
+<section class="section cover" aria-labelledby="eventTitle">
+<img id="coverPhoto" class="cover-photo" alt="">
+<span class="eyebrow" id="eventEyebrow">
+</span>
+<div class="script">Save the date</div>
+<h1 class="names" id="eventNames">
+</h1>
+<svg class="botanical" viewBox="0 0 150 85" role="img" aria-label="Rama botánica ilustrada">
+<path d="M15 77C43 62 76 43 132 8M34 66C22 53 19 43 20 34c10 5 17 14 19 26m13-21C42 31 40 22 43 14c9 8 13 17 12 26m12-8C61 20 63 11 69 5c6 10 7 19 4 27m9-6c-1-12 4-20 12-25 3 11 1 20-6 28m-17 28c12-9 22-10 31-7-7 9-17 13-30 12m-21 9c11-11 21-14 31-12-6 10-15 16-28 17"/>
+</svg>
+<p class="quote" id="eventQuote">
+</p>
+<div class="rule">
+</div>
+<p class="intro">
+<span id="eventDate">
+</span> · <span id="eventYear">
+</span>
+<br>
+<span id="eventCity">
+</span>
+</p>
+</section>
+<section class="section deep reveal">
+<p class="eyebrow">Con mucha alegría</p>
+<h2 id="eventHeadline">
+</h2>
+<p>Nos encantaría compartir contigo este día tan especial.</p>
+<div class="date-block">
+<div>
+<strong id="dateDay">12</strong>
+<br>
+<span id="dateMonth">Diciembre</span>
+</div>
+<div class="script">&amp;</div>
+<div>
+<span class="year" id="eventTime">
+</span>
+<br>
+<span>Ciudad de México</span>
+</div>
+</div>
+<div class="countdown" id="countdown" aria-label="Cuenta regresiva">
+<div>
+<strong id="days">—</strong>
+<span>Días</span>
+</div>
+<div>
+<strong id="hours">—</strong>
+<span>Horas</span>
+</div>
+<div>
+<strong id="minutes">—</strong>
+<span>Min</span>
+</div>
+<div>
+<strong id="seconds">—</strong>
+<span>Seg</span>
+</div>
+</div>
+<p id="countdownMessage">
+</p>
+<button class="button" id="calendarButton" type="button">Agregar al calendario</button>
+</section>
+<section class="section deep reveal">
+<p class="eyebrow" id="eventLocationLabel">Ubicaciones</p>
+<h2>Nos encontramos</h2>
+<div id="locations">
+</div>
+</section>
+<section class="section reveal">
+<p class="eyebrow">El día</p>
+<h2>Itinerario</h2>
+<ol id="itinerary" class="timeline">
+</ol>
+</section>
+<section class="section deep reveal">
+<p class="eyebrow">Una celebración para recordar</p>
+<h2>Vestimenta</h2>
+<h3 id="dressType">
+</h3>
+<p id="dressWomen">
+</p>
+<p id="dressMen">
+</p>
+<p class="muted">Colores reservados para la familia</p>
+<div class="dress-colors" id="dressColors" aria-label="Colores reservados">
+</div>
+</section>
+<section class="section reveal">
+<p class="eyebrow">Momentos que nos trajeron aquí</p>
+<h2>Galería</h2>
+<div class="gallery" id="gallery" aria-label="Galería de fotografías">
+</div>
+</section>
+<section class="section deep reveal">
+<p class="eyebrow">Tu compañía es el mejor regalo</p>
+<h2>Regalos</h2>
+<p id="giftNote">
+</p>
+<div id="giftLinks" class="actions">
+</div>
+<button class="button" type="button" id="showBank" hidden aria-expanded="false">Ver datos</button>
+<div id="bankData" class="gift-data" hidden>
+<code id="bankAccount">
+</code>
+<br>
+<button class="button" type="button" id="copyBank">Copiar</button>
+</div>
+</section>
+<section class="section reveal" id="confirmacion">
+<p class="eyebrow">Por favor, responde</p>
+<h2>¿Nos acompañas?</h2>
+<p id="rsvpIntro">
+</p>
+<p id="passGreeting" class="notice" hidden>
+</p>
+<div id="guestLimit">
+</div>
+<div id="demoNotice" class="notice" role="status">
+</div>
+<form class="form" id="rsvpForm">
+<input id="passCode" type="hidden">
+<div class="field">
+<label for="guestName">Nombre</label>
+<input id="guestName" name="nombre" required maxlength="100" autocomplete="name">
+</div>
+<div class="field">
+<label for="attendance">¿Asistes?</label>
+<select id="attendance" name="asiste" required>
+<option value="">Elige una respuesta</option>
+<option value="si">Sí, ahí estaré</option>
+<option value="no">Lo siento, no podré</option>
+</select>
+</div>
+<div class="field">
+<label for="guestCount">Número de personas</label>
+<input id="guestCount" name="personas" type="number" min="1" max="1" value="1" required>
+</div>
+<div class="field">
+<label for="guestMessage">Mensaje (opcional)</label>
+<textarea id="guestMessage" name="mensaje" maxlength="500">
+</textarea>
+</div>
+<button id="submitRsvp" class="button primary" type="submit">Enviar respuesta</button>
+</form>
+<p id="rsvpStatus" class="thanks" role="status" aria-live="polite">
+</p>
+</section>
+<section class="section reveal" aria-label="Notas del evento">
+<p class="eyebrow">Un detalle más</p>
+<p id="eventNotes">
+</p>
+</section>
+<section class="section closing reveal">
+<p class="eyebrow" id="eventHashtag">
+</p>
+<h2 id="closingLine">
+</h2>
+<p>Con cariño,<br>
+<span id="eventNamesFooter">
+</span>
+</p>
+<div class="signature">Invitación hecha por <a href="https://akiko-tech.com" target="_blank" rel="noopener noreferrer">Akiko Tech</a>
+</div>
+</section>
+</main>
+<button id="musicToggle" class="music-toggle" type="button" aria-label="Reproducir o pausar música" hidden>▶</button>
+<audio id="music" loop preload="none">
+</audio>
+<section class="envelope-screen" id="envelopeScreen" role="dialog" aria-modal="true" aria-label="Sobre de invitación">
+<div class="envelope">
+<p class="eyebrow" id="eventTitle">
+</p>
+<div class="script">Una carta para ti</div>
+<p class="envelope-names" id="eventNamesEnvelope">Valeria &amp; Andrés</p>
+<button class="wax" id="openInvite" type="button" aria-label="Abrir invitación rompiendo el sello">V · A</button>
+<span class="seal-label">Toca el sello para abrir</span>
+</div>
+</section>
+</body>
+</html>
