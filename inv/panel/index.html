@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Panel de confirmaciones | Akiko</title>
+  <link rel="stylesheet" href="../_plantilla/invitacion.css">
+</head>
+<body>
+  <main class="panel-shell panel">
+    <p class="eyebrow">Akiko · Invitaciones</p>
+    <h1>Respuestas de tus invitados</h1>
+    <p>Consulta las confirmaciones y copia enlaces de pase para compartir por WhatsApp.</p>
+    <form class="panel-toolbar" id="panelForm">
+      <div class="field">
+        <label for="scriptUrl">URL de tu Web App</label>
+        <input id="scriptUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec" required>
+      </div>
+      <div class="field">
+        <label for="panelKey">Clave del panel</label>
+        <input id="panelKey" type="password" required autocomplete="current-password">
+      </div>
+      <button class="button primary" type="submit">Ver respuestas</button>
+    </form>
+    <p class="panel-status" id="panelStatus" role="status" aria-live="polite"></p>
+    <section id="results" hidden>
+      <div class="stats">
+        <div class="stat">Pases enviados<strong id="passTotal">0</strong></div>
+        <div class="stat">Confirmados<strong id="confirmed">0</strong></div>
+        <div class="stat">No asisten<strong id="declined">0</strong></div>
+        <div class="stat">Pendientes<strong id="pending">0</strong></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Invitado</th><th>Respuesta</th><th>Personas</th><th>Mensaje</th><th>Pase</th></tr>
+          </thead>
+          <tbody id="answers"></tbody>
+        </table>
+      </div>
+      <h2>Enlaces de pases</h2>
+      <p id="passLinks"></p>
+    </section>
+  </main>
+  <script>
+    (() => {
+      'use strict';
+
+      const $ = (selector) => document.querySelector(selector);
+      const form = $('#panelForm');
+      const status = $('#panelStatus');
+      const results = $('#results');
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        status.textContent = 'Consultando respuestas…';
+        results.hidden = true;
+
+        try {
+          const endpoint = new URL($('#scriptUrl').value);
+          endpoint.searchParams.set('accion', 'resumen');
+          endpoint.searchParams.set('clave', $('#panelKey').value);
+          const response = await fetch(endpoint.href, { headers: { Accept: 'application/json' } });
+          if (!response.ok) throw new Error('No se pudo consultar la hoja.');
+
+          const data = await response.json();
+          if (data.error) throw new Error(data.error);
+          $('#passTotal').textContent = String(data.totales?.pases ?? 0);
+          $('#confirmed').textContent = String(data.totales?.confirmados ?? 0);
+          $('#declined').textContent = String(data.totales?.noAsisten ?? 0);
+          $('#pending').textContent = String(data.totales?.pendientes ?? 0);
+          renderAnswers(data.respuestas || []);
+          renderPassLinks(data.pases || {});
+          results.hidden = false;
+          status.textContent = 'Respuestas actualizadas.';
+        } catch (error) {
+          status.textContent = 'No se pudieron cargar los datos. Revisa la URL, la clave y los permisos de la Web App.';
+          console.error(error);
+        }
+      });
+
+      function renderAnswers(rows) {
+        const body = $('#answers');
+        body.replaceChildren();
+        rows.forEach((row) => {
+          const tr = document.createElement('tr');
+          const values = [
+            row.nombre,
+            row.asiste === 'si' ? 'Asiste' : 'No asiste',
+            row.personas,
+            row.mensaje,
+            row.paseNombre || row.pase || '—'
+          ];
+          values.forEach((value) => {
+            const td = document.createElement('td');
+            td.textContent = String(value ?? '');
+            tr.append(td);
+          });
+          body.append(tr);
+        });
+      }
+
+      function renderPassLinks(passes) {
+        const container = $('#passLinks');
+        container.replaceChildren();
+        Object.entries(passes).forEach(([code, pass]) => {
+          const link = document.createElement('a');
+          link.href = new URL(`../valeria-andres/?pase=${encodeURIComponent(code)}`, location.href).href;
+          link.textContent = `Copiar enlace · ${String(pass.nombre || code)}`;
+          link.className = 'button';
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.addEventListener('click', async (event) => {
+            event.preventDefault();
+            try {
+              await navigator.clipboard.writeText(link.href);
+              link.textContent = 'Enlace copiado';
+            } catch {
+              link.textContent = link.href;
+            }
+          });
+          container.append(link, document.createTextNode(' '));
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
