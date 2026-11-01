@@ -2,196 +2,196 @@
 <html lang="es-MX">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f3eee2">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fbfaf7">
 <title>Valeria &amp; Andrés | Invitación</title>
-<link rel="stylesheet" href="../_plantilla/invitacion.css">
-<script src="datos.js" defer>
-</script>
-<script src="../_plantilla/invitacion.js" defer>
-</script>
+<meta name="description" content="Invitación digital de boda de Valeria y Andrés: fecha, ubicación, itinerario y confirmación de asistencia.">
+<!-- Fotografías: Pexels (licencia libre de Pexels). Créditos en fotos/README.md -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
+<link rel="preload" as="image" href="fotos/portada.webp" fetchpriority="high">
+<link rel="stylesheet" href="../_plantilla/invitacion.css?v=2">
+<script src="datos.js?v=2" defer></script>
+<script src="../_plantilla/invitacion.js?v=2" defer></script>
 </head>
-<body>
-<main class="invitation">
-<section class="section cover" aria-labelledby="eventTitle">
-<img id="coverPhoto" class="cover-photo" alt="">
-<span class="eyebrow" id="eventEyebrow">
-</span>
-<div class="script">Save the date</div>
-<h1 class="names" id="eventNames">
-</h1>
-<svg class="botanical" viewBox="0 0 150 85" role="img" aria-label="Rama botánica ilustrada">
-<path d="M15 77C43 62 76 43 132 8M34 66C22 53 19 43 20 34c10 5 17 14 19 26m13-21C42 31 40 22 43 14c9 8 13 17 12 26m12-8C61 20 63 11 69 5c6 10 7 19 4 27m9-6c-1-12 4-20 12-25 3 11 1 20-6 28m-17 28c12-9 22-10 31-7-7 9-17 13-30 12m-21 9c11-11 21-14 31-12-6 10-15 16-28 17"/>
-</svg>
-<p class="quote" id="eventQuote">
-</p>
-<div class="rule">
-</div>
-<p class="intro">
-<span id="eventDate">
-</span> · <span id="eventYear">
-</span>
-<br>
-<span id="eventCity">
-</span>
-</p>
-</section>
-<section class="section deep reveal">
-<p class="eyebrow">Con mucha alegría</p>
-<h2 id="eventHeadline">
-</h2>
-<p>Nos encantaría compartir contigo este día tan especial.</p>
-<div class="date-block">
-<div>
-<strong id="dateDay">12</strong>
-<br>
-<span id="dateMonth">Diciembre</span>
-</div>
-<div class="script">&amp;</div>
-<div>
-<span class="year" id="eventTime">
-</span>
-<br>
-<span>Ciudad de México</span>
-</div>
-</div>
-<div class="countdown" id="countdown" aria-label="Cuenta regresiva">
-<div>
-<strong id="days">—</strong>
-<span>Días</span>
-</div>
-<div>
-<strong id="hours">—</strong>
-<span>Horas</span>
-</div>
-<div>
-<strong id="minutes">—</strong>
-<span>Min</span>
-</div>
-<div>
-<strong id="seconds">—</strong>
-<span>Seg</span>
-</div>
-</div>
-<p id="countdownMessage">
-</p>
-<button class="button" id="calendarButton" type="button">Agregar al calendario</button>
-</section>
-<section class="section deep reveal">
-<p class="eyebrow" id="eventLocationLabel">Ubicaciones</p>
-<h2>Nos encontramos</h2>
-<div id="locations">
-</div>
-</section>
-<section class="section reveal">
-<p class="eyebrow">El día</p>
-<h2>Itinerario</h2>
-<ol id="itinerary" class="timeline">
-</ol>
-</section>
-<section class="section deep reveal">
-<p class="eyebrow">Una celebración para recordar</p>
-<h2>Vestimenta</h2>
-<h3 id="dressType">
-</h3>
-<p id="dressWomen">
-</p>
-<p id="dressMen">
-</p>
-<p class="muted">Colores reservados para la familia</p>
-<div class="dress-colors" id="dressColors" aria-label="Colores reservados">
-</div>
-</section>
-<section class="section reveal">
-<p class="eyebrow">Momentos que nos trajeron aquí</p>
-<h2>Galería</h2>
-<div class="gallery" id="gallery" aria-label="Galería de fotografías">
-</div>
-</section>
-<section class="section deep reveal">
-<p class="eyebrow">Tu compañía es el mejor regalo</p>
-<h2>Regalos</h2>
-<p id="giftNote">
-</p>
-<div id="giftLinks" class="actions">
-</div>
-<button class="button" type="button" id="showBank" hidden aria-expanded="false">Ver datos</button>
-<div id="bankData" class="gift-data" hidden>
-<code id="bankAccount">
-</code>
-<br>
-<button class="button" type="button" id="copyBank">Copiar</button>
-</div>
-</section>
-<section class="section reveal" id="confirmacion">
-<p class="eyebrow">Por favor, responde</p>
-<h2>¿Nos acompañas?</h2>
-<p id="rsvpIntro">
-</p>
-<p id="passGreeting" class="notice" hidden>
-</p>
-<div id="guestLimit">
-</div>
-<div id="demoNotice" class="notice" role="status">
-</div>
-<form class="form" id="rsvpForm">
-<input id="passCode" type="hidden">
-<div class="field">
-<label for="guestName">Nombre</label>
-<input id="guestName" name="nombre" required maxlength="100" autocomplete="name">
-</div>
-<div class="field">
-<label for="attendance">¿Asistes?</label>
-<select id="attendance" name="asiste" required>
-<option value="">Elige una respuesta</option>
-<option value="si">Sí, ahí estaré</option>
-<option value="no">Lo siento, no podré</option>
-</select>
-</div>
-<div class="field">
-<label for="guestCount">Número de personas</label>
-<input id="guestCount" name="personas" type="number" min="1" max="1" value="1" required>
-</div>
-<div class="field">
-<label for="guestMessage">Mensaje (opcional)</label>
-<textarea id="guestMessage" name="mensaje" maxlength="500">
-</textarea>
-</div>
-<button id="submitRsvp" class="button primary" type="submit">Enviar respuesta</button>
-</form>
-<p id="rsvpStatus" class="thanks" role="status" aria-live="polite">
-</p>
-</section>
-<section class="section reveal" aria-label="Notas del evento">
-<p class="eyebrow">Un detalle más</p>
-<p id="eventNotes">
-</p>
-</section>
-<section class="section closing reveal">
-<p class="eyebrow" id="eventHashtag">
-</p>
-<h2 id="closingLine">
-</h2>
-<p>Con cariño,<br>
-<span id="eventNamesFooter">
-</span>
-</p>
-<div class="signature">Invitación hecha por <a href="https://akiko-tech.com" target="_blank" rel="noopener noreferrer">Akiko Tech</a>
-</div>
-</section>
+<body class="is-closed">
+<div class="backdrop" aria-hidden="true"></div>
+
+<main class="invitation" id="invitacion">
+  <header class="hero">
+    <img id="heroPhoto" class="hero__photo" alt="" width="1080" height="1620" fetchpriority="high">
+    <span class="hero__number" id="eventNumber" aria-hidden="true"></span>
+    <div class="hero__text">
+      <p class="eyebrow" id="eventEyebrow"></p>
+      <h1 class="hero__names script" id="eventNames" tabindex="-1"></h1>
+      <p class="hero__meta"><span id="eventCity"></span><span class="sep" aria-hidden="true">|</span><span id="eventDateShort"></span></p>
+    </div>
+  </header>
+
+  <section class="section intro reveal" aria-label="Mensaje">
+    <svg class="sprig" viewBox="0 0 120 46" aria-hidden="true" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round"><path d="M6 40C32 30 70 26 114 8"/><path d="M30 33c-6-8-6-15-3-21 7 5 9 12 7 20m14-7c-3-9-1-16 4-21 5 7 5 14 1 21m14-5c0-9 4-15 10-18 2 8-1 15-7 19m-46 8c-9-1-15 2-19 7 9 2 15 0 20-6m14-4c-9 1-14 5-16 11 9 0 14-4 17-10m14-4c-8 2-13 7-14 13 8-1 13-6 15-12"/></svg>
+    <p class="intro__text" id="eventMessage"></p>
+    <p class="intro__date" id="eventDateBig"></p>
+    <p class="intro__day" id="eventDayTime"></p>
+    <p class="quote" id="eventQuote"></p>
+  </section>
+
+  <nav class="quick reveal" aria-label="Accesos rápidos">
+    <a href="#ubicacion" id="quickPlace"><span class="quick__ring"><span data-icon="pin"></span></span>Ver<br>ubicación</a>
+    <a href="#confirmacion"><span class="quick__ring"><span data-icon="check"></span></span>Confirmar<br>asistencia</a>
+    <a href="#vestimenta" id="quickDress"><span class="quick__ring"><span data-icon="gancho"></span></span>Ver<br>vestimenta</a>
+  </nav>
+
+  <section class="band torn countdown-band reveal" aria-labelledby="countTitle">
+    <p class="band__kicker">Save <span class="script">the</span> date</p>
+    <h2 class="script" id="countTitle">Faltan</h2>
+    <div class="countdown" id="countdown" role="timer" aria-label="Cuenta regresiva para el evento">
+      <div><strong id="days">—</strong><span>Días</span></div>
+      <div><strong id="hours">—</strong><span>Horas</span></div>
+      <div><strong id="minutes">—</strong><span>Minutos</span></div>
+      <div><strong id="seconds">—</strong><span>Segundos</span></div>
+    </div>
+    <p id="countdownMessage"></p>
+    <button class="button" id="calendarButton" type="button">Agregar al calendario</button>
+  </section>
+
+  <figure class="photo-band torn" data-foto="0" hidden><img alt="" loading="lazy" decoding="async" width="1080" height="1350"></figure>
+
+  <section class="section places reveal" id="ubicacion" aria-labelledby="placesTitle">
+    <h2 class="section-title" id="placesTitle">¿Dónde?</h2>
+    <div id="locations"></div>
+  </section>
+
+  <section class="band torn itinerary-band reveal" aria-labelledby="itineraryTitle">
+    <h2 class="section-title" id="itineraryTitle">Itinerario</h2>
+    <ol id="itinerary" class="timeline"></ol>
+  </section>
+
+  <section class="section dress reveal" id="vestimenta" aria-labelledby="dressTitle">
+    <div class="icon" data-icon="vestimenta"></div>
+    <h2 id="dressTitle">Código de vestimenta</h2>
+    <h3 id="dressType"></h3>
+    <p id="dressWomen"></p>
+    <p id="dressMen"></p>
+    <div class="dress-colors" id="dressColors" aria-label="Colores reservados"></div>
+    <p class="muted"><small id="dressColorsNote">Colores reservados</small></p>
+  </section>
+
+  <figure class="photo-band torn" data-foto="1" hidden><img alt="" loading="lazy" decoding="async" width="1080" height="1350"></figure>
+
+  <section class="section gifts reveal" aria-labelledby="giftTitle">
+    <div class="icon" data-icon="sobre"></div>
+    <h2 id="giftTitle">Regalos</h2>
+    <p id="giftNote"></p>
+    <div id="giftLinks" class="actions"></div>
+    <button class="button small" type="button" id="showBank" hidden aria-expanded="false">Ver datos</button>
+    <div id="bankData" class="gift-data" hidden>
+      <code id="bankAccount"></code>
+      <button class="button small" type="button" id="copyBank">Copiar</button>
+    </div>
+  </section>
+
+  <section class="section gallery-section reveal" aria-labelledby="galleryTitle">
+    <h2 class="section-title" id="galleryTitle">Nosotros</h2>
+    <div class="gallery" id="gallery" aria-label="Galería de fotografías"></div>
+  </section>
+
+  <section class="section rsvp reveal" id="confirmacion" aria-labelledby="rsvpTitle">
+    <div class="icon" data-icon="check"></div>
+    <p class="eyebrow">Por favor, responde</p>
+    <h2 id="rsvpTitle">¿Nos acompañas?</h2>
+    <p id="rsvpIntro"></p>
+    <p id="passGreeting" class="notice" hidden></p>
+    <div id="guestLimit"></div>
+    <div id="demoNotice" class="notice" role="status"></div>
+    <form class="form" id="rsvpForm">
+      <input id="passCode" type="hidden">
+      <div class="field">
+        <label for="guestName">Nombre</label>
+        <input id="guestName" name="nombre" required maxlength="100" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="attendance">¿Asistes?</label>
+        <select id="attendance" name="asiste" required>
+          <option value="">Elige una respuesta</option>
+          <option value="si">Sí, ahí estaré</option>
+          <option value="no">Lo siento, no podré</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="guestCount">Número de personas</label>
+        <input id="guestCount" name="personas" type="number" min="1" max="1" value="1" required>
+      </div>
+      <div class="field">
+        <label for="guestMessage">Mensaje (opcional)</label>
+        <textarea id="guestMessage" name="mensaje" maxlength="500"></textarea>
+      </div>
+      <button id="submitRsvp" class="button primary" type="submit">Enviar respuesta</button>
+    </form>
+    <p id="rsvpStatus" class="thanks" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="section notes reveal" aria-label="Notas del evento">
+    <p class="eyebrow">Un detalle más</p>
+    <p id="eventNotes"></p>
+  </section>
+
+  <footer class="closing" id="closing">
+    <img class="closing__photo" id="closingPhoto" alt="" loading="lazy" decoding="async" hidden>
+    <p class="eyebrow" id="eventHashtag"></p>
+    <p class="closing__names script" id="eventNamesFooter"></p>
+    <p id="closingLine"></p>
+    <div class="signature">Invitación hecha por <a href="https://akiko-tech.com" target="_blank" rel="noopener noreferrer">Akiko Tech</a></div>
+  </footer>
 </main>
+
 <button id="musicToggle" class="music-toggle" type="button" aria-label="Reproducir o pausar música" hidden>▶</button>
-<audio id="music" loop preload="none">
-</audio>
-<section class="envelope-screen" id="envelopeScreen" role="dialog" aria-modal="true" aria-label="Sobre de invitación">
-<div class="envelope">
-<p class="eyebrow" id="eventTitle">
-</p>
-<div class="script">Una carta para ti</div>
-<p class="envelope-names" id="eventNamesEnvelope">Valeria &amp; Andrés</p>
-<button class="wax" id="openInvite" type="button" aria-label="Abrir invitación rompiendo el sello">V · A</button>
-<span class="seal-label">Toca el sello para abrir</span>
-</div>
+<audio id="music" loop preload="none"></audio>
+
+<section class="envelope-screen" id="envelopeScreen" role="dialog" aria-modal="true" aria-labelledby="eventNamesEnvelope">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="ramo" viewBox="0 0 92 124">
+      <path d="M50 122C48 92 44 62 26 12" fill="none" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M47 92c10-6 22-8 34-20M44 66c-10-4-20-14-26-26" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      <path fill="currentColor" d="M48 104c-9-2-15 2-18 8 9 1 15-2 18-8Zm2-14c9-1 14 3 16 9-9 0-14-3-16-9Zm-4-18c-8 0-13 5-14 11 8-1 13-5 14-11Zm34 0c-2 7-7 10-14 10 2-7 7-10 14-10ZM62 82c-1-7 2-12 8-14 1 7-2 12-8 14ZM24 44c-6-4-8-10-6-16 6 4 8 10 6 16Zm14 2c2-7 7-10 13-10-2 7-7 10-13 10ZM31 58c-7 0-11 4-12 10 7 0 11-4 12-10Z"/>
+      <g stroke="#0000001a" stroke-width=".4"><circle cx="26" cy="7" r="5.5"/><circle cx="20" cy="13" r="5.5"/><circle cx="32" cy="13" r="5.5"/><circle cx="23" cy="20" r="5.5"/><circle cx="30" cy="20" r="5.5"/></g>
+      <circle cx="26" cy="14" r="2.4" fill="#d9b25c"/>
+      <g stroke="#0000001a" stroke-width=".4"><circle cx="82" cy="66" r="4.2"/><circle cx="77" cy="71" r="4.2"/><circle cx="86" cy="71" r="4.2"/><circle cx="79" cy="77" r="4.2"/><circle cx="85" cy="77" r="4.2"/></g>
+      <circle cx="82" cy="72" r="1.8" fill="#d9b25c"/>
+      <g stroke="#0000001a" stroke-width=".4"><circle cx="14" cy="36" r="3.4"/><circle cx="10" cy="40" r="3.4"/><circle cx="17" cy="40" r="3.4"/><circle cx="12" cy="45" r="3.4"/><circle cx="17" cy="45" r="3.4"/></g>
+    </symbol>
+  </svg>
+  <div class="cover-card" id="coverCard">
+    <img class="cover-card__photo" id="coverPhoto" alt="" width="1080" height="1620" fetchpriority="high">
+    <div class="cover-card__head">
+      <p class="eyebrow" id="eventTitle"></p>
+      <p class="cover-card__names script" id="eventNamesEnvelope">Valeria &amp; Andrés</p>
+      <p class="cover-card__meta"><span id="coverCity"></span><span class="sep" aria-hidden="true">|</span><span id="coverDate"></span></p>
+    </div>
+    <div class="envelope" id="envelope">
+      <div class="envelope__back"></div>
+      <div class="envelope__letter script" aria-hidden="true">Con amor</div>
+      <svg class="envelope__pocket" viewBox="0 0 142 100" preserveAspectRatio="none" aria-hidden="true"><path class="side" d="M0 0 71 56 0 100Z"/><path class="side" d="M142 0 71 56 142 100Z"/><path class="bottom" d="M0 100 71 50 142 100Z"/></svg>
+      <svg class="envelope__flap" viewBox="0 0 142 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H142L71 62Z"/></svg>
+      <button class="wax" id="openInvite" type="button" aria-label="Abrir la invitación"><span id="sealInitials" aria-hidden="true">V&amp;A</span></button>
+      <svg class="flores flores--izq" aria-hidden="true"><use href="#ramo"/></svg>
+      <svg class="flores flores--der" aria-hidden="true"><use href="#ramo"/></svg>
+    </div>
+    <p class="seal-label" aria-hidden="true">Toca para abrir</p>
+  </div>
 </section>
+<script>
+  /* Respaldo: si la plantilla no carga (caché vieja o red lenta), el sobre igual se abre. */
+  (function () {
+    var screen = document.getElementById('envelopeScreen');
+    screen.addEventListener('click', function () {
+      if (window.AKIKO_INVITACION) return;
+      screen.hidden = true;
+      document.body.classList.remove('is-closed');
+      document.body.classList.add('is-open');
+    });
+  })();
+</script>
 </body>
 </html>
