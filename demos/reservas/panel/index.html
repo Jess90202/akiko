@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#0a0a0a">
-  <title>Agenda · Barbería El Filo</title>
+  <meta name="description" content="Panel del dueño en el demo de Akiko Reservas.">
+  <title>Panel del dueño · Demo Akiko Reservas | Akiko Tech</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=panchang@700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap" rel="stylesheet">
@@ -20,9 +22,9 @@
 <body>
   <div id="login" class="login"><div class="login-card"><h1>Barbería El Filo</h1><p>Ingresa el PIN para ver la agenda.</p><form class="pin-form" id="pin-form"><input aria-label="PIN" id="pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="one-time-code" required><button type="submit">Entrar al panel</button></form><p class="pin-hint">Pista para esta demo: 1234</p><p class="login-error" id="pin-error" aria-live="polite"></p></div></div>
   <div id="panel" class="hidden">
-    <div class="demo-note">Demo · las citas se guardan solo en este dispositivo</div>
+    <div class="demo-note">Demo de Akiko Reservas: así lo ve el dueño · las citas se guardan solo en este dispositivo</div>
     <main class="app">
-      <div class="topline"><a class="back" href="../">← Ver la página del cliente</a><span aria-hidden="true">● Agenda</span></div>
+      <div class="topline"><a class="back" href="../">← Ver como cliente</a><span aria-hidden="true">● Agenda</span></div>
       <header><h1 class="brand">Barbería El Filo</h1><p class="today-label" id="today-label"></p></header>
       <div class="stats" id="stats"></div>
       <nav class="tabs" aria-label="Rango de agenda"><button class="tab" data-range="today" aria-pressed="true">Hoy</button><button class="tab" data-range="tomorrow" aria-pressed="false">Mañana</button><button class="tab" data-range="week" aria-pressed="false">Semana</button></nav>
@@ -57,7 +59,7 @@
       document.getElementById('block-form').addEventListener('submit',event=>{event.preventDefault();try{const date=document.getElementById('block-date').value;api.block(document.getElementById('block-barber').value,date,document.getElementById('block-from').value,document.getElementById('block-to').value);selectedDate=date;range=date===api.today()?'today':date===add(api.today(),1)?'tomorrow':'custom';render();showUndoToast('Horario bloqueado.')}catch(error){alert(error.message)}});
       const showUndoToast=message=>{const toast=document.getElementById('toast');toast.textContent=message;toast.classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.add('hidden'),3500)};
       document.getElementById('reset-demo').addEventListener('click',()=>{if(confirm('¿Restablecer citas de ejemplo y borrar los cambios de esta demo?')){api.resetDemo();render();showUndoToast('Demo restablecida.')}});
-      window.addEventListener('storage',event=>{if(event.key==='elfilo-citas-v1')render()});
+      window.addEventListener('storage',event=>{if(event.key==='akiko-reservas-demo-v1')render()});
     })();
   </script>
 </body>

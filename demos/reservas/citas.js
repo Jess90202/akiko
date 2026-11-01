@@ -1,7 +1,7 @@
 /* Demo local de citas. En producción estos datos se guardarán en Cloudflare D1. */
 (() => {
   const ZONE = 'America/Mexico_City';
-  const KEY = 'elfilo-citas-v1';
+  const KEY = 'akiko-reservas-demo-v1';
   const BARBERS = ['Mateo Ruiz', 'Diego Salas', 'Julián Mora'];
   const SERVICES = [
     { id: 'corte', name: 'Corte clásico', price: 180, min: 40 },
