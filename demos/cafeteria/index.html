@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#081627">
+  <meta name="description" content="Café Bruma en Coyoacán: café de especialidad, bebidas frías y pan recién horneado. Demo de página web de Akiko Tech.">
+  <title>Café Bruma · Coyoacán | Demo de página web de Akiko Tech</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23143a63'/%3E%3Cpath d='M18 26h24v12a10 10 0 0 1-10 10h-4a10 10 0 0 1-10-10Z' fill='%238cc8f5'/%3E%3Cpath d='M42 30h3a5 5 0 0 1 0 10h-3' fill='none' stroke='%238cc8f5' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="fotos/hero-frappe.webp">
+  <style>
+    :root{color-scheme:dark;--bg:#081627;--panel:#0c2038;--panel-2:#102a48;--wave-1:#14406d;--wave-2:#1d5a96;--wave-3:#2f7fd0;--blue:#3d8fe0;--sky:#8cc8f5;--ink:#eef4fb;--muted:#9db3cc;--line:rgba(140,200,245,.16);--ease:cubic-bezier(.23,1,.32,1);--display:'Nunito',system-ui,sans-serif;--text:'DM Sans',system-ui,sans-serif;--radius:32px;--gutter:clamp(16px,4vw,40px)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+    body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(70% 50% at 85% 10%,rgba(47,127,208,.22),transparent 70%),radial-gradient(60% 40% at 0% 80%,rgba(20,64,109,.5),transparent 70%)}
+    img{display:block;max-width:100%;height:auto}
+    a{color:inherit}
+    h1,h2,h3{font-family:var(--display);margin:0;line-height:1.05;letter-spacing:-.015em}
+    .wrap{width:min(1180px,100% - var(--gutter) * 2);margin-inline:auto}
+    .demo-bar{display:flex;justify-content:center;gap:8px;padding:9px 16px;background:#e9f3fc;color:#0c2038;font-size:13px;font-weight:700;text-decoration:none;text-align:center}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border:0;border-radius:999px;background:linear-gradient(135deg,#4a9fe8,#1f5fae);color:#fff;font:700 15px/1 var(--text);text-decoration:none;box-shadow:0 10px 26px -10px rgba(61,143,224,.8);transition:transform 160ms var(--ease),box-shadow 160ms var(--ease)}
+    .button.ghost{background:transparent;box-shadow:inset 0 0 0 1.5px var(--line);color:var(--ink)}
+    .button:active{transform:scale(.97)}
+    .button:focus-visible,.nav a:focus-visible,.demo-bar:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+
+    /* Header */
+    .header{position:sticky;top:0;z-index:20;background:rgba(8,22,39,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .header-inner{display:flex;align-items:center;gap:20px;min-height:70px}
+    .brand{display:flex;align-items:center;gap:10px;font:900 19px/1 var(--display);text-decoration:none}
+    .brand-mark{width:40px;height:40px;flex:none;color:var(--sky)}
+    .nav{display:flex;gap:28px;margin-left:auto;font-size:14px;color:var(--muted)}
+    .nav a{text-decoration:none;transition:color 150ms var(--ease)}
+    .header .button{min-height:42px;padding:0 18px;font-size:14px}
+
+    /* Hero */
+    .hero{padding:clamp(20px,3vw,36px) 0 0}
+    .hero-card{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);min-height:620px;overflow:hidden;border-radius:var(--radius);background:linear-gradient(160deg,var(--panel-2),var(--panel) 55%);box-shadow:0 40px 80px -40px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.04)}
+    .hero-copy{position:relative;z-index:2;padding:clamp(36px,5vw,72px)}
+    .kicker{display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;color:var(--sky);font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+    .kicker::before{content:"";width:26px;height:2px;border-radius:2px;background:var(--sky)}
+    .hero h1{font-size:clamp(48px,7vw,86px);font-weight:900}
+    .hero-lead{max-width:44ch;margin:18px 0 0;color:var(--muted);font-size:clamp(16px,1.4vw,18px)}
+    .picks-title{display:flex;align-items:center;gap:14px;margin:34px 0 16px;font:800 20px/1 var(--display);color:var(--sky)}
+    .picks-title span{color:var(--muted);font:500 13px/1 var(--text)}
+    .picks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:0;padding:0;list-style:none}
+    .pick img{width:58px;height:58px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px var(--panel),0 0 0 4px var(--line)}
+    .pick h3{margin:12px 0 4px;font-size:16px;font-weight:800}
+    .pick p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+    .hero-art{position:relative;min-height:100%}
+    .waves{position:absolute;inset:0;width:100%;height:100%}
+    .hero-photo{position:absolute;z-index:2;right:12%;top:50%;width:min(64%,330px);aspect-ratio:4/5;margin:0;transform:translateY(-48%);border-radius:46% 54% 44% 56%/56% 44% 56% 44%;overflow:hidden;box-shadow:0 40px 60px -24px rgba(0,0,0,.75),0 0 0 8px rgba(140,200,245,.12)}
+    .hero-photo img{width:100%;height:100%;object-fit:cover}
+    .leaf{position:absolute;z-index:1;right:6%;top:9%;width:130px;color:var(--sky);opacity:.55}
+    .dot{position:absolute;z-index:1;border-radius:50%;background:var(--sky);opacity:.6;animation:float 7s ease-in-out infinite alternate}
+    .badge{position:absolute;z-index:3;left:4%;bottom:14%;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:18px;background:rgba(8,22,39,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px var(--line);font-size:13px;line-height:1.3}
+    .badge strong{display:block;font:900 20px/1 var(--display);color:#fff}
+    .stars{color:#ffd27a;letter-spacing:2px}
+    @keyframes float{from{transform:translateY(0)}to{transform:translateY(-14px)}}
+
+    /* Sections */
+    .section{padding:clamp(72px,10vw,128px) 0}
+    .section-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:40px}
+    .section-head h2{font-size:clamp(36px,5vw,56px);font-weight:900}
+    .section-head p{max-width:38ch;margin:0;color:var(--muted)}
+
+    /* Menu */
+    .menu-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px}
+    .menu-panel{position:relative;overflow:hidden;border-radius:var(--radius);background:var(--panel);padding:clamp(24px,3vw,40px);box-shadow:inset 0 0 0 1px var(--line)}
+    .menu-panel.alt{background:linear-gradient(170deg,var(--wave-1),var(--panel) 70%)}
+    .menu-panel h3{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;font-size:24px;font-weight:900}
+    .menu-panel h3 small{color:var(--sky);font:700 12px/1 var(--text);letter-spacing:.16em;text-transform:uppercase}
+    .menu-list{margin:0;padding:0;list-style:none}
+    .menu-item{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}
+    .menu-item:first-child{border-top:0}
+    .menu-item img{width:64px;height:64px;border-radius:50%;object-fit:cover}
+    .menu-item h4{margin:0 0 3px;font:800 17px/1.2 var(--display)}
+    .menu-item p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.45}
+    .price{font:900 18px/1 var(--display);color:var(--sky);font-variant-numeric:tabular-nums}
+    .menu-note{margin:22px 0 0;padding:14px 16px;border-radius:16px;background:rgba(140,200,245,.08);color:var(--muted);font-size:13.5px}
+
+    /* About */
+    .about{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,80px);align-items:center}
+    .about-photo{position:relative;margin:0}
+    .about-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:44% 56% 40% 60%/50% 40% 60% 50%;box-shadow:0 40px 70px -30px rgba(0,0,0,.8)}
+    .about-photo::before{content:"";position:absolute;inset:8% -6% -6% 8%;z-index:-1;border-radius:50% 50% 44% 56%/46% 54% 46% 54%;background:linear-gradient(140deg,var(--wave-3),var(--wave-1))}
+    .about h2{font-size:clamp(34px,4.6vw,52px);font-weight:900}
+    .about p{color:var(--muted);max-width:52ch}
+    .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:30px 0 0;padding:0;list-style:none}
+    .facts li{padding:18px;border-radius:20px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line);font-size:14px;color:var(--muted)}
+    .facts strong{display:block;margin-bottom:6px;color:var(--ink);font:900 26px/1 var(--display)}
+
+    /* Review */
+    .review{position:relative;overflow:hidden;margin:0;border-radius:var(--radius);padding:clamp(40px,7vw,88px);background:linear-gradient(135deg,var(--wave-3),var(--wave-1) 70%)}
+    .review svg.bg{position:absolute;right:-10%;bottom:-30%;width:70%;opacity:.25}
+    .review blockquote{position:relative;max-width:30ch;margin:0;font:800 clamp(26px,3.6vw,42px)/1.18 var(--display)}
+    .review figcaption{position:relative;margin-top:24px;color:rgba(255,255,255,.82);font-size:15px}
+
+    /* Visit */
+    .visit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden;border-radius:var(--radius);background:var(--panel);box-shadow:inset 0 0 0 1px var(--line)}
+    .visit-photo{position:relative;min-height:360px;margin:0}
+    .visit-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .visit-info{padding:clamp(28px,4vw,56px)}
+    .visit-info h2{font-size:clamp(34px,4.4vw,50px);font-weight:900;margin-bottom:24px}
+    .visit-list{display:grid;gap:18px;margin:0 0 30px;padding:0;list-style:none}
+    .visit-list span{display:block;color:var(--sky);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+    .visit-list p{margin:4px 0 0;font-size:17px}
+
+    .footer{padding:40px 0 calc(40px + env(safe-area-inset-bottom));border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+    .footer-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+    .footer a{color:var(--sky)}
+    .whatsapp{position:fixed;z-index:30;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));display:grid;width:56px;height:56px;place-items:center;border-radius:50%;background:linear-gradient(135deg,#4a9fe8,#1f5fae);box-shadow:0 14px 30px -10px rgba(61,143,224,.9);transition:transform 160ms var(--ease)}
+    .whatsapp svg{width:26px;height:26px;fill:#fff}
+    .whatsapp:active{transform:scale(.95)}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity 700ms var(--ease),transform 700ms var(--ease)}
+    .reveal.is-visible{opacity:1;transform:none}
+    .no-js .reveal{opacity:1;transform:none}
+
+    @media(hover:hover) and (pointer:fine){
+      .button:hover{transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(61,143,224,.95)}
+      .button.ghost:hover{box-shadow:inset 0 0 0 1.5px var(--sky)}
+      .nav a:hover{color:var(--ink)}
+      .menu-item img{transition:transform 200ms var(--ease)}
+      .menu-item:hover img{transform:scale(1.05)}
+    }
+    @media(max-width:960px){
+      .hero-card{grid-template-columns:1fr;min-height:0}
+      .hero-art{min-height:440px}
+      .hero-photo{right:auto;left:50%;width:min(62%,300px);transform:translate(-50%,-48%)}
+      .menu-grid,.about,.visit{grid-template-columns:1fr}
+      .about-photo{max-width:420px;margin-inline:auto}
+      .visit-photo{min-height:260px}
+    }
+    @media(max-width:640px){
+      .nav{display:none}
+      .header .button{margin-left:auto;padding:0 14px;font-size:13px}
+      .hero-copy{padding:32px 22px 8px}
+      .picks{gap:12px}
+      .pick img{width:50px;height:50px}
+      .pick h3{font-size:14px}
+      .pick p{font-size:12px}
+      .hero-actions .button{flex:1 1 auto}
+      .hero-art{min-height:400px}
+      .badge{left:16px;bottom:18px}
+      .leaf{width:96px}
+      .facts{grid-template-columns:1fr}
+      .menu-item{grid-template-columns:54px minmax(0,1fr) auto;gap:12px}
+      .menu-item img{width:54px;height:54px}
+    }
+    @media(max-width:360px){.brand span{display:none}.picks{grid-template-columns:1fr 1fr}.picks li:last-child{display:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.dot{animation:none}.button,.whatsapp{transition:none}}
+  </style>
+</head>
+<body class="no-js">
+  <a class="demo-bar" href="https://akiko-tech.com/#contacto">Demo de Akiko Tech · ¿Quieres una página así para tu negocio? <span aria-hidden="true">→</span></a>
+
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#inicio" aria-label="Café Bruma, inicio">
+        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="20" cy="20" r="18.5"/><path d="M12 17h14v6a6 6 0 0 1-6 6h-2a6 6 0 0 1-6-6Z"/><path d="M26 19h2a3 3 0 0 1 0 6h-2"/><path d="M16 9c-1 1.5 1 2.5 0 4M20 8c-1 1.5 1 2.5 0 4" stroke-linecap="round"/></svg>
+        <span>Café Bruma</span>
+      </a>
+      <nav class="nav" aria-label="Secciones"><a href="#menu">Menú</a><a href="#nosotros">Nosotros</a><a href="#visitanos">Visítanos</a></nav>
+      <a class="button" href="https://wa.me/525515338822?text=Hola%2C%20quiero%20hacer%20un%20pedido%20en%20Caf%C3%A9%20Bruma" target="_blank" rel="noopener">Pide por WhatsApp</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <p class="kicker reveal">Café de especialidad · Coyoacán</p>
+            <h1 class="reveal" id="hero-title">Café Bruma</h1>
+            <p class="hero-lead reveal">Grano mexicano tostado cada semana, bebidas frías hechas al momento y pan que sale del horno a las ocho. Ven a quedarte o pide para llevar.</p>
+            <p class="picks-title reveal">Favoritos <span>de esta semana</span></p>
+            <ul class="picks reveal">
+              <li class="pick"><img src="fotos/latte-helado.webp" alt="Latte helado en vaso de vidrio" width="58" height="58" loading="lazy"><h3>Latte helado</h3><p>Espresso doble, leche fría y hielo.</p></li>
+              <li class="pick"><img src="fotos/concha.webp" alt="Concha de vainilla en un plato" width="58" height="58" loading="lazy"><h3>Concha</h3><p>Vainilla o chocolate, del día.</p></li>
+              <li class="pick"><img src="fotos/capuchino.webp" alt="Capuchino con arte latte" width="58" height="58" loading="lazy"><h3>Capuchino</h3><p>Leche texturizada y canela.</p></li>
+            </ul>
+            <div class="hero-actions reveal">
+              <a class="button" href="#menu">Ver el menú</a>
+              <a class="button ghost" href="#visitanos">Cómo llegar</a>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <svg class="waves" viewBox="0 0 560 620" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="w1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14406d"/><stop offset="1" stop-color="#0e2d4f"/></linearGradient>
+                <linearGradient id="w2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f7fd0"/><stop offset="1" stop-color="#1d5a96"/></linearGradient>
+              </defs>
+              <path d="M150 0C70 90 40 190 110 280S170 470 90 620H560V0Z" fill="url(#w1)"/>
+              <path d="M260 0c-60 80-80 170-20 250s90 190 10 370h310V0Z" fill="url(#w2)" opacity=".9"/>
+              <path d="M380 0c-30 70-30 150 20 220s60 200 10 400h150V0Z" fill="#4a9fe8" opacity=".35"/>
+            </svg>
+            <svg class="leaf" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 110C40 70 70 40 110 14"/><path d="M48 70c-14-4-22-16-22-30 14 2 24 12 22 30Z"/><path d="M66 50c-12-6-18-18-16-30 12 4 20 16 16 30Z"/><path d="M60 78c12-8 26-8 36 0-12 8-26 8-36 0Z"/><path d="M80 52c10-8 22-10 30-4-10 8-22 10-30 4Z"/></svg>
+            <span class="dot" style="left:12%;top:18%;width:8px;height:8px"></span>
+            <span class="dot" style="left:22%;top:62%;width:5px;height:5px;animation-delay:-2s"></span>
+            <span class="dot" style="left:8%;top:40%;width:4px;height:4px;animation-delay:-4s"></span>
+            <span class="dot" style="right:8%;bottom:12%;width:7px;height:7px;animation-delay:-3s"></span>
+            <span class="dot" style="right:40%;top:8%;width:5px;height:5px;animation-delay:-5s"></span>
+            <figure class="hero-photo"><img src="fotos/hero-frappe.webp" alt="" width="1000" height="1402" fetchpriority="high"></figure>
+            <div class="badge"><span><strong>4.8</strong><span class="stars">★★★★★</span><br>312 reseñas en Google</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="menu" aria-labelledby="menu-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2 id="menu-title">Nuestro menú</h2>
+          <p>Todas las bebidas se pueden pedir con leche de avena o almendra sin costo extra.</p>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-panel reveal">
+            <h3>Bebidas <small>Calientes y frías</small></h3>
+            <ul class="menu-list">
+              <li class="menu-item"><img src="fotos/latte.webp" alt="Latte con arte en la espuma" width="64" height="64" loading="lazy"><div><h4>Latte de la casa</h4><p>Espresso de Chiapas con leche cremosa.</p></div><span class="price">$62</span></li>
+              <li class="menu-item"><img src="fotos/latte-helado.webp" alt="Latte helado en vaso de vidrio" width="64" height="64" loading="lazy"><div><h4>Latte helado</h4><p>Doble espresso, leche fría y mucho hielo.</p></div><span class="price">$68</span></li>
+              <li class="menu-item"><img src="fotos/hero-frappe.webp" alt="Frappé de moka con crema y chocolate" width="64" height="64" loading="lazy"><div><h4>Frappé de moka</h4><p>Café, chocolate y crema batida.</p></div><span class="price">$78</span></li>
+              <li class="menu-item"><img src="fotos/capuchino.webp" alt="Capuchino en taza blanca" width="64" height="64" loading="lazy"><div><h4>Capuchino</h4><p>Espuma firme y un toque de canela.</p></div><span class="price">$58</span></li>
+              <li class="menu-item"><img src="fotos/chocolate.webp" alt="Chocolate caliente en taza de vidrio" width="64" height="64" loading="lazy"><div><h4>Chocolate de Oaxaca</h4><p>Batido en agua o en leche, como lo prefieras.</p></div><span class="price">$60</span></li>
+              <li class="menu-item"><img src="fotos/espresso-tonic.webp" alt="Espresso tonic con hielo" width="64" height="64" loading="lazy"><div><h4>Espresso tonic</h4><p>Agua tónica, hielo y un shot de espresso.</p></div><span class="price">$72</span></li>
+            </ul>
+          </div>
+          <div class="menu-panel alt reveal">
+            <h3>Para acompañar <small>Horneado hoy</small></h3>
+            <ul class="menu-list">
+              <li class="menu-item"><img src="fotos/concha.webp" alt="Concha de vainilla" width="64" height="64" loading="lazy"><div><h4>Concha</h4><p>Vainilla o chocolate.</p></div><span class="price">$32</span></li>
+              <li class="menu-item"><img src="fotos/croissant.webp" alt="Croissant de mantequilla" width="64" height="64" loading="lazy"><div><h4>Croissant</h4><p>Mantequilla, hojaldre de tres días.</p></div><span class="price">$45</span></li>
+              <li class="menu-item"><img src="fotos/rol-canela.webp" alt="Roles de canela con glaseado" width="64" height="64" loading="lazy"><div><h4>Rol de canela</h4><p>Glaseado de queso crema.</p></div><span class="price">$48</span></li>
+            </ul>
+            <p class="menu-note">Combo mañanero: cualquier café caliente + pan del día por <strong>$85</strong>, de 7:30 a 11:00.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="nosotros" aria-labelledby="about-title" style="padding-top:0">
+      <div class="wrap about">
+        <figure class="about-photo reveal"><img src="fotos/barra.webp" alt="Barra del café con máquina de espresso y pizarrón con el menú" width="1000" height="1500" loading="lazy"></figure>
+        <div class="reveal">
+          <p class="kicker">Nosotros</p>
+          <h2 id="about-title">Un café de barrio, hecho con calma</h2>
+          <p>Abrimos en 2019 con una cafetera y cuatro mesas. Hoy compramos directo a productores de Chiapas y Veracruz, tostamos cada lunes y seguimos conociendo a nuestros clientes por su nombre.</p>
+          <p>Hay enchufes en todas las mesas, wifi rápido y una terraza para los días soleados.</p>
+          <ul class="facts">
+            <li><strong>100%</strong>grano mexicano de altura</li>
+            <li><strong>7:30</strong>abrimos entre semana</li>
+            <li><strong>40</strong>lugares, con terraza</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Reseña de un cliente">
+      <div class="wrap">
+        <figure class="review reveal">
+          <svg class="bg" viewBox="0 0 400 300" aria-hidden="true"><path d="M0 200C80 120 160 260 240 180S360 60 400 120V300H0Z" fill="#fff"/></svg>
+          <blockquote>“El latte helado es el mejor de Coyoacán, y siempre encuentro mesa para trabajar.”</blockquote>
+          <figcaption><span class="stars">★★★★★</span> Mariana R., reseña en Google</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="visitanos" aria-labelledby="visit-title">
+      <div class="wrap">
+        <div class="visit reveal">
+          <figure class="visit-photo"><img src="fotos/local.webp" alt="Interior del café con barra, lámparas y repisas" width="1000" height="563" loading="lazy"></figure>
+          <div class="visit-info">
+            <p class="kicker">Visítanos</p>
+            <h2 id="visit-title">Te esperamos con el café listo</h2>
+            <ul class="visit-list">
+              <li><span>Dirección</span><p>Av. Francisco Sosa 214, Coyoacán, CDMX</p></li>
+              <li><span>Horario</span><p>Lun a Vie 7:30–21:00 · Sáb y Dom 8:30–21:00</p></li>
+              <li><span>Teléfono</span><p>55 1533 8822</p></li>
+            </ul>
+            <div class="hero-actions">
+              <a class="button" href="https://wa.me/525515338822?text=Hola%2C%20quiero%20hacer%20un%20pedido%20en%20Caf%C3%A9%20Bruma" target="_blank" rel="noopener">Pide por WhatsApp</a>
+              <a class="button ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Francisco%20Sosa%20Coyoac%C3%A1n%20CDMX" target="_blank" rel="noopener">Abrir en Google Maps</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>© <span id="year">2026</span> Café Bruma · Coyoacán</span>
+      <span>Página hecha por <a href="https://akiko-tech.com/">Akiko Tech</a></span>
+    </div>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/525515338822?text=Hola%2C%20quiero%20hacer%20un%20pedido%20en%20Caf%C3%A9%20Bruma" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5.1 5.2-1.4A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1 1 7 3.9Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z"/></svg></a>
+
+  <script>
+    document.body.classList.remove('no-js');
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      items.forEach(el => el.classList.add('is-visible'));
+    } else {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { rootMargin: '0px 0px -8% 0px' });
+      items.forEach((el, i) => { el.style.transitionDelay = (el.closest('.hero') ? i * 70 : 0) + 'ms'; observer.observe(el); });
+    }
+  </script>
+</body>
+</html>
