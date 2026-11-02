@@ -69,7 +69,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=9">
+<!-- Sube ?v=AAAAMMDD en TODAS las páginas cada vez que cambie styles.css o script.js: Cloudflare guarda CSS/JS unas 4 h y sin versión nueva se mezcla HTML nuevo con CSS viejo. -->
+<link rel="stylesheet" href="styles.css?v=20261101">
 <script>document.documentElement.classList.add('js')</script>
 <script>if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){try{if(!sessionStorage.getItem('akiko_intro_seen')){document.documentElement.classList.add('intro-pending');sessionStorage.setItem('akiko_intro_seen','1')}}catch(e){document.documentElement.classList.add('intro-pending')}}</script>
 </head>
@@ -371,10 +372,12 @@
 
   <!-- DEMO EN VIDEO -->
   <section id="demo" class="demo">
+    <header class="wrap demo-head">
+      <p class="mono label reveal">03 — Míralo en acción</p>
+      <h2 class="split">Así se ve <em>en el celular</em> de tu cliente</h2>
+    </header>
     <div class="wrap demo-grid">
       <div class="demo-copy">
-        <p class="mono label reveal">03 — Míralo en acción</p>
-        <h2 class="split">Así se ve <em>en el celular</em> de tu cliente</h2>
         <ol class="demo-steps">
           <li class="reveal"><span class="mono">01</span><div><b>Crea su tarjeta en segundos</b><small>Escanea el QR o toca la etiqueta NFC. Nombre, celular y listo.</small></div></li>
           <li class="reveal" style="--d:.06s"><span class="mono">02</span><div><b>Escaneas su QR y sumas la visita</b><small>Desde el portal del negocio, en un solo paso.</small></div></li>
@@ -383,12 +386,12 @@
         </ol>
       </div>
       <div class="demo-phone reveal" style="--d:.1s">
+        <div class="guide guide-demo" aria-hidden="true"><p class="bubble">¡Mira cómo funciona!</p><img src="assets/akiko-senala.webp" alt="" width="770" height="668" loading="lazy"></div>
         <div class="phone phone-video">
           <video muted loop playsinline preload="none" data-src="assets/video/akiko-demo.mp4" aria-label="Video de demostración de la tarjeta de lealtad Akiko"></video>
           <button class="vid-sound" aria-label="Activar sonido"><svg class="ico"><use href="#i-mute"/></svg></button>
         </div>
         <div class="demo-glow" aria-hidden="true"></div>
-        <div class="guide guide-demo" aria-hidden="true"><p class="bubble">¡Mira cómo funciona!</p><img src="assets/akiko-senala.webp" alt="" width="770" height="668" loading="lazy"></div>
       </div>
     </div>
     <section class="goals-section wrap" aria-labelledby="goals-title">
@@ -406,26 +409,35 @@
     </section>
   </section>
 
-  <!-- VIDEOS -->
+  <!-- VIDEOS: un video grande y la lista para elegir -->
   <section id="videos" class="videos" aria-labelledby="videos-title">
     <div class="wrap">
       <header class="videos-head">
-        <p class="mono label">Míralo en acción</p>
-        <h2 id="videos-title">Así se ve <em>en el celular</em> de tu cliente</h2>
-        <p class="videos-intro">Toca cualquier video para verlo. En el celular, desliza para ver más.</p>
+        <p class="mono label">Videos cortos</p>
+        <h2 id="videos-title">Mira cada app <em>funcionando</em></h2>
+        <p class="videos-intro">Elige un video de la lista y se reproduce aquí mismo.</p>
       </header>
-    </div>
-    <div class="wrap videos-rail" tabindex="0" aria-label="Videos de las apps">
-      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/akiko-tech.webp" data-src="assets/home/videos/akiko-tech.mp4" aria-label="Akiko Total: Lealtad y Citas en un vistazo"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Akiko Total</b><span>Lealtad y Citas en un vistazo</span></figcaption></figure>
-      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/resena.webp" data-src="assets/home/videos/resena.mp4" aria-label="Reseñas en Google: Tarjeta NFC desde $500"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Reseñas en Google</b><span>Tarjeta NFC desde $500</span></figcaption></figure>
-      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/arranque.webp" data-src="assets/home/videos/arranque.mp4" aria-label="Tu tarjeta NFC: Acerca el celular y listo"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Tu tarjeta NFC</b><span>Acerca el celular y listo</span></figcaption></figure>
-      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/mesa.webp" data-src="assets/home/videos/mesa.mp4" aria-label="Reseñas y redes: Te reseña y te sigue"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Reseñas y redes</b><span>Te reseña y te sigue</span></figcaption></figure>
-      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/akiko-lealtad.webp" data-src="assets/home/videos/akiko-lealtad.mp4" aria-label="Lealtad: Escanea el QR y suma la visita"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Lealtad</b><span>Escanea el QR y suma la visita</span></figcaption></figure>
-      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/vuelven.webp" data-src="assets/home/videos/vuelven.mp4" aria-label="Lealtad: Llega a la meta: ¡premio!"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Lealtad</b><span>Llega a la meta: ¡premio!</span></figcaption></figure>
-      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/akiko-citas.webp" data-src="assets/home/videos/akiko-citas.mp4" aria-label="Citas: Te avisa a quién escribirle"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Citas</b><span>Te avisa a quién escribirle</span></figcaption></figure>
-      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/agenda.webp" data-src="assets/home/videos/agenda.mp4" aria-label="Citas: Un toque y el mensaje está listo"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Citas</b><span>Un toque y el mensaje está listo</span></figcaption></figure>
-      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/web.webp" data-src="assets/home/videos/web.mp4" aria-label="Páginas web: Con tu logo, tus fotos y tu mapa"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Páginas web</b><span>Con tu logo, tus fotos y tu mapa</span></figcaption></figure>
-      <figure class="vc"><div class="vf"><video muted loop playsinline preload="none" poster="assets/home/posters/ficha_1.webp" data-src="assets/home/videos/ficha_1.mp4" aria-label="Ficha en Google: Así se ve lista"></video><button class="pb" type="button" aria-label="Reproducir o pausar">▶</button></div><figcaption><b>Ficha en Google</b><span>Así se ve lista</span></figcaption></figure>
+      <div class="videos-layout">
+        <figure class="vstage">
+          <div class="vstage-frame">
+            <video id="vstage-video" muted loop playsinline preload="none" poster="assets/home/posters/akiko-tech.webp" data-src="assets/home/videos/akiko-tech.mp4" aria-label="Akiko Total: Lealtad y Citas en un vistazo"></video>
+            <button class="vstage-play" type="button" aria-label="Reproducir video"><span aria-hidden="true">▶</span></button>
+          </div>
+          <figcaption class="vstage-cap" aria-live="polite"><b>Akiko Total</b><span>Lealtad y Citas en un vistazo</span></figcaption>
+        </figure>
+        <ol class="vlist" aria-label="Elige un video">
+          <li><button class="vlist-item on" type="button" aria-pressed="true" data-src="assets/home/videos/akiko-tech.mp4" data-poster="assets/home/posters/akiko-tech.webp" data-title="Akiko Total" data-sub="Lealtad y Citas en un vistazo"><img src="assets/home/posters/akiko-tech.webp" alt="" width="270" height="480" loading="lazy"><span class="vlist-copy"><span class="vlist-num">01</span><b>Akiko Total</b><small>Lealtad y Citas en un vistazo</small></span></button></li>
+          <li><button class="vlist-item" type="button" aria-pressed="false" data-src="assets/home/videos/resena.mp4" data-poster="assets/home/posters/resena.webp" data-title="Reseñas en Google" data-sub="Tarjeta NFC desde $500"><img src="assets/home/posters/resena.webp" alt="" width="270" height="480" loading="lazy"><span class="vlist-copy"><span class="vlist-num">02</span><b>Reseñas en Google</b><small>Tarjeta NFC desde $500</small></span></button></li>
+          <li><button class="vlist-item" type="button" aria-pressed="false" data-src="assets/home/videos/arranque.mp4" data-poster="assets/home/posters/arranque.webp" data-title="Tu tarjeta NFC" data-sub="Acerca el celular y listo"><img src="assets/home/posters/arranque.webp" alt="" width="270" height="480" loading="lazy"><span class="vlist-copy"><span class="vlist-num">03</span><b>Tu tarjeta NFC</b><small>Acerca el celular y listo</small></span></button></li>
+          <li><button class="vlist-item" type="button" aria-pressed="false" data-src="assets/home/videos/mesa.mp4" data-poster="assets/home/posters/mesa.webp" data-title="Reseñas y redes" data-sub="Te reseña y te sigue"><img src="assets/home/posters/mesa.webp" alt="" width="270" height="480" loading="lazy"><span class="vlist-copy"><span class="vlist-num">04</span><b>Reseñas y redes</b><small>Te reseña y te sigue</small></span></button></li>
+          <li><button class="vlist-item" type="button" aria-pressed="false" data-src="assets/home/videos/akiko-lealtad.mp4" data-poster="assets/home/posters/akiko-lealtad.webp" data-title="Lealtad" data-sub="Escanea el QR y suma la visita"><img src="assets/home/posters/akiko-lealtad.webp" alt="" width="270" height="480" loading="lazy"><span class="vlist-copy"><span class="vlist-num">05</span><b>Lealtad</b><small>Escanea el QR y suma la visita</small></span></button></li>
+          <li><button class="vlist-item" type="button" aria-pressed="false" data-src="assets/home/videos/vuelven.mp4" data-poster="assets/home/posters/vuelven.webp" data-title="Lealtad" data-sub="Llega a la meta: ¡premio!"><img src="assets/home/posters/vuelven.webp" alt="" width="270" height="480" loading="lazy"><span class="vlist-copy"><span class="vlist-num">06</span><b>Lealtad</b><small>Llega a la meta: ¡premio!</small></span></button></li>
+          <li><button class="vlist-item" type="button" aria-pressed="false" data-src="assets/home/videos/akiko-citas.mp4" data-poster="assets/home/posters/akiko-citas.webp" data-title="Citas" data-sub="Te avisa a quién escribirle"><img src="assets/home/posters/akiko-citas.webp" alt="" width="270" height="480" loading="lazy"><span class="vlist-copy"><span class="vlist-num">07</span><b>Citas</b><small>Te avisa a quién escribirle</small></span></button></li>
+          <li><button class="vlist-item" type="button" aria-pressed="false" data-src="assets/home/videos/agenda.mp4" data-poster="assets/home/posters/agenda.webp" data-title="Citas" data-sub="Un toque y el mensaje está listo"><img src="assets/home/posters/agenda.webp" alt="" width="270" height="480" loading="lazy"><span class="vlist-copy"><span class="vlist-num">08</span><b>Citas</b><small>Un toque y el mensaje está listo</small></span></button></li>
+          <li><button class="vlist-item" type="button" aria-pressed="false" data-src="assets/home/videos/web.mp4" data-poster="assets/home/posters/web.webp" data-title="Páginas web" data-sub="Con tu logo, tus fotos y tu mapa"><img src="assets/home/posters/web.webp" alt="" width="270" height="480" loading="lazy"><span class="vlist-copy"><span class="vlist-num">09</span><b>Páginas web</b><small>Con tu logo, tus fotos y tu mapa</small></span></button></li>
+          <li><button class="vlist-item" type="button" aria-pressed="false" data-src="assets/home/videos/ficha_1.mp4" data-poster="assets/home/posters/ficha_1.webp" data-title="Ficha en Google" data-sub="Así se ve lista"><img src="assets/home/posters/ficha_1.webp" alt="" width="270" height="480" loading="lazy"><span class="vlist-copy"><span class="vlist-num">10</span><b>Ficha en Google</b><small>Así se ve lista</small></span></button></li>
+        </ol>
+      </div>
     </div>
   </section>
 
@@ -439,48 +451,44 @@
       </header>
       <div class="demos-grid">
         <article class="demo-card demo-menu">
-          <header class="demo-band"><p class="demo-kind">Menú QR</p><span class="demo-price">Desde $800</span></header>
-          <div class="demo-body">
-            <div class="demo-card-copy">
-              <h3>Brasa &amp; Maíz</h3>
-              <p>Menú con fotos, categorías y modo dueño (PIN 1234) para cambiar precios.</p>
-            </div>
-            <a class="demo-qr" href="demos/menu-qr/" target="_blank" rel="noopener" aria-label="Abrir el demo del menú Brasa y Maíz"><img src="demos/qr-menu-qr.svg" alt="Código QR para abrir el demo del menú Brasa y Maíz" width="112" height="112" loading="lazy"><span>Escanéalo</span></a>
+          <a class="demo-shot" href="demos/menu-qr/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="demos/previews/menu-qr.webp" alt="" width="480" height="720" loading="lazy"></a>
+          <div class="demo-info">
+            <div class="demo-meta"><p class="demo-kind">Menú QR</p><span class="demo-price">Desde $800</span></div>
+            <h3>Brasa &amp; Maíz</h3>
+            <p>Carta con fotos y categorías. Con el PIN 1234 entras al modo dueño y cambias precios.</p>
+            <div class="demo-actions"><a class="demo-open" href="demos/menu-qr/" target="_blank" rel="noopener" aria-label="Abrir el demo del menú Brasa y Maíz">Abrir demo <span aria-hidden="true">→</span></a></div>
+            <div class="demo-qr"><img src="demos/qr-menu-qr.svg" alt="Código QR: abrir el demo del menú brasa y maíz" width="56" height="56" loading="lazy"><span>Escanéalo para abrirlo en tu celular</span></div>
           </div>
-          <div class="demo-card-foot"><a class="demo-open" href="demos/menu-qr/" target="_blank" rel="noopener">Abrir demo <span aria-hidden="true">↗</span></a></div>
         </article>
         <article class="demo-card demo-web">
-          <header class="demo-band"><p class="demo-kind">Página web</p><span class="demo-price">$5,000</span></header>
-          <div class="demo-body">
-            <div class="demo-card-copy">
-              <h3>Barbería El Filo</h3>
-              <p>Servicios, galería, equipo, reseñas y ubicación en una sola página.</p>
-            </div>
-            <a class="demo-qr" href="demos/barberia/" target="_blank" rel="noopener" aria-label="Abrir el demo de Barbería El Filo"><img src="demos/qr-barberia.svg" alt="Código QR para abrir el demo de Barbería El Filo" width="112" height="112" loading="lazy"><span>Escanéalo</span></a>
+          <a class="demo-shot" href="demos/barberia/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="demos/previews/barberia.webp" alt="" width="480" height="720" loading="lazy"></a>
+          <div class="demo-info">
+            <div class="demo-meta"><p class="demo-kind">Página web</p><span class="demo-price">$5,000</span></div>
+            <h3>Barbería El Filo</h3>
+            <p>Servicios, galería, equipo, reseñas y ubicación en una sola página.</p>
+            <div class="demo-actions"><a class="demo-open" href="demos/barberia/" target="_blank" rel="noopener" aria-label="Abrir el demo de Barbería El Filo">Abrir demo <span aria-hidden="true">→</span></a></div>
+            <div class="demo-qr"><img src="demos/qr-barberia.svg" alt="Código QR: abrir el demo de barbería el filo" width="56" height="56" loading="lazy"><span>Escanéalo para abrirlo en tu celular</span></div>
           </div>
-          <div class="demo-card-foot"><a class="demo-open" href="demos/barberia/" target="_blank" rel="noopener">Abrir demo <span aria-hidden="true">↗</span></a></div>
         </article>
         <article class="demo-card demo-reservas">
-          <header class="demo-band"><p class="demo-kind">Akiko Reservas</p><span class="demo-price">$1,500 + $249/mes</span></header>
-          <div class="demo-body">
-            <div class="demo-card-copy">
-              <h3>Agenda en línea</h3>
-              <p>Tu cliente aparta desde tu página y tú ves la agenda del día en tu panel (PIN 1234).</p>
-            </div>
-            <a class="demo-qr" href="demos/reservas/" aria-label="Abrir el demo de Akiko Reservas"><img src="demos/qr-reservas.svg" alt="Código QR para abrir el demo de Akiko Reservas" width="112" height="112" loading="lazy"><span>Escanéalo</span></a>
+          <a class="demo-shot" href="demos/reservas/" tabindex="-1" aria-hidden="true"><img src="demos/previews/reservas.webp" alt="" width="480" height="720" loading="lazy"></a>
+          <div class="demo-info">
+            <div class="demo-meta"><p class="demo-kind">Akiko Reservas</p><span class="demo-price">$1,500 + $249/mes</span></div>
+            <h3>Agenda en línea</h3>
+            <p>Tu cliente aparta su cita solo y tú la ves en tu panel (PIN 1234).</p>
+            <div class="demo-actions"><a class="demo-open" href="demos/reservas/" aria-label="Abrir el demo de Akiko Reservas">Agendar como cliente <span aria-hidden="true">→</span></a><a class="demo-secondary" href="demos/reservas/panel/">Panel del dueño</a></div>
+            <div class="demo-qr"><img src="demos/qr-reservas.svg" alt="Código QR: abrir el demo de akiko reservas" width="56" height="56" loading="lazy"><span>Escanéalo para abrirlo en tu celular</span></div>
           </div>
-          <div class="demo-card-foot"><a class="demo-open" href="demos/reservas/">Agendar como cliente <span aria-hidden="true">→</span></a><a class="demo-secondary" href="demos/reservas/panel/">Panel del dueño <span aria-hidden="true">→</span></a></div>
         </article>
         <article class="demo-card demo-inv">
-          <header class="demo-band"><p class="demo-kind">Invitaciones digitales</p><span class="demo-price">Desde $450</span></header>
-          <div class="demo-body">
-            <div class="demo-card-copy">
-              <h3>Bodas, XV años y cumpleaños</h3>
-              <p>Tus invitados abren la invitación en el celular y te confirman si van.</p>
-            </div>
-            <a class="demo-qr" href="inv/valeria-andres/" aria-label="Abrir la invitación de boda de ejemplo"><img src="demos/qr-invitaciones.svg" alt="Código QR para abrir la invitación de boda de ejemplo" width="112" height="112" loading="lazy"><span>Escanéalo</span></a>
+          <a class="demo-shot" href="inv/valeria-andres/" tabindex="-1" aria-hidden="true"><img src="demos/previews/invitaciones.webp" alt="" width="480" height="720" loading="lazy"></a>
+          <div class="demo-info">
+            <div class="demo-meta"><p class="demo-kind">Invitaciones</p><span class="demo-price">Desde $450</span></div>
+            <h3>Bodas, XV y cumpleaños</h3>
+            <p>Tus invitados la abren en el celular y te confirman si van.</p>
+            <div class="demo-actions"><a class="demo-open" href="inv/valeria-andres/" aria-label="Abrir la invitación de boda de ejemplo">Ver boda <span aria-hidden="true">→</span></a><a class="demo-secondary" href="inv/sofia-30/">Ver cumpleaños</a></div>
+            <div class="demo-qr"><img src="demos/qr-invitaciones.svg" alt="Código QR: abrir la invitación de boda de ejemplo" width="56" height="56" loading="lazy"><span>Escanéalo para abrirlo en tu celular</span></div>
           </div>
-          <div class="demo-card-foot"><a class="demo-open" href="inv/valeria-andres/">Ver boda <span aria-hidden="true">→</span></a><a class="demo-secondary" href="inv/sofia-30/">Ver cumpleaños <span aria-hidden="true">→</span></a></div>
         </article>
       </div>
     </div>
@@ -629,7 +637,7 @@
   </div>
 </div>
 
-<script src="script.js?v=7"></script>
+<script src="script.js?v=20261101"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   document.getElementById('cookie-settings').addEventListener('click', function(e){

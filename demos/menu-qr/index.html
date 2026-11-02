@@ -3,13 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#FF6B57">
+  <meta name="theme-color" content="#1d140f">
   <meta name="description" content="Menú de Brasa & Maíz: cocina al fuego en Ciudad de México.">
   <title>Brasa & Maíz · Menú</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,500,20,1;9..144,600,20,1;9..144,700,20,1&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{color-scheme:light;--cream:#F3E9DC;--terra:#B5452B;--ink:#2A211C;--corn:#E9B44C;--paper:#fffaf3;--muted:#78695f;--line:rgba(42,33,28,.13);--glass:rgba(243,233,220,.88);--font-title:'Fraunces',Georgia,serif}
     @media(prefers-color-scheme:dark){:root{color-scheme:dark;--cream:#211a16;--terra:#df7154;--ink:#f6eadc;--corn:#edbd60;--paper:#30251f;--muted:#c0aa99;--line:rgba(246,234,220,.14);--glass:rgba(33,26,22,.9)}}
@@ -17,23 +16,33 @@
     @media(hover:hover) and (pointer:fine){.dish-photo:hover img{transform:scale(1.04);transition:transform 180ms ease-out}.chip:hover{color:var(--terra)}.menu-footer a:hover{text-decoration:underline}}
     @media(max-width:360px){.app{padding-inline:14px}.ownerbar,.category-nav{margin-inline:-14px;padding-inline:14px}.dish-card{grid-template-columns:72px minmax(0,1fr);gap:10px}.dish-photo{width:72px;height:72px}.owner-mode .dish-card{grid-template-columns:72px minmax(0,1fr)}.dish-copy h3{font-size:17px}.owner-controls{gap:5px}.price-input{width:88px}.remove-btn{padding:7px}}
     @media(prefers-reduced-transparency:reduce){.category-nav{backdrop-filter:none;-webkit-backdrop-filter:none;background:#FF6B57}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.zoom-image{transition:opacity 160ms ease-out!important}}
-    body{background:linear-gradient(to bottom,#FF6B57,#FF8A5B);color:#2A211C}
-    .masthead{text-align:center}
-    .brand{font:400 clamp(2.4rem,11vw,3.4rem)/1.05 'Abril Fatface',Georgia,serif;letter-spacing:-.01em;color:#FFF6EE}
-    .brand span{color:inherit}
-    .masthead p{color:rgba(255,246,238,.85)}
-    .category-nav{background:rgba(255,107,87,.75);border-bottom-color:rgba(255,246,238,.2)}
-    .chip{color:rgba(255,246,238,.85)}
-    .chip.active{background:#FFF6EE;color:#8F2B1D}
-    .category-title h2,.category-title span{color:#FFF6EE}
-    .dish-card{background:#FFF6EE;border-color:rgba(42,33,28,.12);box-shadow:0 5px 18px rgba(90,35,24,.16)}
-    .dish-card,.dish-copy h3{color:#2A211C}
-    .dish-copy p{color:#625149}
-    .dish-price{color:#C2381F}
-    .price-input{background:#FFF6EE;color:#2A211C}
-    .menu-footer{color:#542B21}
-    .menu-footer a{color:#7D281B}
-    @media(prefers-color-scheme:dark){body{color:#2A211C}.category-nav{border-bottom-color:rgba(255,246,238,.2)}.dish-card{border-color:rgba(42,33,28,.12)}.dish-copy p{color:#625149}}
+    /* Brasa & Maíz v3: fondo de carbón con brasas y grano; carta en papel crema. */
+    :root{color-scheme:light;--cream:#f6ecdd;--terra:#b2381d;--ink:#2a1d16;--corn:#f0b453;--paper:#fffaf2;--muted:#6f5b4e;--line:rgba(42,29,22,.14);--glass:rgba(24,16,12,.82);--font-title:'Young Serif',Georgia,serif;--ember:#e8743b}
+    body{position:relative;min-height:100svh;background-color:#17100c;background-image:radial-gradient(120% 60% at 50% -10%,rgba(232,116,59,.42),transparent 60%),radial-gradient(80% 40% at 10% 105%,rgba(178,56,29,.35),transparent 70%),radial-gradient(60% 35% at 95% 70%,rgba(240,180,83,.14),transparent 70%),linear-gradient(180deg,#22160f,#120c09 70%);background-attachment:fixed;color:var(--ink);font-family:'Figtree',system-ui,-apple-system,"Segoe UI",sans-serif}
+    body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.22;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    body::after{content:"";position:fixed;inset:auto 0 0;height:38vh;z-index:0;pointer-events:none;background:repeating-linear-gradient(176deg,transparent 0 26px,rgba(255,255,255,.018) 26px 27px)}
+    .app{position:relative;z-index:1}
+    .masthead{text-align:center;padding:40px 2px 26px}
+    .brand{font:400 clamp(2.5rem,11vw,3.5rem)/1.02 var(--font-title);letter-spacing:-.02em;color:#fbefdf;text-shadow:0 2px 24px rgba(232,116,59,.35)}
+    .brand span{color:var(--corn)}
+    .masthead p{color:rgba(251,239,223,.72);font-size:14px;letter-spacing:.14em;text-transform:uppercase}
+    .masthead p::before,.masthead p::after{content:"";display:inline-block;width:22px;height:1px;margin:0 10px;vertical-align:middle;background:rgba(240,180,83,.6)}
+    .category-nav{background:var(--glass);border-bottom-color:rgba(240,180,83,.22)}
+    .chip{color:rgba(251,239,223,.78);font-weight:600}
+    .chip.active{background:var(--corn);color:#2a1d16}
+    .category-title h2{color:#fbefdf;font-weight:400}
+    .category-title span{color:rgba(251,239,223,.65)}
+    .dish-card{background-color:#fbf2e4;background-image:radial-gradient(rgba(120,80,40,.06) 1px,transparent 1.4px);background-size:5px 5px;border-color:rgba(42,29,22,.1);box-shadow:0 10px 26px -10px rgba(0,0,0,.6)}
+    .dish-card,.dish-copy h3{color:#2a1d16}
+    .dish-copy h3{font-weight:400}
+    .dish-copy p{color:#5f4c40;font-size:13px}
+    .dish-price{color:var(--terra);font-weight:800}
+    .price-input{background:#fffaf2;color:#2a1d16}
+    .dialog h2{font-weight:400}
+    .menu-footer{color:rgba(251,239,223,.6)}
+    .menu-footer a{color:var(--corn)}
+    @media(prefers-reduced-transparency:reduce){.category-nav{background:#1d140f}}
+    @media(max-width:440px){.masthead p{font-size:12px;letter-spacing:.12em}.masthead p::before,.masthead p::after{width:14px;margin:0 6px}}
   </style>
 </head>
 <body>

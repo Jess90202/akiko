@@ -228,6 +228,8 @@
   <a class="whatsapp" href="https://wa.me/525515338822?text=Hola%2C%20quiero%20visitar%20Barber%C3%ADa%20El%20Filo" aria-label="Escríbenos por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3 20l.9-4.7a8.5 8.5 0 1 1 16.6-3.6Z"/><path d="M8.2 7.8c.3-.7.6-.7 1-.7h.4c.2 0 .4 0 .5.4l.7 1.7c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4 0 .7.5.9 1.3 1.6 2.2 2.1.3.2.5.2.7-.1l.8-.9c.2-.2.4-.3.7-.2l1.6.8c.3.1.5.3.5.5 0 .4-.2 1.3-.8 1.8-.5.5-1.2.8-2.1.7-1.2-.1-2.7-.8-4.3-2.2-1.3-1.2-2.1-2.7-2.3-3.8-.2-.9.1-1.7.6-2.2Z"/></svg></a>
   <style>.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
   <script>
+    /* Si una foto externa no carga, se oculta en lugar de mostrar el ícono roto. */
+    document.querySelectorAll('img').forEach(img=>{const fail=()=>{img.style.visibility='hidden'};if(img.complete&&!img.naturalWidth)fail();img.addEventListener('error',fail)});
     (()=>{
       const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const revealItems=document.querySelectorAll('.reveal');

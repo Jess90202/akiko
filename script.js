@@ -505,47 +505,69 @@ if (finePointer && !reduceMotion) {
 
 
 // ---------- Videos de la portada ----------
+// Un solo video grande; la lista de la derecha elige cuál se reproduce.
 (function videos() {
-  const items = [...document.querySelectorAll('#videos .vf video')];
-  if (!items.length || !('IntersectionObserver' in window)) return;
-  const load = video => {
+  const video = document.getElementById('vstage-video');
+  if (!video) return;
+  const frame = video.closest('.vstage-frame');
+  const button = frame.querySelector('.vstage-play');
+  const caption = document.querySelector('.vstage-cap');
+  const items = [...document.querySelectorAll('#videos .vlist-item')];
+  let inView = false;
+  const load = () => {
     if (!video.src && video.dataset.src) {
       video.src = video.dataset.src;
       video.load();
     }
   };
-  const sync = video => {
-    const frame = video.closest('.vf');
-    const button = frame.querySelector('.pb');
-    const playing = !video.paused;
-    frame.classList.toggle('pl', playing);
-    button.textContent = playing ? '❚❚' : '▶';
-    button.setAttribute('aria-label', playing ? 'Pausar video' : 'Reproducir video');
-  };
-  const play = video => {
-    load(video);
+  const play = () => {
+    load();
     const result = video.play();
     if (result && result.catch) result.catch(() => {});
   };
-  items.forEach(video => {
-    video.addEventListener('play', () => sync(video));
-    video.addEventListener('pause', () => sync(video));
-    video.closest('.vf').addEventListener('click', () => video.paused ? play(video) : video.pause());
-  });
-  const preload = new IntersectionObserver(entries => entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      load(entry.target);
-      preload.unobserve(entry.target);
+  const sync = () => {
+    const playing = !video.paused;
+    frame.classList.toggle('pl', playing);
+    button.firstElementChild.textContent = playing ? '❚❚' : '▶';
+    button.setAttribute('aria-label', playing ? 'Pausar video' : 'Reproducir video');
+  };
+  const select = item => {
+    items.forEach(other => {
+      const on = other === item;
+      other.classList.toggle('on', on);
+      other.setAttribute('aria-pressed', String(on));
+    });
+    const title = item.dataset.title, sub = item.dataset.sub;
+    video.pause();
+    video.removeAttribute('src');
+    video.dataset.src = item.dataset.src;
+    video.poster = item.dataset.poster;
+    video.setAttribute('aria-label', `${title}: ${sub}`);
+    caption.querySelector('b').textContent = title;
+    caption.querySelector('span').textContent = sub;
+    play();
+    const box = frame.getBoundingClientRect();
+    if (box.top < 0 || box.bottom > innerHeight) {
+      frame.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
     }
-  }), { rootMargin: '400px' });
-  const playback = new IntersectionObserver(entries => entries.forEach(entry => {
-    if (entry.isIntersecting && entry.intersectionRatio >= .6) {
-      if (!reduceMotion && !document.hidden) play(entry.target);
-    } else entry.target.pause();
-  }), { threshold: [0, .6] });
-  items.forEach(video => { preload.observe(video); playback.observe(video); });
+  };
+  video.addEventListener('play', sync);
+  video.addEventListener('pause', sync);
+  frame.addEventListener('click', () => (video.paused ? play() : video.pause()));
+  items.forEach(item => item.addEventListener('click', () => select(item)));
+  if (!('IntersectionObserver' in window)) return;
+  new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) load();
+  }), { rootMargin: '400px' }).observe(video);
+  new IntersectionObserver(entries => entries.forEach(entry => {
+    inView = entry.isIntersecting && entry.intersectionRatio >= .5;
+    if (inView) {
+      if (!reduceMotion && !document.hidden) play();
+    } else video.pause();
+  }), { threshold: [0, .5] }).observe(video);
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) items.forEach(video => video.pause());
+    if (document.hidden) video.pause();
+    else if (inView && !reduceMotion) play();
   });
 })();
 
