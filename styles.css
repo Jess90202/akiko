@@ -1007,7 +1007,7 @@ html.cookie-open .lnav{visibility:hidden;opacity:0;pointer-events:none}
 .demos-head h2{font-size:clamp(2.1rem,4.2vw,2.9rem);margin-bottom:12px;color:var(--navy)}
 .demos-head h2 em{background:var(--grad-ink);-webkit-background-clip:text;background-clip:text;color:transparent}
 .demos-head>p:last-child{color:var(--muted)}
-.demos-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.6vw,22px)}
+.demos-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,22px)}
 .demo-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;background:#fff;border-radius:var(--r);box-shadow:var(--card-shadow);transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
 .demo-shot{display:flex;justify-content:center;align-items:flex-start;aspect-ratio:1/1;padding:22px 18% 0;overflow:hidden;background:linear-gradient(180deg,var(--ice),#d6eafc)}
 .demo-shot img{width:100%;height:auto;border:5px solid #0b2447;border-bottom:0;border-radius:22px 22px 0 0;box-shadow:0 20px 40px -18px rgba(5,30,56,.5);transition:transform .3s var(--ease)}

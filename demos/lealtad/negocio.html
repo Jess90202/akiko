@@ -1,0 +1,200 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#eceef3"><meta name="referrer" content="no-referrer"><title>Demo de Akiko Lealtad: portal del negocio | Akiko Tech</title><link rel="preload" href="fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="fonts/fonts.css"><link rel="icon" href="icon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="icon-180.png"><link rel="stylesheet" href="styles.css"><style>.demoBar{position:relative;z-index:50;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;padding:9px 14px;background:var(--deep,#12112a);color:#fff;font:600 13px/1.4 var(--font,system-ui);text-align:center}.demoBar a,.demoBar button{color:#fff;font:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;width:auto;min-height:0;margin:0;box-shadow:none}.demoBar a[aria-current]{text-decoration:none;opacity:.7}</style><script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script><script defer src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script></head><body class="biz preAuth"><div class="demoBar"><span>Demo de Akiko Lealtad · Café Bruma</span><a href="./">Vista del cliente</a><a href="negocio.html" aria-current="page">Vista del negocio</a><button type="button" onclick="resetDemo()">Reiniciar demo</button><a href="/">← Volver a Akiko</a></div>
+<div class="scene" aria-hidden="true"><svg class="sceneWave waveBack" viewBox="0 0 1440 620" preserveAspectRatio="none"><path d="M0 200C220 110 380 250 610 192S1030 74 1440 156V620H0Z"/></svg><svg class="sceneWave waveMid" viewBox="0 0 1440 620" preserveAspectRatio="none"><path d="M0 290C230 180 420 330 660 252S1100 170 1440 246V620H0Z"/></svg><svg class="sceneWave waveNear" viewBox="0 0 1440 620" preserveAspectRatio="none"><path d="M0 382C210 300 410 415 650 348S1110 275 1440 355V620H0Z"/></svg><svg class="sceneWave waveFront" viewBox="0 0 1440 620" preserveAspectRatio="none"><path d="M0 488C230 398 460 505 700 448S1120 400 1440 470V620H0Z"/></svg><svg class="scenePlant" viewBox="0 0 180 220"><path d="M86 214C88 155 82 93 55 34M87 162C116 130 131 104 134 70M82 120C54 105 38 82 31 58" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path d="M53 35C19 27 13 7 15 5c29-2 47 9 48 29M133 70c7-32 31-44 34-42 4 28-8 46-31 51M31 59C3 48 0 28 2 26c25 3 41 16 39 36" fill="currentColor"/></svg></div>
+<div id="loader" class="loader" role="status" aria-label="Cargando Akiko"><div class="loaderWaves"><i></i><i></i><i></i></div><img class="loaderMascot" src="assets/akiko-mascota.png" alt="" width="220" height="220"><img class="loaderWordmark" src="assets/akiko-wordmark.png" alt="akiko tech" width="300" height="62"><span class="loaderName">lealtad</span><div class="loaderTrack"><i></i></div></div>
+<div id="busy" class="hidden" aria-live="polite"><div class="spin"></div></div><div id="toast" class="hidden" role="status"></div>
+<div id="scanner" class="hidden"><video id="vid" playsinline muted></video><p>Apunta al QR de la tarjeta del cliente</p><button class="secondary" onclick="stopScan()">Cancelar</button></div>
+<div class="app"><header><div id="brand"></div></header>
+<main id="employeeArea">
+<section id="splash" class="screen splash"><i class="blob b1" aria-hidden="true"></i><i class="blob b2" aria-hidden="true"></i>
+<div class="splashBrand"><img class="mascot" src="assets/akiko-mascota.png" alt="" width="440" height="440"><img class="wordmark" src="assets/akiko-wordmark.png" alt="akiko tech" width="600" height="123"><span class="appName">lealtad</span><p class="hint">Tarjetas de lealtad digitales para tu negocio</p></div>
+<div class="splashSheet"><div class="sheetRow"><div><h2>Bienvenido</h2><p>Escanea tarjetas, suma visitas y entrega premios desde aquí.</p></div><button class="goBtn" onclick="showEmployee('login')" aria-label="Entrar al acceso del equipo"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div></section>
+<section id="login" class="screen hidden"><div class="loginTop"><div class="loginBox"><div class="brandRow"><img class="wordmark" src="assets/akiko-wordmark-light.png" alt="akiko tech" width="600" height="123"><span class="appName light">lealtad</span></div><h2>Acceso del equipo</h2><p class="hint">Demo: escribe cualquier nombre y el PIN <b>123456</b>.</p><div id="loginForm"><label for="uname">Nombre</label><input id="uname" placeholder="Tu nombre de empleado" maxlength="60" autocomplete="username"><label for="pin">PIN</label><input id="pin" type="password" inputmode="numeric" maxlength="8" placeholder="PIN de acceso" autocomplete="off" onkeydown="if(event.key==='Enter')login()"><button class="primary" onclick="login()">Entrar</button></div></div></div>
+<div class="loginBottom"><div class="bizChip"><i id="bizMark"></i><div><b id="bizName">Tu negocio</b><small>Programa de lealtad</small></div></div><p class="hint">¿Olvidaste tu PIN? Pide al propietario que lo restablezca.</p><button class="textbtn" onclick="showEmployee('splash')">Volver al inicio</button></div></section>
+<section id="searchPanel" class="panel hidden"><div class="welcomeRow"><div><span class="eyebrow">Panel de control</span><h2 id="hello">Hola, equipo</h2></div><span id="roleBadge" class="badge"></span></div><button class="primary" onclick="startScan()"><i data-i="camera"></i> Escanear QR y sumar visita</button><div id="stats" class="stats"></div><h3>Buscar cliente</h3><p class="hint">En el demo, escribe al menos 2 letras, por ejemplo «an», o tu nombre si creaste tu tarjeta en la vista del cliente.</p><input id="query" placeholder="Nombre, teléfono o ID" oninput="search()" aria-label="Buscar cliente"><div id="results"></div><div id="adminActions" class="actions hidden"><button id="btnSettings" class="secondary" onclick="settings()"><i data-i="settings"></i> Configuración</button><button class="secondary" onclick="employees()"><i data-i="users"></i> Empleados</button><button id="btnBranches" class="secondary hidden" onclick="branches()"><i data-i="store"></i> Sucursales</button></div><button class="secondary" onclick="changePin()"><i data-i="lock"></i> Cambiar mi PIN</button><h3>Actividad reciente</h3><div id="recent"></div><button class="textbtn" onclick="logout()">Cerrar sesión</button></section>
+<section id="settings" class="panel hidden"><h2>Meta y premio</h2><label for="goal">Visitas para premio</label><input id="goal" type="number" min="1" max="999"><label for="prize">Premio</label><input id="prize" placeholder="Ej. Café gratis" maxlength="120"><label for="minp">Consumo mínimo para que cuente una visita ($)</label><input id="minp" type="number" min="0" step="any" inputmode="decimal" placeholder="0"><p class="hint">Pon <b>0</b> si no quieres pedir mínimo: escanear el QR suma la visita directamente. Si pones una cantidad, se pedirá el consumo al registrar cada visita.</p><p class="hint">Si subes la meta, quienes ya ganaron su premio lo conservan hasta canjearlo. Si la bajas, quienes ya la alcanzaron reciben su premio.</p><button class="primary" onclick="saveSettings()">Guardar cambios</button><button class="textbtn" onclick="showEmployee('searchPanel')">Cancelar</button></section>
+<section id="branchPanel" class="panel hidden"><h2>Sucursales</h2><p id="branchInfo" class="hint"></p><div id="branchList"></div><div id="branchForm"><hr><h3>Nueva sucursal</h3><label for="blabel">Nombre de la sucursal</label><input id="blabel" placeholder="Ej. Centro" maxlength="40"><label for="badmin">Encargado de la sucursal (nombre)</label><input id="badmin" placeholder="Nombre" maxlength="60"><label for="bpin">PIN del encargado (6–8 dígitos)</label><input id="bpin" type="password" inputmode="numeric" maxlength="8" autocomplete="off"><p class="hint">La tarjeta de un cliente vale en TODAS las sucursales: sus visitas y puntos se suman juntos. La meta, el premio y el consumo mínimo se definen aquí, en la sede. Cada sucursal tiene su propio equipo, enlaces y estadísticas.</p><button class="primary" onclick="createBranch()">Crear sucursal</button></div><button class="textbtn" onclick="showEmployee('searchPanel')">Volver</button></section>
+<section id="emps" class="panel hidden"><h2>Equipo</h2><div id="empList"></div><hr><h3>Agregar empleado</h3><label for="ename">Nombre</label><input id="ename" placeholder="Nombre" maxlength="60"><label for="epin">PIN (6–8 dígitos)</label><input id="epin" type="password" inputmode="numeric" maxlength="8" placeholder="PIN" autocomplete="off"><label for="erole">Rol</label><select id="erole"><option value="STAFF">Empleado</option><option value="ADMIN">Administrador</option></select><button class="primary" onclick="addEmployee()">Agregar empleado</button><button class="textbtn" onclick="showEmployee('searchPanel')">Volver</button></section>
+</main></div>
+<script src="common.js"></script><script src="demo.js"></script>
+<script>
+iconize(document.body);
+let S = null, CFG = null, BR = null, SEARCH_TIMER = null, SEARCH_SEQ = 0, SCAN = null;
+const staffLink = id => DIR + location.pathname.split('/').pop() + '?r=' + encodeURIComponent(id); // enlace del portal (este mismo archivo)
+const customerLink = id => DIR + '?r=' + encodeURIComponent(id);
+// Bienvenida y acceso ocupan toda la pantalla; ya dentro, arriba se ve la barra con el nombre del negocio.
+function showEmployee(id = 'login') { document.querySelectorAll('#employeeArea section').forEach(x => x.classList.add('hidden')); $(id).classList.remove('hidden'); document.body.classList.toggle('preAuth', id === 'splash' || id === 'login'); window.scrollTo(0, 0); }
+function scall(method, args, ok, quiet) {
+  if (!quiet) busy(1);
+  api(method, args).then(d => { if (!quiet) busy(-1); if (ok) ok(d); }, e => { if (!quiet) busy(-1); const m = e.message || String(e); if (/Sesión/.test(m)) { S = null; stopScan(); showEmployee('login'); } alert(m); });
+}
+function setBrand(c) { CFG = c; applyTheme(c.color); setLogo(c.logo); document.title = c.name + ' · Negocio'; $('brand').textContent = c.name; $('brand').classList.toggle('long', c.name.length > 22);
+  $('bizName').textContent = c.name; // el acceso muestra a qué negocio se entra
+  $('bizMark').innerHTML = validLogo(c.logo) ? '<img alt="" referrerpolicy="no-referrer" src="' + esc(c.logo) + '">' : esc((c.name.trim()[0] || 'A').toUpperCase());
+}
+function readCachedBrand() { try { const s = localStorage.getItem('cfg_' + RID); return s ? JSON.parse(s) : null; } catch (e) { return null; } }
+function saveCachedBrand(c) { try { localStorage.setItem('cfg_' + RID, JSON.stringify(c)); } catch (e) {} }
+function login() {
+  call('employeeLogin', [RID, $('uname').value, $('pin').value], x => {
+    S = x; $('pin').value = '';
+    try { localStorage.setItem('user_' + RID, $('uname').value); } catch (e) {}
+    $('roleBadge').textContent = x.role === 'ADMIN' ? 'Propietario' : 'Empleado';
+    $('hello').textContent = 'Hola, ' + (String(x.name || '').trim().split(/\s+/)[0] || 'equipo');
+    $('adminActions').classList.toggle('hidden', x.role === 'STAFF');
+    showEmployee('searchPanel'); loadDash();
+    if (x.ext) loadExtras();
+  });
+}
+// Opciones adicionales: el servidor las entrega solo a las sesiones autorizadas.
+function loadExtras() {
+  scall('getExtraUi', [RID, S.token], src => {
+    const d = new DOMParser().parseFromString(src, 'text/html'), t = d.getElementById('h'), j = d.getElementById('j');
+    if (!t || !j) return;
+    unloadExtras();
+    Array.from(document.importNode(t.content, true).children).forEach(el => { const tg = $(el.dataset.into); if (tg) tg.appendChild(el); });
+    const sc = document.createElement('script'); sc.setAttribute('data-ext', ''); sc.textContent = j.textContent; document.body.appendChild(sc);
+  });
+}
+function unloadExtras() { document.querySelectorAll('[data-ext]').forEach(n => n.remove()); try { delete window.EXT; } catch (e) { window.EXT = undefined; } }
+function loadDash() {
+  scall('dashboard', [RID, S.token], d => {
+    setBrand(d.restaurant); BR = d.branches;
+    $('btnBranches').classList.toggle('hidden', !d.branches || !S || S.role === 'STAFF');
+    $('btnSettings').classList.toggle('hidden', !!d.rulesFromHq && !(S && S.ext)); // en una sucursal, meta/premio/mínimo los define la sede
+    $('stats').innerHTML = `<div><b>${d.clients}</b><span>${d.shared ? 'Clientes (todas las sucursales)' : 'Clientes'}</span></div><div><b>${d.visits}</b><span>Visitas</span></div><div><b>${d.redemptions}</b><span>Canjes</span></div>` + (d.revenue > 0 ? `<div><b>${money(d.revenue)}</b><span>Ventas registradas</span></div>` : '');
+    const label = t => ({ VISITA: 'Visita', CANJE: 'Canje', AJUSTE: 'Ajuste de meta', RECUPERACION: 'Tarjeta recuperada', BAJA: 'Datos eliminados' })[t] || 'Tarjeta compartida';
+    $('recent').innerHTML = d.recent.map(x => `<div class="activity"><b>${esc(label(x.type))}</b><span>${esc(x.detail)} · ${esc(x.date)}</span></div>`).join('') || '<p class="hint">Aún no hay movimientos.</p>';
+  });
+}
+
+/* ── Escáner de QR: suma la visita en un paso ── */
+function tokenFrom(text) {
+  text = String(text || '').trim(); let t = text, r = '';
+  try { const u = new URL(text); t = u.searchParams.get('t') || ''; r = u.searchParams.get('r') || ''; } catch (e) {}
+  return /^[a-f0-9]{32}$/i.test(t) ? { t, r } : null;
+}
+async function askAmount() { // solo si el restaurante exige consumo mínimo; devuelve null si se cancela
+  const min = CFG && CFG.minPurchase > 0 ? CFG.minPurchase : 0; if (!min) return 0;
+  const a = await uiPrompt('Consumo del cliente (mínimo ' + money(min) + '):', { ok: 'Registrar visita', numeric: true }); if (a === null) return null;
+  const n = Number(String(a).replace(',', '.'));
+  if (!Number.isFinite(n) || n < min) { alert('El consumo debe ser de al menos ' + money(min) + ' para que cuente la visita.'); return null; }
+  return n;
+}
+async function startScan() {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { alert('Este navegador no permite usar la cámara. Usa la búsqueda manual.'); return; }
+  let stream;
+  try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false }); }
+  catch (e) { alert('No pude abrir la cámara. Permite el acceso a la cámara en el navegador o usa la búsqueda manual.'); return; }
+  const video = $('vid'); video.srcObject = stream; $('scanner').classList.remove('hidden');
+  try { await video.play(); } catch (e) {}
+  const det = ('BarcodeDetector' in window) ? new BarcodeDetector({ formats: ['qr_code'] }) : null;
+  const cv = document.createElement('canvas'), cx = cv.getContext('2d', { willReadFrequently: true });
+  SCAN = { stream, stop: false, timer: null };
+  const me = SCAN;
+  const tick = async () => {
+    if (me.stop) return;
+    let text = '';
+    try {
+      if (video.readyState >= 2) {
+        if (det) { const b = await det.detect(video); if (b.length) text = b[0].rawValue; }
+        else if (typeof jsQR === 'function' && video.videoWidth) {
+          const k = Math.min(1, 640 / video.videoWidth); cv.width = Math.round(video.videoWidth * k); cv.height = Math.round(video.videoHeight * k);
+          cx.drawImage(video, 0, 0, cv.width, cv.height);
+          const q = jsQR(cx.getImageData(0, 0, cv.width, cv.height).data, cv.width, cv.height); if (q) text = q.data;
+        }
+      }
+    } catch (e) {}
+    if (text) { stopScan(); onScanned(text); return; }
+    me.timer = setTimeout(tick, 160);
+  };
+  tick();
+}
+function stopScan() {
+  if (SCAN) { SCAN.stop = true; clearTimeout(SCAN.timer); SCAN.stream.getTracks().forEach(t => t.stop()); SCAN = null; }
+  $('scanner').classList.add('hidden');
+}
+async function onScanned(text) {
+  const x = tokenFrom(text);
+  if (!x) { alert('Ese QR no es una tarjeta de cliente.'); return; }
+  const amount = await askAmount(); if (amount === null) return;
+  scall('scanVisit', [RID, S.token, x.t, amount, newKey()], async v => {
+    if (v.action === 'PRIZE') { if (await uiConfirm(v.name + ' tiene un premio disponible (' + v.prize + '). ¿Canjearlo ahora?', 'Canjear premio')) redeem(v.id, true); return; }
+    toast('✅ Visita sumada a ' + v.name + ': ' + (v.prizeAvailable ? '¡ganó su premio! 🎁' : v.points + ' de ' + v.goal));
+    loadDash();
+  });
+}
+
+/* ── Búsqueda manual ── */
+function search() {
+  clearTimeout(SEARCH_TIMER); const q = $('query').value;
+  if (q.length < 2) { $('results').innerHTML = ''; return; }
+  const seq = ++SEARCH_SEQ;
+  SEARCH_TIMER = setTimeout(() => scall('findClients', [RID, S.token, q], list => {
+    if (seq !== SEARCH_SEQ) return; // respuesta vieja: ya se escribió otra cosa
+    $('results').innerHTML = list.map(c => `<div class="result"><b>${esc(c.name)}</b><span>${esc(c.phone)} · ${c.prizeAvailable ? '🎁 premio disponible' : c.points + '/' + c.goal + ' visitas'}</span><button class="primary" data-a="visit" data-id="${esc(c.id)}">Registrar visita</button>${c.prizeAvailable ? `<button class="secondary" data-a="redeem" data-id="${esc(c.id)}">Canjear premio</button>` : ''}<button class="textbtn" data-a="card" data-id="${esc(c.id)}">Mostrar tarjeta / recuperar acceso</button>${S && S.role === 'ADMIN' ? `<button class="textbtn" data-a="forget" data-id="${esc(c.id)}">Eliminar datos del cliente</button>` : ''}<div class="cardBox"></div></div>`).join('') || '<p class="hint">Sin resultados.</p>';
+  }, true), 250);
+}
+$('results').addEventListener('click', e => { const b = e.target.closest('button[data-a]'); if (!b) return; const id = b.dataset.id; if (b.dataset.a === 'visit') visit(id); else if (b.dataset.a === 'redeem') redeem(id); else if (b.dataset.a === 'card') showCard(id, b); else if (b.dataset.a === 'forget') forget(id); });
+async function forget(id) {
+  if (!(await uiConfirm('Se borrarán el nombre, el celular y los puntos de este cliente. No se puede deshacer. ¿Continuar?', 'Eliminar datos'))) return;
+  scall('forgetClient', [RID, S.token, id], () => { toast('Datos del cliente eliminados.'); search(); loadDash(); });
+}
+async function showCard(id, btn) {
+  if (!(await uiConfirm('Se mostrará el enlace personal del cliente y quedará registrado. ¿Continuar?', 'Mostrar tarjeta'))) return;
+  scall('getClientCard', [RID, S.token, id], c => { const box = btn.parentElement.querySelector('.cardBox'); box.innerHTML = qrImg(cardUrl(c)) + '<button class="secondary">Copiar enlace</button>'; box.querySelector('button').onclick = () => copyLink(cardUrl(c)); loadDash(); });
+}
+async function visit(id) {
+  const amount = await askAmount(); if (amount === null) return;
+  scall('registerVisit', [RID, S.token, id, amount, newKey()], () => { toast('✅ Visita registrada'); search(); loadDash(); });
+}
+async function redeem(id, asked) { if (!asked && !(await uiConfirm('¿Confirmar el canje del premio?', 'Canjear premio'))) return; scall('redeem', [RID, S.token, id, newKey()], () => { toast('🎁 Premio canjeado'); search(); loadDash(); }); }
+
+/* ── Configuración y equipo ── */
+function settings() { call('publicConfig', [RID], c => { setBrand(c); $('goal').value = c.goal; $('prize').value = c.prize; $('minp').value = c.minPurchase || 0; showEmployee('settings'); }); }
+function saveSettings() { scall('saveSettings', [RID, S.token, { goal: $('goal').value, prize: $('prize').value, minPurchase: $('minp').value }], r => { toast('Guardado.' + (r && r.adjusted ? ' Se ajustaron ' + r.adjusted + ' cliente(s) por el cambio de meta.' : '')); showEmployee('searchPanel'); loadDash(); }); }
+function employees() {
+  scall('listEmployees', [RID, S.token], list => {
+    $('empList').innerHTML = list.map(x => `<div class="activity"><b>${esc(x.name)}</b><span>${esc(x.role)}${x.self ? ' · tú' : ''}${x.locked ? ' · 🔒 bloqueado' : ''}</span>${x.locked ? `<button class="secondary" data-act="unlock" data-id="${esc(x.id)}">Desbloquear acceso</button>` : ''}${x.self ? '' : `<button class="textbtn" data-act="pin" data-id="${esc(x.id)}">Restablecer PIN</button>`}${x.self ? '' : `<button class="textbtn" data-act="off" data-id="${esc(x.id)}">Desactivar</button>`}</div>`).join('');
+    showEmployee('emps');
+  });
+}
+$('empList').addEventListener('click', async e => {
+  const b = e.target.closest('button[data-id]'); if (!b) return;
+  if (b.dataset.act === 'unlock') scall('unlockEmployee', [RID, S.token, b.dataset.id], () => { toast('Acceso desbloqueado.'); employees(); });
+  else if (b.dataset.act === 'pin') { const np = await uiPrompt('Nuevo PIN para este empleado (6–8 dígitos):', { secret: true, numeric: true, ok: 'Restablecer PIN' }); if (np !== null) scall('resetEmployeePin', [RID, S.token, b.dataset.id, np], () => toast('PIN actualizado. Sus sesiones abiertas se cerraron.')); }
+  else if (b.dataset.act === 'off' && await uiConfirm('¿Desactivar a este empleado? Perderá el acceso de inmediato.', 'Desactivar')) scall('deactivateEmployee', [RID, S.token, b.dataset.id], employees);
+});
+const linksHtml = id => { const c = customerLink(id), o = staffLink(id); return `<p class="hint">👥 Clientes (NFC / QR de mesa):</p><input readonly value="${esc(c)}" onfocus="this.select()"><button class="secondary" data-url="${esc(c)}">Copiar dirección de clientes</button><p class="hint">🔑 Encargado y equipo (nombre + PIN):</p><input readonly value="${esc(o)}" onfocus="this.select()"><button class="secondary" data-url="${esc(o)}">Copiar dirección del encargado</button>`; };
+function branches() {
+  scall('listBranches', [RID, S.token], b => {
+    $('branchInfo').textContent = 'Has creado ' + b.used + ' de ' + b.allowed + ' sucursal(es) permitidas.';
+    $('branchList').innerHTML = b.branches.map(x => `<div class="result"><b>${esc(x.name)}${x.active ? '' : ' (inactiva)'}</b>${linksHtml(x.id)}</div>`).join('') || '<p class="hint">Todavía no tienes sucursales.</p>';
+    $('branchForm').classList.toggle('hidden', b.used >= b.allowed);
+    showEmployee('branchPanel');
+  });
+}
+$('branchList').addEventListener('click', e => { const b = e.target.closest('button[data-url]'); if (b) copyLink(b.dataset.url); });
+function createBranch() {
+  scall('createBranch', [RID, S.token, { label: $('blabel').value, adminName: $('badmin').value, adminPin: $('bpin').value }], r => {
+    toast('✅ Sucursal creada: ' + r.name); $('blabel').value = ''; $('badmin').value = ''; $('bpin').value = ''; loadDash(); branches();
+  });
+}
+function addEmployee() { scall('addEmployee', [RID, S.token, $('ename').value, $('epin').value, $('erole').value], () => { toast('Empleado agregado.'); $('ename').value = ''; $('epin').value = ''; employees(); }); }
+async function changePin() {
+  const oldPin = await uiPrompt('PIN actual:', { secret: true, numeric: true, ok: 'Siguiente' }); if (oldPin === null) return;
+  const newPin = await uiPrompt('Nuevo PIN (6–8 dígitos):', { secret: true, numeric: true, ok: 'Cambiar PIN' }); if (newPin === null) return;
+  scall('changeMyPin', [RID, S.token, oldPin, newPin], m => alert(m));
+}
+function logout() { const t = S && S.token; S = null; stopScan(); unloadExtras(); $('pin').value = ''; $('results').innerHTML = ''; $('query').value = ''; if (t) api('employeeLogout', [RID, t]).catch(() => {}); $('btnBranches').classList.add('hidden'); showEmployee('login'); }
+
+try { const u = localStorage.getItem('user_' + RID); if (u) $('uname').value = u; } catch (e) {}
+if (!RID) { hideLoader(); $('loginForm').innerHTML = '<p>Abre esta página con el enlace de tu negocio (debe incluir <b>?r=</b>).</p>'; }
+else {
+  const cached = readCachedBrand();
+  if (cached && String(cached.id) === RID) { setBrand(cached); hideLoader(); }
+  api('publicConfig', [RID]).then(c => { saveCachedBrand(c); setBrand(c); hideLoader(); }).catch(e => { hideLoader(); if (!cached) alert(e.message || String(e)); });
+}
+</script><script>
+// En el demo cada celular guarda sus propios datos, así que la cámara no encontraría la tarjeta: se usa la búsqueda.
+startScan = () => { toast('En tu negocio aquí se abre la cámara. En el demo, busca al cliente abajo y toca «Registrar visita».'); $('query').focus(); };
+if (!$('uname').value) $('uname').value = 'Demo';
+</script></body></html>

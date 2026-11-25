@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f1f2f8">
+  <meta name="description" content="Prueba Akiko Citas: la app cuenta los días desde la última visita de cada cliente y te dice a quién escribirle hoy, con el WhatsApp listo.">
+  <title>Demo de Akiko Citas: seguimiento de clientes para uñas, pestañas y veterinarias | Akiko Tech</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f1f2f8;--surface:#fff;--ink:#17182b;--mute:#555a72;--line:#e4e6f0;--graphite:#1e2033;--graphite-2:#2a2d45;--purple:#7c3aed;--pink:#ec4899;--orange:#f97316;--teal:#14b8a6;--late:#e11d48;--week:#b45309;--ok:#0f9f6e;--ease:cubic-bezier(.23,1,.32,1);--clay:inset 0 2px 0 rgba(255,255,255,.9),inset 0 -4px 0 rgba(23,24,43,.05),0 16px 32px rgba(31,33,64,.10),0 4px 8px rgba(31,33,64,.06);--pressed:inset 0 3px 8px rgba(23,24,43,.10),inset 0 -1px 0 rgba(255,255,255,.8)}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    h1,h2,h3,.num{font-family:Sora,Inter,sans-serif;letter-spacing:-.02em;margin:0}
+    button,input,select,textarea{font:inherit;color:inherit}
+    button{cursor:pointer;border:0;background:none;transition:transform .14s var(--ease),background-color .18s var(--ease)}
+    button:active{transform:scale(.97)}
+    :focus-visible{outline:3px solid var(--purple);outline-offset:2px}
+    .demo-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;padding:9px 16px;background:var(--graphite);color:#fff;font-size:13px;font-weight:600;text-align:center}
+    .demo-bar a{color:#c4b5fd}
+    .wrap{width:min(1120px,100% - 32px);margin:0 auto}
+    .note{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;margin:14px 0 0;color:var(--mute);font-size:13px}
+    .link-btn{min-height:44px;padding:0 4px;color:var(--purple);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+    .switch{display:inline-flex;gap:4px;padding:5px;border-radius:999px;background:#e8e9f3;box-shadow:var(--pressed)}
+    .switch button{min-height:40px;padding:0 16px;border-radius:999px;color:var(--mute);font-weight:600;font-size:14px}
+    .switch button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--clay)}
+    .card{background:var(--surface);border:1.5px solid rgba(255,255,255,.9);border-radius:28px;box-shadow:var(--clay)}
+    .hero{position:relative;overflow:hidden;margin:16px 0 0;padding:24px 22px 64px;border-radius:34px;background:var(--graphite);color:#fff;box-shadow:0 20px 40px rgba(31,33,64,.22)}
+    .hero .waves{position:absolute;left:0;right:0;bottom:0;width:100%;height:70px;pointer-events:none}
+    .hero-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:6px 16px}
+    .hero h1{font-size:clamp(24px,5vw,32px)}
+    .hero-date{color:#b9bdd6;font-size:14px}
+    .tagline{margin:6px 0 18px;color:#d7d9ea;font-size:14px}
+    .stats{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .stat{padding:14px 12px;border-radius:22px;background:var(--graphite-2);box-shadow:inset 0 2px 0 rgba(255,255,255,.06),inset 0 -3px 0 rgba(0,0,0,.2)}
+    .stat .num{display:block;font-size:clamp(22px,5vw,30px);font-weight:800}
+    .stat span{color:#b9bdd6;font-size:12.5px;line-height:1.3}
+    .progress{position:relative;margin-top:16px}
+    .progress p{margin:0 0 8px;font-size:13px;color:#d7d9ea}
+    .bar{height:12px;border-radius:999px;background:#33365a;overflow:hidden}
+    .bar i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--orange),var(--pink),var(--purple));transition:width .3s var(--ease)}
+    .grid{display:grid;gap:18px;margin:18px 0 0}
+    @media(min-width:900px){.grid{grid-template-columns:1.15fr 1fr;align-items:start}}
+    section.card{padding:20px}
+    .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px}
+    .sec-head h2{font-size:20px}
+    .sec-head small{color:var(--mute)}
+    .helper{margin:0 0 12px;color:var(--mute);font-size:13px}
+    .list{margin:0;padding:0;list-style:none}
+    .row{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+    .row:first-child{border-top:0}
+    .dot{width:12px;height:12px;border-radius:50%;background:var(--tone)}
+    .row b{display:block;font-weight:600;overflow-wrap:anywhere}
+    .row small{display:block;color:var(--mute);font-size:13px}
+    .chip{display:inline-block;margin-top:3px;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--tone) 12%,transparent);color:var(--tone);font-size:12px;font-weight:600}
+    .late{--tone:var(--late)}.week{--tone:var(--week)}.ok{--tone:var(--ok)}
+    .wa{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:16px;background:#1fa855;color:#fff;font-weight:600;font-size:14px;box-shadow:inset 0 2px 0 rgba(255,255,255,.3),inset 0 -3px 0 rgba(0,0,0,.16),0 8px 16px rgba(31,168,85,.28)}
+    .wa svg{width:18px;height:18px;fill:currentColor}
+    .empty{margin:8px 0 0;padding:16px;border-radius:20px;background:#f7f8fc;color:var(--mute);text-align:center}
+    details.done{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+    details.done summary{min-height:44px;display:flex;align-items:center;cursor:pointer;color:var(--mute);font-weight:600}
+    .primary{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:54px;border-radius:18px;background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;font-weight:600;font-size:16px;box-shadow:inset 0 2px 0 rgba(255,255,255,.35),inset 0 -4px 0 rgba(0,0,0,.18),0 14px 28px rgba(124,58,237,.35)}
+    .search{width:100%;min-height:46px;margin:4px 0 6px;padding:0 16px;border:0;border-radius:18px;background:#f1f2f8;box-shadow:var(--pressed)}
+    .col{display:grid;gap:18px}
+    .cta{margin:22px 0 40px;padding:24px 22px;text-align:center}
+    .cta h2{font-size:22px}
+    .cta p{margin:6px 0 16px;color:var(--mute)}
+    .cta .primary{max-width:340px;margin:0 auto;text-decoration:none}
+    dialog{width:min(100%,520px);max-height:92svh;margin:auto auto 0;padding:0;border:0;border-radius:30px 30px 0 0;background:var(--surface);color:var(--ink);box-shadow:0 -20px 50px rgba(23,24,43,.25)}
+    @media(min-width:600px){dialog{margin:auto;border-radius:30px}}
+    dialog::backdrop{background:rgba(23,24,43,.45)}
+    dialog[open]{animation:sheet .26s var(--ease)}
+    @keyframes sheet{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+    .sheet{padding:22px 20px calc(20px + env(safe-area-inset-bottom))}
+    .sheet h3{font-size:20px;margin-bottom:4px}
+    .sheet p{margin:0 0 14px;color:var(--mute);font-size:14px}
+    .sheet.dark{background:var(--graphite);color:#fff}
+    .sheet.dark p{color:#c7cae0}
+    label{display:block;margin:12px 0 6px;font-weight:600;font-size:14px}
+    .field{width:100%;min-height:48px;padding:10px 14px;border:0;border-radius:18px;background:#f1f2f8;box-shadow:var(--pressed)}
+    textarea.field{min-height:110px;resize:vertical;background:#2a2d45;color:#fff;box-shadow:inset 0 3px 8px rgba(0,0,0,.3);line-height:1.45}
+    .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+    .ghost{min-height:50px;border-radius:18px;background:#f1f2f8;font-weight:600;box-shadow:var(--clay)}
+    .sheet.dark .ghost{background:#2a2d45;color:#fff;box-shadow:inset 0 2px 0 rgba(255,255,255,.06)}
+    .actions .wa{justify-content:center;min-height:50px;font-size:15px}
+    .error{min-height:18px;margin:8px 0 0;color:var(--late);font-size:13px}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .toast{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom));z-index:20;max-width:calc(100% - 32px);padding:12px 18px;border-radius:18px;background:var(--graphite);color:#fff;font-weight:500;box-shadow:0 14px 30px rgba(23,24,43,.3);opacity:0;transform:translate(-50%,12px);pointer-events:none;transition:opacity .2s var(--ease),transform .2s var(--ease)}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:380px){.stats{gap:6px}.stat{padding:12px 8px}.hero{padding:20px 16px 60px}.wa span{display:none}.wa{padding:0 12px}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  </style>
+</head>
+<body>
+  <div class="demo-bar">Demo de Akiko Citas: así sabes a quién escribirle hoy <a href="/">← Volver a Akiko</a></div>
+  <main class="wrap">
+    <div class="note">
+      <div class="switch" role="group" aria-label="Negocio de ejemplo">
+        <button type="button" data-biz="estetica">Uñas y pestañas</button>
+        <button type="button" data-biz="vet">Veterinaria</button>
+      </div>
+      <span>Datos de ejemplo. Lo que hagas se guarda solo en tu navegador. <button class="link-btn" type="button" id="reset">Reiniciar demo</button></span>
+    </div>
+
+    <header class="hero">
+      <div class="hero-top"><h1 id="biz-name"></h1><span class="hero-date" id="today"></span></div>
+      <p class="tagline">La app te avisa a ti; el mensaje lo mandas tú.</p>
+      <div class="stats">
+        <div class="stat"><span class="num" id="s-pending">0</span><span>Por contactar hoy</span></div>
+        <div class="stat"><span class="num" id="s-done">0</span><span>Contactadas hoy</span></div>
+        <div class="stat"><span class="num" id="s-sales">$0</span><span>Ventas de hoy</span></div>
+      </div>
+      <div class="progress"><p id="progress-text"></p><div class="bar"><i id="progress-bar"></i></div></div>
+      <svg class="waves" viewBox="0 0 400 70" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="w1" x1="0" x2="1"><stop offset="0" stop-color="#f97316"/><stop offset="1" stop-color="#ec4899"/></linearGradient>
+          <linearGradient id="w2" x1="0" x2="1"><stop offset="0" stop-color="#ec4899"/><stop offset="1" stop-color="#7c3aed"/></linearGradient>
+          <linearGradient id="w3" x1="0" x2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#3b82f6"/></linearGradient>
+        </defs>
+        <path d="M0 28C60 8 120 40 200 26S330 6 400 22V70H0Z" fill="url(#w1)" opacity=".9"/>
+        <path d="M0 42C80 26 150 56 230 40S350 30 400 40V70H0Z" fill="url(#w2)"/>
+        <path d="M0 56C70 46 160 66 250 54S360 50 400 56V70H0Z" fill="url(#w3)"/>
+      </svg>
+    </header>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="todo-title">
+        <div class="sec-head"><h2 id="todo-title">Escríbele hoy a…</h2><small id="todo-count"></small></div>
+        <p class="helper">Ordenadas por urgencia: rojo ya se pasó, naranja le toca esta semana.</p>
+        <ul class="list" id="todo"></ul>
+        <details class="done" id="done-box"><summary id="done-summary">Contactadas hoy</summary><ul class="list" id="done"></ul></details>
+      </section>
+
+      <div class="col">
+        <section class="card" aria-labelledby="reg-title">
+          <div class="sec-head"><h2 id="reg-title">Registrar servicio</h2></div>
+          <p class="helper">Lo registras al cobrar; toma 10 segundos. Desde ahí la app cuenta los días.</p>
+          <button class="primary" type="button" id="open-register">+ Registrar servicio</button>
+        </section>
+        <section class="card" aria-labelledby="all-title">
+          <div class="sec-head"><h2 id="all-title">Todas tus clientas</h2><small id="all-count"></small></div>
+          <input class="search" type="search" id="search" placeholder="Buscar por nombre" aria-label="Buscar clienta">
+          <ul class="list" id="all"></ul>
+        </section>
+      </div>
+    </div>
+
+    <section class="card cta">
+      <h2>¿Lo quieres para tu negocio?</h2>
+      <p>$199 al mes o $1,500 pago único. Lo instalamos con tus servicios y te enseñamos a usarlo.</p>
+      <a class="primary" href="https://wa.me/525515338822?text=Hola%2C%20vi%20el%20demo%20de%20Akiko%20Citas%20y%20quiero%20informes" target="_blank" rel="noopener">Pedir informes por WhatsApp</a>
+    </section>
+  </main>
+
+  <dialog id="msg-dialog" aria-labelledby="msg-title">
+    <form method="dialog" class="sheet dark">
+      <h3 id="msg-title">Mensaje para</h3>
+      <p>Revísalo, cámbialo si quieres y mándalo desde tu WhatsApp.</p>
+      <textarea class="field" id="msg-text" aria-label="Mensaje"></textarea>
+      <div class="actions">
+        <button class="wa" type="button" id="msg-open"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.6 11.6 0 0 1-4.5-4 5 5 0 0 1-1-2.7 2.9 2.9 0 0 1 .9-2.2 1 1 0 0 1 .7-.3h.5c.2 0 .4 0 .6.5l.8 1.9a.5.5 0 0 1 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6a8 8 0 0 0 1.5 1.8 7.3 7.3 0 0 0 2.1 1.3c.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.8.9c.3.1.4.2.5.3a2.2 2.2 0 0 1-.1 1.2Z"/></svg>Abrir WhatsApp</button>
+        <button class="ghost" type="button" id="msg-sent">Ya lo mandé</button>
+      </div>
+      <button class="link-btn" value="cancel" style="color:#c4b5fd;margin-top:6px">Cerrar</button>
+    </form>
+  </dialog>
+
+  <dialog id="reg-dialog" aria-labelledby="reg-sheet-title">
+    <form class="sheet" id="reg-form" novalidate>
+      <h3 id="reg-sheet-title">Registrar servicio</h3>
+      <p>Al guardar, la visita queda con fecha de hoy.</p>
+      <label for="reg-client">Clienta</label>
+      <select class="field" id="reg-client"></select>
+      <div id="new-fields" hidden>
+        <label for="reg-name" id="reg-name-label">Nombre</label>
+        <input class="field" id="reg-name" autocomplete="off">
+        <div id="pet-field">
+          <label for="reg-pet">Mascota</label>
+          <input class="field" id="reg-pet" autocomplete="off" placeholder="Ej. Toby (perrito)">
+        </div>
+        <label for="reg-phone">Celular</label>
+        <input class="field" id="reg-phone" inputmode="numeric" maxlength="10" placeholder="10 dígitos">
+      </div>
+      <div class="two">
+        <div><label for="reg-service">Servicio</label><select class="field" id="reg-service"></select></div>
+        <div><label for="reg-price">Precio</label><input class="field" id="reg-price" inputmode="decimal"></div>
+      </div>
+      <p class="error" id="reg-error" aria-live="polite"></p>
+      <div class="actions">
+        <button class="ghost" type="button" id="reg-cancel">Cancelar</button>
+        <button class="primary" type="submit">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const KEY = 'akiko-citas-demo-v1';
+    const BIZ = {
+      estetica: {
+        name: 'Studio Violeta', zone: 'Uñas y pestañas · Coyoacán', pets: false,
+        services: [['Uñas acrílicas', 21, 420, '💅'], ['Relleno acrílico', 21, 280, '💅'], ['Gelish', 15, 250, '💅'], ['Extensión de pestañas', 21, 650, '✨'], ['Retoque de pestañas', 14, 350, '✨'], ['Lifting de pestañas', 45, 450, '✨'], ['Diseño de cejas', 21, 180, '✨']],
+        clients: [['Laura M.', '', 1, 24], ['Sofía R.', '', 4, 19], ['Paty G.', '', 2, 18], ['Andrea L.', '', 3, 26], ['Mónica T.', '', 5, 50], ['Fer C.', '', 0, 16], ['Diana P.', '', 6, 9], ['Rocío V.', '', 2, 4], ['Karla S.', '', 4, 3], ['Lupita H.', '', 1, 20]]
+      },
+      vet: {
+        name: 'Veterinaria Huellitas', zone: 'Mascotas · Coapa', pets: true,
+        services: [['Vacuna anual', 365, 450, '🐾'], ['Desparasitación', 90, 180, '🐾'], ['Baño y corte', 30, 320, '🐾'], ['Revisión general', 180, 350, '🐾']],
+        clients: [['Carmen', 'Lola (perrita)', 1, 96], ['Jorge', 'Michi (gato)', 0, 371], ['Ana', 'Rocky (perro)', 2, 35], ['Luis', 'Nala (perrita)', 2, 26], ['Elena', 'Simba (gato)', 1, 85], ['Raúl', 'Toby (perro)', 3, 160], ['Marisol', 'Canela (perrita)', 2, 12], ['Beto', 'Pelusa (gata)', 1, 40], ['Irma', 'Max (perro)', 0, 200], ['Pili', 'Kira (perrita)', 3, 178]]
+      }
+    };
+
+    const $ = id => document.getElementById(id);
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+    const money = n => '$' + Math.round(n).toLocaleString('es-MX');
+    const DAY = 86400000;
+    const dayStart = d => { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; };
+    const today = dayStart(Date.now());
+    const iso = d => { const x = new Date(d); return `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, '0')}-${String(x.getDate()).padStart(2, '0')}`; };
+    const parse = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+    const TODAY = iso(today);
+
+    function seed(biz) {
+      const b = BIZ[biz];
+      return {
+        biz, day: TODAY, sales: 0, done: [],
+        clients: b.clients.map(([name, pet, svc, ago], i) => ({ id: biz + i, name, pet, phone: '5500' + String(123456 + i * 7919).slice(-6), svc, last: iso(today - ago * DAY) }))
+      };
+    }
+
+    let state;
+    function load() {
+      try { state = JSON.parse(localStorage.getItem(KEY)); } catch { state = null; }
+      if (!state || !BIZ[state.biz] || !Array.isArray(state.clients)) state = seed('estetica');
+      if (state.day !== TODAY) { state.day = TODAY; state.sales = 0; state.done = []; }
+    }
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} }
+
+    const biz = () => BIZ[state.biz];
+    const svcOf = c => biz().services[c.svc];
+    function status(c) {
+      const days = Math.round((today - parse(c.last)) / DAY);
+      const left = svcOf(c)[1] - days;
+      return { days, left, tone: left < 0 ? 'late' : left <= 7 ? 'week' : 'ok' };
+    }
+    const label = c => c.pet ? `${c.name} · ${c.pet}` : c.name;
+    const petName = c => c.pet.split(' (')[0];
+    const firstName = c => c.name.split(' ')[0];
+    const when = s => s.left < 0 ? `${s.days} días · se pasó por ${-s.left}` : s.left === 0 ? `${s.days} días · le toca hoy` : `${s.days} días · toca en ${s.left}`;
+    const fmtDate = d => d.toLocaleDateString('es-MX', { day: 'numeric', month: 'short' }).replace('.', '');
+
+    function message(c) {
+      const [name, , , emoji] = svcOf(c);
+      const svc = name.toLowerCase();
+      return biz().pets
+        ? `¡Hola ${firstName(c)}! A ${petName(c)} ya le toca su ${svc} ${emoji} ¿Te la agendo esta semana?`
+        : `¡Hola ${firstName(c)}! Ya te toca tu ${svc} ${emoji} ¿Te agendo esta semana?`;
+    }
+
+    const WA_ICON = document.querySelector('#msg-open svg').outerHTML;
+
+    function render() {
+      document.querySelectorAll('[data-biz]').forEach(b => b.setAttribute('aria-pressed', b.dataset.biz === state.biz));
+      $('biz-name').textContent = biz().name;
+      $('today').textContent = `${biz().zone} · ${DATE}`;
+      document.querySelectorAll('#all-title').forEach(h => h.textContent = biz().pets ? 'Todos tus clientes' : 'Todas tus clientas');
+
+      const rows = state.clients.map(c => ({ c, s: status(c) }));
+      const todo = rows.filter(r => r.s.tone !== 'ok' && !state.done.includes(r.c.id)).sort((a, b) => a.s.left - b.s.left);
+      const done = rows.filter(r => state.done.includes(r.c.id));
+
+      $('todo').innerHTML = todo.length ? todo.map(({ c, s }) => `
+        <li class="row ${s.tone}"><span class="dot" aria-hidden="true"></span>
+          <div><b>${esc(label(c))}</b><small>${esc(svcOf(c)[0])} · ${when(s)}</small><span class="chip">${s.tone === 'late' ? 'Atrasada' : 'Esta semana'}</span></div>
+          <button class="wa" type="button" data-msg="${esc(c.id)}" aria-label="Escribirle a ${esc(c.name)}">${WA_ICON}<span>WhatsApp</span></button></li>`).join('')
+        : '<li class="empty">¡Listo! Hoy no te falta nadie por contactar.</li>';
+      $('done').innerHTML = done.map(({ c }) => `<li class="row ok"><span class="dot" aria-hidden="true"></span><div><b>${esc(label(c))}</b><small>Mensaje enviado hoy</small></div><span></span></li>`).join('');
+      $('done-box').hidden = !done.length;
+      $('done-summary').textContent = `Contactadas hoy (${done.length})`;
+
+      const total = todo.length + done.length;
+      $('s-pending').textContent = todo.length;
+      $('s-done').textContent = done.length;
+      $('s-sales').textContent = money(state.sales);
+      $('todo-count').textContent = `${todo.length} pendientes`;
+      $('progress-text').textContent = `Contactadas ${done.length} de ${total}`;
+      $('progress-bar').style.width = total ? `${(done.length / total) * 100}%` : '100%';
+
+      const q = $('search').value.trim().toLowerCase();
+      const list = rows.filter(r => label(r.c).toLowerCase().includes(q)).sort((a, b) => a.s.left - b.s.left);
+      $('all-count').textContent = `${state.clients.length} en total`;
+      $('all').innerHTML = list.map(({ c, s }) => {
+        const next = new Date(parse(c.last).getTime() + svcOf(c)[1] * DAY);
+        return `<li class="row ${s.tone}"><span class="dot" aria-hidden="true"></span><div><b>${esc(label(c))}</b><small>${esc(svcOf(c)[0])} · próxima visita aprox. ${fmtDate(next)}</small></div><span class="chip">${s.tone === 'late' ? 'Atrasada' : s.tone === 'week' ? 'Esta semana' : 'Al día'}</span></li>`;
+      }).join('') || '<li class="empty">No hay nadie con ese nombre.</li>';
+    }
+
+    let toastTimer;
+    function toast(text) {
+      $('toast').textContent = text;
+      $('toast').classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => $('toast').classList.remove('show'), 2600);
+    }
+
+    let current = null;
+    $('todo').addEventListener('click', e => {
+      const btn = e.target.closest('[data-msg]');
+      if (!btn) return;
+      current = state.clients.find(c => c.id === btn.dataset.msg);
+      $('msg-title').textContent = `Mensaje para ${label(current)}`;
+      $('msg-text').value = message(current);
+      $('msg-dialog').showModal();
+    });
+    $('msg-open').addEventListener('click', () => window.open('https://wa.me/?text=' + encodeURIComponent($('msg-text').value), '_blank', 'noopener'));
+    $('msg-sent').addEventListener('click', () => {
+      if (!state.done.includes(current.id)) state.done.push(current.id);
+      save(); render();
+      $('msg-dialog').close();
+      toast(`Anotado: ya le escribiste a ${firstName(current)}`);
+    });
+
+    function fillRegister() {
+      $('reg-client').innerHTML = state.clients.map(c => `<option value="${esc(c.id)}">${esc(label(c))}</option>`).join('') + `<option value="new">+ ${biz().pets ? 'Nuevo cliente' : 'Nueva clienta'}</option>`;
+      $('reg-service').innerHTML = biz().services.map((s, i) => `<option value="${i}">${esc(s[0])}</option>`).join('');
+      $('reg-name-label').textContent = biz().pets ? 'Nombre del dueño' : 'Nombre';
+      $('pet-field').hidden = !biz().pets;
+      $('reg-name').value = $('reg-pet').value = $('reg-phone').value = '';
+      $('reg-error').textContent = '';
+      syncRegister();
+    }
+    function syncRegister() {
+      const isNew = $('reg-client').value === 'new';
+      $('new-fields').hidden = !isNew;
+      if (!isNew) $('reg-service').value = state.clients.find(c => c.id === $('reg-client').value).svc;
+      $('reg-price').value = biz().services[$('reg-service').value][2];
+    }
+    $('open-register').addEventListener('click', () => { fillRegister(); $('reg-dialog').showModal(); });
+    $('reg-cancel').addEventListener('click', () => $('reg-dialog').close());
+    $('reg-client').addEventListener('change', syncRegister);
+    $('reg-service').addEventListener('change', () => { $('reg-price').value = biz().services[$('reg-service').value][2]; });
+    $('reg-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const price = Number($('reg-price').value);
+      if (!(price > 0)) { $('reg-error').textContent = 'Escribe un precio mayor que cero.'; return; }
+      let client;
+      if ($('reg-client').value === 'new') {
+        const name = $('reg-name').value.trim(), phone = $('reg-phone').value.trim(), pet = $('reg-pet').value.trim();
+        if (!name) { $('reg-error').textContent = 'Escribe el nombre.'; return; }
+        if (biz().pets && !pet) { $('reg-error').textContent = 'Escribe el nombre de la mascota.'; return; }
+        if (!/^\d{10}$/.test(phone)) { $('reg-error').textContent = 'El celular debe tener 10 dígitos.'; return; }
+        client = { id: state.biz + Date.now(), name, pet, phone };
+        state.clients.push(client);
+      } else {
+        client = state.clients.find(c => c.id === $('reg-client').value);
+      }
+      client.svc = Number($('reg-service').value);
+      client.last = TODAY;
+      state.done = state.done.filter(id => id !== client.id);
+      state.sales += price;
+      save(); render();
+      $('reg-dialog').close();
+      toast(`Listo, ${firstName(client)} vuelve a contar desde hoy`);
+    });
+
+    $('search').addEventListener('input', render);
+    document.querySelectorAll('[data-biz]').forEach(b => b.addEventListener('click', () => {
+      if (b.dataset.biz === state.biz) return;
+      state = seed(b.dataset.biz); save(); render();
+    }));
+    $('reset').addEventListener('click', () => {
+      try { localStorage.removeItem(KEY); } catch {}
+      state = seed(state.biz); render(); toast('Demo reiniciado');
+    });
+
+    const DATE = today.toLocaleDateString('es-MX', { weekday: 'long', day: 'numeric', month: 'long' });
+    load(); render();
+  </script>
+</body>
+</html>

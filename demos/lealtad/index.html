@@ -1,0 +1,157 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Prueba Akiko Lealtad: crea tu tarjeta de sellos digital de Café Bruma y suma visitas desde el portal del negocio."><meta name="theme-color" content="#eceef3"><meta name="referrer" content="no-referrer"><title>Demo de Akiko Lealtad: tarjeta de sellos digital | Akiko Tech</title><link rel="preload" href="fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="fonts/fonts.css"><link rel="icon" href="icon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="icon-180.png"><link rel="stylesheet" href="styles.css"><style>.demoBar{position:relative;z-index:50;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;padding:9px 14px;background:var(--deep,#12112a);color:#fff;font:600 13px/1.4 var(--font,system-ui);text-align:center}.demoBar a,.demoBar button{color:#fff;font:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;width:auto;min-height:0;margin:0;box-shadow:none}.demoBar a[aria-current]{text-decoration:none;opacity:.7}</style><script id="qrLib" defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script></head><body class="clientPage"><div class="demoBar"><span>Demo de Akiko Lealtad · Café Bruma</span><a href="./" aria-current="page">Vista del cliente</a><a href="negocio.html">Vista del negocio</a><button type="button" onclick="resetDemo()">Reiniciar demo</button><a href="/">← Volver a Akiko</a></div>
+<div class="scene" aria-hidden="true"><svg class="sceneWave waveBack" viewBox="0 0 1440 620" preserveAspectRatio="none"><path d="M0 200C220 110 380 250 610 192S1030 74 1440 156V620H0Z"/></svg><svg class="sceneWave waveMid" viewBox="0 0 1440 620" preserveAspectRatio="none"><path d="M0 290C230 180 420 330 660 252S1100 170 1440 246V620H0Z"/></svg><svg class="sceneWave waveNear" viewBox="0 0 1440 620" preserveAspectRatio="none"><path d="M0 382C210 300 410 415 650 348S1110 275 1440 355V620H0Z"/></svg><svg class="sceneWave waveFront" viewBox="0 0 1440 620" preserveAspectRatio="none"><path d="M0 488C230 398 460 505 700 448S1120 400 1440 470V620H0Z"/></svg><svg class="scenePlant" viewBox="0 0 180 220"><path d="M86 214C88 155 82 93 55 34M87 162C116 130 131 104 134 70M82 120C54 105 38 82 31 58" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path d="M53 35C19 27 13 7 15 5c29-2 47 9 48 29M133 70c7-32 31-44 34-42 4 28-8 46-31 51M31 59C3 48 0 28 2 26c25 3 41 16 39 36" fill="currentColor"/></svg></div>
+<div id="loader" class="loader" role="status" aria-label="Cargando Akiko"><div class="loaderWaves"><i></i><i></i><i></i></div><img class="loaderMascot" src="assets/akiko-mascota.png" alt="" width="220" height="220"><img class="loaderWordmark" src="assets/akiko-wordmark.png" alt="akiko tech" width="300" height="62"><span class="loaderName">lealtad</span><div class="loaderTrack"><i></i></div></div>
+<div id="busy" class="hidden" aria-live="polite"><div class="spin"></div></div><div id="toast" class="hidden" role="status"></div>
+<div class="app"><header><div id="brand"></div></header>
+<main>
+<div class="tray homeTray"><section id="home" class="panel hero"><div class="heroStamps" aria-hidden="true"><span class="on" style="--i:0"><b data-i="star"></b></span><span class="on" style="--i:1"><b data-i="star"></b></span><span class="on" style="--i:2"><b data-i="star"></b></span><span class="on" style="--i:3"><b data-i="star"></b></span><span><b data-i="star"></b></span><span><b data-i="gift"></b></span></div><span class="eyebrow">Bienvenido</span><h1 id="title"></h1><p id="homeMsg">Acumula visitas y disfruta tus recompensas.</p><div id="homeBtns"><button class="primary" onclick="googleReview()"><i data-i="star"></i> Calificar en Google</button><button id="webBtn" class="secondary hidden" onclick="openWeb()"><span class="socialIco webIco" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="3.5" width="19" height="17" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 8h18M6 5.8h.1M9 5.8h.1M12 5.8h.1M7 12h10M7 15h7M7 18h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span> Horario, contacto y más</button><button id="instagramBtn" class="secondary hidden" onclick="openSocial('instagram')"><span class="socialIco igIco" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="#fff" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="#fff"/></svg></span> Visitar nuestro Instagram</button><button id="facebookBtn" class="secondary hidden" onclick="openSocial('facebook')"><span class="socialIco fbIco" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="#fff" d="M13.6 21v-7.6h2.6l.4-3.1h-3V8.4c0-.9.3-1.5 1.5-1.5h1.6V4.1c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H7.9v3.1h2.6V21z"/></svg></span> Visitar nuestro Facebook</button><button id="tiktokBtn" class="secondary hidden" onclick="openSocial('tiktok')"><span class="socialIco ttIco" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1c-1.5 0-2.8-.4-4-1.2v6.4c0 3.4-2.6 5.8-5.8 5.8S5 18.6 5 15.3c0-3.4 2.9-6 6.4-5.6v3.2c-1.6-.4-3.2.8-3.2 2.4 0 1.3 1.1 2.4 2.5 2.4s2.6-1 2.6-2.6V3z"/></svg></span> Visitar nuestro TikTok</button><button class="secondary" onclick="show('register')">Crear mi tarjeta digital</button><button class="textbtn" onclick="show('existing')">Ya tengo una tarjeta</button></div></section></div>
+<section id="register" class="panel hidden"><h2>Tu tarjeta empieza aquí</h2><label for="name">Nombre</label><input id="name" placeholder="¿Cómo te llamas?" maxlength="80" autocomplete="name"><label for="phone">Teléfono</label><input id="phone" inputmode="tel" placeholder="10 dígitos o código de país" maxlength="20" autocomplete="tel"><p class="hint">Usaremos tu teléfono para reconocer tu tarjeta en este restaurante.</p><label class="check"><input type="checkbox" id="accept"><span>He leído y acepto el <a href="#" onclick="showNotice();return false">aviso de privacidad</a>.</span></label><button class="primary" onclick="register()">Crear tarjeta</button><button class="textbtn" onclick="show('home')">Volver</button></section>
+<section id="existing" class="panel hidden"><h2>Recuperar mi tarjeta</h2><p>Escribe el celular y el nombre con los que te registraste.</p><label for="rphone">Celular</label><input id="rphone" inputmode="tel" placeholder="Tu número de celular" maxlength="20" autocomplete="tel"><label for="rname">Nombre</label><input id="rname" placeholder="Tu nombre" maxlength="80" autocomplete="name"><button class="primary" onclick="recover()">Recuperar mi tarjeta</button><p class="hint">No importan los acentos ni las mayúsculas. Si no puedes, pide ayuda al personal del restaurante.</p><details><summary>Tengo mi código de tarjeta</summary><input id="token" placeholder="Código de tarjeta" maxlength="40" aria-label="Código de tarjeta"><button class="secondary" onclick="loadCard()">Ver mi tarjeta con el código</button></details><button class="textbtn" onclick="show('home')">Volver</button></section>
+<section id="card" class="panel hidden"></section>
+<section id="privacy" class="panel hidden"><div id="noticeBody"></div><button class="primary" onclick="show(NOTICE_BACK)">Volver</button></section>
+</main><p id="foot" class="center hint hidden"><a href="#" onclick="showNotice();return false">Aviso de privacidad</a></p></div>
+<script src="common.js"></script><script src="demo.js"></script>
+<script>
+iconize(document.body);
+let CFG = null, CURRENT = null, CUR = 'home', NOTICE_BACK = 'home';
+const KEY = 'card_' + RID;
+const CFG_KEY = 'cfg_' + RID;
+function show(id) { CUR = id; document.querySelectorAll('main section').forEach(x => x.classList.add('hidden')); $(id).classList.remove('hidden'); }
+function paintConfig(c) {
+  CFG = c; applyTheme(c.color); setLogo(c.logo); document.title = c.name; $('brand').textContent = c.name; $('brand').classList.toggle('long', c.name.length > 22); $('title').textContent = c.name; $('webBtn').classList.toggle('hidden', !c.web); $('instagramBtn').classList.toggle('hidden', !c.instagram); $('facebookBtn').classList.toggle('hidden', !c.facebook); $('tiktokBtn').classList.toggle('hidden', !c.tiktok); $('foot').classList.remove('hidden');
+  $('homeMsg').textContent = 'Acumula visitas y gana ' + c.prize + '.' + (c.minPurchase > 0 ? ' Cada visita cuenta con un consumo mínimo de ' + money(c.minPurchase) + '.' : '');
+}
+function getConfigLocal() { try { const s = localStorage.getItem(CFG_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } }
+function saveConfigLocal(c) { try { localStorage.setItem(CFG_KEY, JSON.stringify(c)); } catch (e) {} }
+function saveLocal(t) { try { localStorage.setItem(KEY, t); localStorage.setItem('akiko_last', DIR + '?r=' + encodeURIComponent(RID) + '&t=' + encodeURIComponent(t)); } catch (e) {} }
+function getLocal() { try { return localStorage.getItem(KEY) || ''; } catch (e) { return ''; } }
+function forgetLocal() { try { localStorage.removeItem(KEY); localStorage.removeItem('akiko_last'); } catch (e) {} }
+function openWeb() { if (CFG && CFG.web) window.open(CFG.web, '_blank', 'noopener,noreferrer'); }
+function openSocial(network) { const url = CFG && CFG[network]; if (url) window.open(url, '_blank', 'noopener,noreferrer'); }
+function recover() { call('recoverCard', [RID, $('rphone').value, $('rname').value], c => { saveLocal(c.token); renderCard(c); }); }
+function googleReview() { if (CFG && CFG.google) window.open(CFG.google, '_blank', 'noopener,noreferrer'); }
+// Aviso de privacidad: texto fijo de la plataforma (Akiko). La versión viene de AVISO_VERSION en Code.gs.
+function noticeHtml(c) {
+  return `<h2>Aviso de privacidad</h2><p><b>Akiko</b></p><p class="hint">Versión: ${esc(c.noticeVersion || '')}<br>Fecha: 18 de octubre de 2026</p>
+<h3>¿Quién es responsable de tus datos?</h3><p>Akiko opera la plataforma tecnológica de fidelización y programas de lealtad.</p><p>Correo electrónico: <a href="mailto:akikohedz@gmail.com">akikohedz@gmail.com</a></p><p>El establecimiento donde te registres será responsable del tratamiento de tus datos cuando determine las finalidades de su programa de lealtad. Akiko actuará como proveedor tecnológico para administrar dichos datos conforme a las instrucciones del establecimiento.</p>
+<h3>¿Qué datos recopilamos?</h3><p>Tu nombre y número de celular, historial de visitas, puntos acumulados y recompensas. Cuando el establecimiento establezca un consumo mínimo, también se registrará el monto de tu compra.</p><p>No solicitamos datos personales sensibles mediante el programa de lealtad.</p>
+<h3>¿Para qué utilizamos tus datos?</h3><p>Para crear y administrar tu tarjeta digital de lealtad, identificarte, registrar tus visitas, acumular puntos, entregar recompensas y ayudarte a recuperar tu tarjeta.</p><p>No vendemos tus datos personales ni los utilizamos para enviarte publicidad ajena a las finalidades informadas.</p>
+<h3>¿Con quién compartimos tus datos?</h3><p>Utilizamos proveedores tecnológicos, incluidos Google y servicios de alojamiento, para mantener el funcionamiento de la plataforma.</p><p>Cuando un establecimiento tenga varias sucursales participantes, los datos necesarios podrán estar disponibles entre ellas para permitir el uso de la misma tarjeta y sus beneficios.</p>
+<h3>Tus derechos ARCO</h3><p>Tienes derecho a acceder, rectificar, cancelar u oponerte al tratamiento de tus datos personales.</p><p>Puedes enviar tu solicitud a <a href="mailto:akikohedz@gmail.com">akikohedz@gmail.com</a>, indicando el derecho que deseas ejercer y proporcionando la información necesaria para identificarte y localizar tus datos.</p><p>Tu solicitud será atendida conforme a los plazos y procedimientos establecidos por la legislación mexicana aplicable.</p><p>También puedes solicitar la eliminación de tu tarjeta mediante el botón «Eliminar mis datos» disponible en la plataforma.</p>
+<h3>¿Cuánto tiempo conservamos tus datos?</h3><p>Los datos se conservarán durante el tiempo necesario para administrar tu participación en el programa de lealtad y cumplir las obligaciones legales aplicables.</p><p>Al solicitar la eliminación de tu tarjeta, se realizará la cancelación de los datos correspondientes, respetando los periodos de conservación o bloqueo que legalmente procedan.</p>
+<p class="hint">Última actualización: 18 de octubre de 2026.</p>`;
+}
+function showNotice() { if (!CFG) return; $('noticeBody').innerHTML = noticeHtml(CFG); if (CUR !== 'privacy') NOTICE_BACK = CUR; show('privacy'); }
+async function deleteMine() {
+  if (!CURRENT || !(await uiConfirm('¿Eliminar tu tarjeta y tus datos? No se puede deshacer y perderás tus puntos.', 'Eliminar'))) return;
+  call('deleteMyCard', [RID, CURRENT.token], () => { forgetLocal(); CURRENT = null; alert('Listo: eliminamos tu tarjeta y tus datos.'); show('home'); });
+}
+function register() {
+  if (!$('accept').checked) { alert('Para crear tu tarjeta debes aceptar el aviso de privacidad.'); return; }
+  call('registerClient', [RID, { name: $('name').value, phone: $('phone').value, accepted: true }], c => { saveLocal(c.token); renderCard(c, true); }); }
+function loadCard() { call('getClientByToken', [RID, $('token').value.trim()], c => { if (c) { saveLocal(c.token); renderCard(c); } else alert('Tarjeta no encontrada.'); }); }
+// prev = puntos que ya se veían (actualización en vivo): solo se animan los sellos nuevos.
+function renderCard(c, fresh, prev) {
+  const live = prev != null && CUR === 'card';
+  CURRENT = c; if (!live) show('card');
+  const goal = Math.max(1, Number(c.goal || 1)), pts = Math.max(0, Number(c.points || 0)), won = !!c.prizeAvailable;
+  const left = Math.max(0, goal - pts), pct = won ? 100 : Math.min(100, Math.round(pts / goal * 100));
+  const cols = goal <= 5 ? goal : goal === 6 ? 3 : goal <= 8 ? 4 : goal <= 10 ? 5 : 6;
+  const stamps = goal > 30 ? '' : Array.from({length: goal}, (_, i) => {
+    const on = i < pts || won, old = live && i < prev;
+    return `<span class="stamp ${on ? 'isOn' : ''}${old ? ' still' : ''}" style="--i:${live ? Math.max(0, i - prev) : i}"><em>${i + 1}</em><i data-i="${!on && i === goal - 1 ? 'gift' : 'star'}"></i></span>`;
+  }).join('');
+  const status = won
+    ? '<span class="cardStatus reward"><i data-i="gift"></i> Premio listo para canjear</span>'
+    : `<span class="cardStatus">${left === 1 ? '<i data-i="spark"></i> Una visita más' : `<i data-i="spark"></i> ${left} visitas para tu premio`}</span>`;
+  const title = esc(c.restaurant || 'Sello');
+  const f0 = String(c.name || '').trim().split(/\s+/)[0] || '', nm = (f0 === f0.toLowerCase() || f0 === f0.toUpperCase()) ? f0.charAt(0).toUpperCase() + f0.slice(1).toLowerCase() : f0;
+  const greetSub = won ? 'Tienes un premio listo para canjear.' : c.points === 0 ? 'Tu tarjeta está lista. Muéstrala en tu primera visita.' : left === 1 ? 'Una visita más y es tuyo: ' + esc(c.prize) + '.' : 'Cada visita te acerca a ' + esc(c.prize) + '.';
+  const note = won ? 'Premio listo' : left === 1 ? 'Te falta 1 sello' : 'Te faltan ' + left + ' sellos';
+  const sinceD = c.since ? new Date(c.since + 'T12:00:00') : null; // «Miembro desde» (fecha de alta, si el servidor la envía)
+  const since = sinceD && !isNaN(sinceD) ? sinceD.toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric' }).replace(/\.|de /g, '') : '';
+  $('card').innerHTML = `
+    <div class="loyaltyShell${live ? ' live' : ''}">
+      <div class="greet"><h1>${fresh ? 'Te damos la bienvenida' : 'Hola de nuevo'}${nm ? ', ' + esc(nm) : ''}</h1><span class="tierPill"><i data-i="star"></i> Miembro</span><p>${greetSub}</p></div>
+      <div class="ticketWrap ${won ? 'won' : ''}" role="group" aria-label="Tarjeta de lealtad de ${title}: ${won ? goal : pts} de ${goal} visitas">
+        <div class="ticketBadge" aria-hidden="true"><small>Visitas</small><b>${won ? goal : pts}</b><small>de ${goal}</small></div>
+        <article class="ticket">
+          <i class="tGuide" aria-hidden="true"></i><i class="spk a" aria-hidden="true"></i><i class="spk b" aria-hidden="true"></i><i class="spk c" aria-hidden="true"></i><i class="spk d" aria-hidden="true"></i>
+          <span class="tSide l" aria-hidden="true">Visita · Suma · Gana</span><span class="tSide r" aria-hidden="true">${esc(c.name)}</span>
+          <header class="tHead"><h2>${title}</h2><span class="tSub">Tarjeta de lealtad</span></header>
+          ${stamps ? `<div class="stampGrid" style="--cols:${cols}">${stamps}</div>` : ''}
+          <i class="tBar" aria-hidden="true"></i>
+          <p class="tPrize">${won ? '¡Premio desbloqueado!' : esc(c.prize)}</p>
+          <div class="tProgress"><div class="progressTrack"><i style="width:${pct}%"></i></div><b>${pct}%</b></div>
+          <footer class="tFoot"><span>${since ? 'Miembro desde' : note}</span><strong>${since || esc(nm || c.name)}</strong></footer>
+        </article>
+      </div>
+
+      <div class="rewardPanel ${won ? 'ready' : ''}">
+        <div class="rewardIcon"><i data-i="gift"></i></div><div><span class="eyebrow">Tu recompensa</span><strong>${esc(c.prize)}</strong><small>${won ? 'Disponible ahora' : `Te ${left === 1 ? 'falta' : 'faltan'} ${plural(left)} para desbloquearla`}</small></div>
+      </div>
+
+      <div class="qrPanel">
+        <div class="qrTitle"><span class="eyebrow">Tu código</span><strong>Muéstralo al visitar</strong><span>El personal lo escaneará para registrar tu visita.</span></div>
+        <div class="qrFrame">${qrImg(cardUrl(c))}<span class="qrCorner tl"></span><span class="qrCorner tr"></span><span class="qrCorner bl"></span><span class="qrCorner br"></span></div>
+        ${status}
+      </div>
+
+      <div class="cardActions">
+        <button class="primary" onclick="googleReview()"><i data-i="star"></i> Calificar en Google</button>
+        ${CFG && CFG.web ? '<button class="secondary" onclick="openWeb()"><i data-i="globe"></i> Visitar nuestra página</button>' : ''}
+        <button class="secondary" onclick="copyLink(cardUrl(CURRENT))"><i data-i="share"></i> Compartir mi tarjeta</button>
+        <button id="installBtn" class="secondary installBtn${canInstall() ? '' : ' hidden'}" onclick="installApp()"><i data-i="download"></i> Tener mi tarjeta en el celular</button>
+      </div>
+      <p class="cardFoot">Tu tarjeta es digital y funciona desde este teléfono. Guarda este enlace para volver a ella.</p>
+      <details class="cardMore"><summary>Opciones de mi tarjeta</summary><p class="hint">Código personal</p><div class="token">${esc(c.token)}</div><button class="textbtn" onclick="deleteMine()"><i data-i="trash"></i> Eliminar mis datos</button></details>
+      <button class="textbtn" onclick="show('home')"><i data-i="back"></i> Volver al inicio</button>
+    </div>`;
+  iconize($('card')); tiltCard($('card').querySelector('.ticketWrap'));
+  drawQrWhenReady();
+  if (won && (!live || prev < goal)) setTimeout(celebrate, live ? 300 : 900);
+  watchCard();
+}
+// Sello en vivo: mientras la tarjeta está abierta, revisa cada 8 s (hasta ~5 min) si el personal sumó una visita.
+let POLL = null, POLL_N = 0;
+function stopWatch() { clearInterval(POLL); POLL = null; }
+function watchCard() {
+  stopWatch(); POLL_N = 0;
+  POLL = setInterval(() => {
+    if (CUR !== 'card' || !CURRENT || ++POLL_N > 40) return stopWatch();
+    if (document.hidden) return;
+    const was = CURRENT;
+    api('getClientByToken', [RID, was.token]).then(x => {
+      if (!x || CUR !== 'card' || CURRENT !== was) return;
+      if (x.points === was.points && x.prizeAvailable === was.prizeAvailable) return;
+      const prev = was.prizeAvailable ? Number(x.goal) : Number(was.points || 0);
+      renderCard(x, false, Math.min(prev, Number(x.points || 0)));
+      toast(x.prizeAvailable && !was.prizeAvailable ? '¡Ganaste tu premio!' : x.points > was.points ? 'Visita sumada a tu tarjeta.' : 'Tu tarjeta se actualizó.');
+    }).catch(() => {});
+  }, 8000);
+}
+function drawQrWhenReady() {
+  const frame = $('card').querySelector('.qrFrame');
+  if (!frame || !CURRENT || typeof qrcode === 'undefined' || frame.querySelector('.qr')) return;
+  frame.innerHTML = qrImg(cardUrl(CURRENT)) + '<span class="qrCorner tl"></span><span class="qrCorner tr"></span><span class="qrCorner bl"></span><span class="qrCorner br"></span>';
+}
+const qrScript = $('qrLib');
+if (qrScript) qrScript.addEventListener('load', drawQrWhenReady);
+document.addEventListener('visibilitychange', () => { if (!document.hidden && CUR === 'card' && CURRENT && !POLL) watchCard(); });
+document.addEventListener('installready', () => { const b = $('installBtn'); if (b) b.classList.toggle('hidden', !canInstall()); });
+let LAST = ''; try { LAST = localStorage.getItem('akiko_last') || ''; } catch (e) {}
+if (!RID && LAST.indexOf(DIR + '?r=') === 0) location.replace(LAST); // la app instalada abre directo tu tarjeta
+else if (!RID) { hideLoader();
+  $('title').textContent = 'Programa de lealtad'; $('homeBtns').classList.add('hidden');
+  $('homeMsg').textContent = 'Abre esta página desde el código QR o la etiqueta NFC de tu restaurante.';
+} else {
+  const cachedCfg = getConfigLocal();
+  if (cachedCfg && String(cachedCfg.id) === RID) { paintConfig(cachedCfg); hideLoader(); }
+  const t = (_q.get('t') || '').trim() || getLocal();
+  const configRequest = api('publicConfig', [RID]).then(c => { saveConfigLocal(c); paintConfig(c); hideLoader(); return c; }).catch(e => { if (cachedCfg) return cachedCfg; throw e; });
+  const cardRequest = t ? api('getClientByToken', [RID, t]) : Promise.resolve(null);
+  Promise.all([configRequest, cardRequest]).then(([c, x]) => {
+    if (t) { if (x) { saveLocal(x.token); renderCard(x); } else forgetLocal(); }
+  }).catch(e => { hideLoader(); alert(e.message || String(e)); });
+}
+</script></body></html>
